@@ -1,0 +1,31 @@
+[
+    {
+        "Cityname": "Krakow",
+        "lat": 50.083328,
+        "lon": 19.91667
+    },
+    {
+        "Cityname": "Katowice",
+        "lat": 50.258419,
+        "lon": 19.02754
+        
+    },
+    {
+        "Cityname": "Warszawa",
+        "lat": 52.233101,
+        "lon": 21.061399
+        
+    },
+    {
+        "Cityname": "Poznan",
+        "lat": 52.406921,
+        "lon": 16.92993
+        
+    },
+    {
+        "Cityname": "Wroclaw",
+        "lat": 51.099998,
+        "lon": 17.033331
+        
+    }
+]
