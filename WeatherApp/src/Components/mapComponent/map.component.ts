@@ -8,8 +8,8 @@ import { Marker } from './Marker';
 })
 export class MapComponent implements OnInit {
     constructor(private _mapService: MapService) { }
-    lat: number = 51.678418;
-    lng: number = 7.809007;
+    lat: number = 50.083328;
+    lon: number = 19.91667;
     weather;
     markers: Marker[];
     flag: boolean;
@@ -21,7 +21,9 @@ export class MapComponent implements OnInit {
         this._mapService.GetWeather(cityName).subscribe(response => {
             this.weather = response;
         });
-    
+
+       
+
         if (this.infoWindowOpened !== null) {
             this.infoWindowOpened.close();
         }
@@ -29,12 +31,10 @@ export class MapComponent implements OnInit {
     }
     SetMarkers() {
         this._mapService.GetMarkers().subscribe(response => this.markers = response);
-    }
-
-    func() {
-        console.log('opened');
 
     }
+
+
 
 
 }

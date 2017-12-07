@@ -14,11 +14,11 @@
 </agm-map> -->
 
 <agm-map [latitude]="lat" [longitude]="lon">
-  <agm-marker *ngFor="let m of marker" [latitude]="m?.lat" [longitude]="m?.lon" 
+  <agm-marker *ngFor="let m of markers" [latitude]="m?.lat" [longitude]="m?.lon" 
   (markerClick)="GetWeather(m.Cityname, infoWindow)"
   >
 
-    <agm-info-window>
+    <agm-info-window #infoWindow>
       <strong>{{weather?.name}}
         <br>
       </strong>
