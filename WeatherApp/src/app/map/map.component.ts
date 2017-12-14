@@ -12,7 +12,6 @@ export class MapComponent implements OnInit {
     lon: number = 19.91667;
     weather;
     markers: Marker[];
-    flag: boolean;
     infoWindowOpened = null;
     ngOnInit() {
         this.SetMarkers();
@@ -22,7 +21,7 @@ export class MapComponent implements OnInit {
             this.weather = response;
         });
 
-       
+
 
         if (this.infoWindowOpened !== null) {
             this.infoWindowOpened.close();
@@ -33,7 +32,6 @@ export class MapComponent implements OnInit {
         this._mapService.GetMarkers().subscribe(response => this.markers = response);
 
     }
-
 
 
 

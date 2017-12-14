@@ -17,4 +17,7 @@ export class MapService {
         return this._http.get<Marker[]>('../../markers.json');
     }
 
+    GetLayer(): Observable<any[]> {
+        return this._http.get<any[]>('http://tile.openweathermap.org/map/clouds_new/1/1/1.png?appid=404e3914151d86a89162768b74f5831c');
+    }
 }

@@ -1,0 +1,13 @@
+<agm-map [latitude]="lat" [longitude]="lon">
+  <agm-marker *ngFor="let m of markers" [latitude]="m?.lat" [longitude]="m?.lon" 
+  (markerClick)="GetWeather(m.Cityname, infoWindow)"
+  >
+
+    <agm-info-window #infoWindow>
+      <strong>{{weather?.name}}</strong>
+      <br>Temperatura: {{weather?.main.temp}} C
+      <br> Prędkość wiatru: {{weather?.wind.speed}} km/h
+      <br> Ciśnienie: {{weather?.main.pressure}} hPa
+    </agm-info-window>
+ </agm-marker>
+</agm-map>
