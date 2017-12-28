@@ -28,15 +28,33 @@ namespace WeatherAppApi.Controllers
         }
     
         
-
+        [HttpPost]
         public async Task<IHttpActionResult> PostHistory(Weather model)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
             WeatherHistory weatherHistory = Mapper.Map<Weather, WeatherHistory>(model);
             weatherHistory.UserId = User.Identity.GetUserId();
             weatherHistory.Date = DateTime.Now;
             await _historyRepository.Add(weatherHistory);
             await _historyRepository.Save();
             return Ok();
+        }
+
+        [HttpGet]
+        public async Task<IEnumerable<WeatherHistory>> GetWeatherByUserId()
+        {
+            string id = User.Identity.GetUserId();
+            if (id != null)
+            {
+                return await _historyRepository.GetByUserId(id);
+            }
+            else
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
         }
 }
 }

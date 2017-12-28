@@ -18,11 +18,9 @@ namespace WeatherAppApi.Providers
             context.Validated();
         }
 
-       // [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
 
-           // context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
 
             using (AuthRepository _repo = new AuthRepository())
             {
