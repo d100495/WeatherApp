@@ -10,9 +10,9 @@ import { IWeather } from './IWeather';
 })
 export class MapComponent implements OnInit {
     constructor(private _mapService: MapService) { }
-    lat: number = 50.083328;
-    lon: number = 19.91667;
-    weather: IWeather;
+    lat = 50.083328;
+    lon = 19.91667;
+    weather: Weather;
     markers: Marker[];
     infoWindowOpened = null;
     ngOnInit() {
@@ -22,9 +22,8 @@ export class MapComponent implements OnInit {
         this._mapService.GetWeather(cityName).subscribe(response => {
             this.weather = response;
             console.log(this.weather);
+            this.PostWeather();
         });
-
-
         if (this.infoWindowOpened !== null) {
             this.infoWindowOpened.close();
         }
@@ -32,9 +31,10 @@ export class MapComponent implements OnInit {
     }
     SetMarkers() {
         this._mapService.GetMarkers().subscribe(response => this.markers = response);
-
     }
 
-
+    PostWeather() {
+        this._mapService.PostWeather(this.weather).subscribe();
+    }
 
 }

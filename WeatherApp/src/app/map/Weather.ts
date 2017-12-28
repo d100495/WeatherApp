@@ -12,7 +12,7 @@ export class Weather{
             this.Latitude = latitude;
             this. Pressure = pressure;
             this.WindSpeed = windSpeed;
-            this.WindChill = 13.12 + 0.6215 * this.Temperature - Math.pow((11.37 * this.WindSpeed), 0.16)
-             + Math.pow((0.3965 * this.Temperature * this.WindSpeed), 0.16);
+            this.WindChill = Math.round((13.12 + 0.6215 * this.Temperature - Math.pow((11.37 * this.WindSpeed), 0.16)
+             + Math.pow((0.3965 * this.Temperature * this.WindSpeed), 0.16)) * 100) / 100;
     }
 }

@@ -1,12 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MapRoutingModule } from './map-routing.module';
+import { MapService } from '../Services/mapService';
+import { MapComponent } from './map.component';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
-    declarations: [],
-    imports: [ CommonModule,
-    MapRoutingModule ],
+    declarations: [MapComponent],
+    imports: [CommonModule,
+        AgmCoreModule.forRoot({
+            apiKey: 'AIzaSyC2MLYTYjIMBmj3P_Mvk2khw0YCcpBymKE'
+        }),
+        MapRoutingModule],
     exports: [],
-    providers: [],
+    providers: [MapService],
 })
-export class MapModule {}
+export class MapModule { }

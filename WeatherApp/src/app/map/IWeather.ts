@@ -1,11 +1,4 @@
 export interface IWeather {
-    // Temperature: number;
-    // Longitude: number;
-    // Latitude: number;
-    // Pressure: number;
-    // WindSpeed: number;
-    // WindChill: number;
-
     main: IMain;
     wind: IWind;
     coord: ICoord;

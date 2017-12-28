@@ -2,6 +2,7 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { AccountService } from '../Services/accountService';
 import { Login } from './Login';
 import { AuthService } from '../Services/authService';
+import { IUser } from './User';
 
 @Component({
   selector: 'app-account',
@@ -11,24 +12,24 @@ import { AuthService } from '../Services/authService';
 export class AccountComponent implements OnInit {
   loginModel = new Login('', '');
   isAuthenticated: boolean;
+  user: IUser;
   @Output() isAuth = new EventEmitter();
   constructor(private accountService: AccountService) { }
 
   Login() {
-    //json.stringify
     this.accountService.Login(this.loginModel).subscribe(response => {
       localStorage.setItem('token', response.access_token);
       this.isAuthenticated = true;
       this.isAuth.emit(this.isAuthenticated);
     });
-
+    this.GetUserInfo();
   }
 
-
-  Order() {
-    this.accountService.Get().subscribe(response => {
-      console.log(response);
+  GetUserInfo(){
+    this.accountService.GetUserInfo().subscribe(response => {
+      this.user = response
     });
+  
   }
 
 

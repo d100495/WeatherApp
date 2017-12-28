@@ -1,0 +1,24 @@
+<div class="table-responsive">
+    <div class="table">
+        <thead>
+            <th>Longitude</th>
+            <th>Latitude</th>
+            <th>Temperature</th>
+            <th>Pressure</th>
+            <th>Wind Speed</th>
+            <th>Wind Chill</th>
+            <th>Date</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let model of weather;">
+                <td>{{model.longitude}}</td>
+                <td>{{model.latitude}}</td>
+                <td>{{model.temperature}}</td>
+                <td>{{model.pressure}}</td>
+                <td>{{model.windSpeed}}</td>
+                <td>{{model.windChill}}</td>
+                <td>{{model.date}}</td>
+            </tr>
+        </tbody>
+    </div>
+</div>

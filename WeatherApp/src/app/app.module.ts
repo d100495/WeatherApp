@@ -17,26 +17,26 @@ import { AccountService } from './Services/accountService';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HomeComponent } from './home/home.component';
+import { HistoryModule } from './history/history.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    MapComponent,
     NavComponent,
-    AccountComponent
+    AccountComponent,
+    HomeComponent
   ],
   imports: [CommonModule,
     FormsModule,
     MapModule,
+    HistoryModule,
     BrowserModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyC2MLYTYjIMBmj3P_Mvk2khw0YCcpBymKE'
-    }),
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [SharedService, MapService, AuthService, AccountService],
+  providers: [SharedService, AuthService, AccountService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
