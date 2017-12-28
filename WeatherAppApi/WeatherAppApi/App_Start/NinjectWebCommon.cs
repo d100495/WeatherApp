@@ -43,6 +43,7 @@ namespace WeatherAppApi
         {
             System.Web.Http.GlobalConfiguration.Configuration.DependencyResolver = new Ninject.WebApi.DependencyResolver.NinjectDependencyResolver(kernel);
             kernel.Bind<IWeatherHistoryRepository>().To<WeatherHistoryRepository>();
+            kernel.Bind<IAuthRepository>().To<AuthRepository>();
         }
     }
 }

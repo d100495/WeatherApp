@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Web;
-using System.Web.Http;
-using Microsoft.Owin;
+﻿using Microsoft.Owin;
 using Microsoft.Owin.Security.OAuth;
-using Ninject;
 using Ninject.Web.Common.OwinHost;
 using Ninject.Web.WebApi.OwinHost;
 using Owin;
+using System;
+using System.Web.Http;
 using WeatherAppApi.App_Start;
 using WeatherAppApi.Providers;
 
@@ -46,7 +41,8 @@ namespace WeatherAppApi
         }
 
         
-       
-   
+     
     }
+
+
 }

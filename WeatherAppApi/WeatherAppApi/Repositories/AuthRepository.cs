@@ -5,11 +5,12 @@ using System.Threading.Tasks;
 using System.Web;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using WeatherAppApi.Interfaces;
 using WeatherAppApi.Models;
 
 namespace WeatherAppApi.Repositories
 {
-    public class AuthRepository : IDisposable
+    public class AuthRepository : IAuthRepository
     {
         private AuthContext _ctx;
  
@@ -39,6 +40,11 @@ namespace WeatherAppApi.Repositories
             return user;
         }
 
+        public async Task<IdentityUser> FindById(string id)
+        {
+            IdentityUser user = await _userManager.FindByIdAsync(id);
+            return user;
+        }
       
         public void Dispose()
         {

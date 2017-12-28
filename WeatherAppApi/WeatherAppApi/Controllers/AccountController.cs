@@ -6,6 +6,8 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using WeatherAppApi.Interfaces;
 using WeatherAppApi.Models;
 using WeatherAppApi.Repositories;
 
@@ -14,11 +16,11 @@ namespace WeatherAppApi.Controllers
     [RoutePrefix("api/Account")]
     public class AccountController : ApiController
     {
-        private AuthRepository _repo = null;
+        private IAuthRepository _repo;
  
-        public AccountController()
+        public AccountController(IAuthRepository _authRepository)
         {
-            _repo = new AuthRepository();
+            _repo = _authRepository;
         }
 
        
@@ -42,6 +44,14 @@ namespace WeatherAppApi.Controllers
             }
  
             return Ok();
+        }
+
+        [HttpGet]
+        public async Task<IdentityUser> GetUserInfo()
+        {
+            string userId = User.Identity.GetUserId();
+            return await _repo.FindById(userId);
+
         }
  
         protected override void Dispose(bool disposing)
