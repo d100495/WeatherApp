@@ -33,14 +33,16 @@ namespace WeatherAppApi.Providers
                     context.SetError("invalid_grant", "The user name or password is incorrect.");
                     return;
                 }
+                else
+                {
+                    string id = user.Id.ToString();
+                    var identity = new ClaimsIdentity(context.Options.AuthenticationType);
+                    identity.AddClaim(new Claim("sub", context.UserName));
+                    identity.AddClaim(new Claim("role", "user"));
+                    identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, id));
+                    context.Validated(identity);
+                }
             }
-
-            var identity = new ClaimsIdentity(context.Options.AuthenticationType);
-            identity.AddClaim(new Claim("sub", context.UserName));
-            identity.AddClaim(new Claim("role", "user"));
-
-            context.Validated(identity);
-
         }
     }
 }

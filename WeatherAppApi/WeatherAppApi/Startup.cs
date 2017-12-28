@@ -1,11 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 using System.Web.Http;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.OAuth;
+using Ninject;
+using Ninject.Web.Common.OwinHost;
+using Ninject.Web.WebApi.OwinHost;
 using Owin;
+using WeatherAppApi.App_Start;
 using WeatherAppApi.Providers;
 
 [assembly: OwinStartup(typeof(WeatherAppApi.Startup))]
@@ -17,11 +22,13 @@ namespace WeatherAppApi
         { 
             app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
             ConfigureOAuth(app);
-           
+            AutoMapperConfig.Initialize();
             HttpConfiguration config = new HttpConfiguration();
             WebApiConfig.Register(config);
-            app.UseWebApi(config);
+            app.UseNinjectMiddleware(NinjectWebCommon.CreateKernel).UseNinjectWebApi(config);
+           // app.UseWebApi(config);
         }
+
         public void ConfigureOAuth(IAppBuilder app)
         {
             OAuthAuthorizationServerOptions OAuthServerOptions = new OAuthAuthorizationServerOptions()
@@ -39,20 +46,7 @@ namespace WeatherAppApi
         }
 
         
-        //protected void Application_BeginRequest(Object sender, EventArgs e)
-        //{
-        //    HttpContext.Current.Response.AddHeader("Access-Control-Allow-Origin", "*");
-        //    if (HttpContext.Current.Request.HttpMethod == "OPTIONS")
-        //    {
-        //        HttpContext.Current.Response.AddHeader("Cache-Control", "no-cache");
-        //        HttpContext.Current.Response.AddHeader("Access-Control-Allow-Methods", "GET, POST");
-        //        HttpContext.Current.Response.AddHeader("Access-Control-Allow-Headers", "Content-Type, Accept");
-        //        HttpContext.Current.Response.AddHeader("Access-Control-Max-Age", "1728000");
-        //        HttpContext.Current.Response.End();
-        //    }
-           
-        //}
-
+       
    
     }
 }

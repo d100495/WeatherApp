@@ -36,10 +36,10 @@ namespace WeatherAppApi.Repositories
         public async Task<IdentityUser> FindUser(string userName, string password)
         {
             IdentityUser user = await _userManager.FindAsync(userName, password);
- 
             return user;
         }
- 
+
+      
         public void Dispose()
         {
             _ctx.Dispose();

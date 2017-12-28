@@ -20,7 +20,8 @@ namespace WeatherAppApi.Controllers
         {
             _repo = new AuthRepository();
         }
- 
+
+       
         // POST api/Account/Register
         [AllowAnonymous]
         [Route("Register")]
