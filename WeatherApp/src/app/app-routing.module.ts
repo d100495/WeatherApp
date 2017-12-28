@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { GoogleComponent } from './google/google.component';
+import { MapComponent } from './map/map.component';
 
 const routes: Routes = [
-    { path: '', component: GoogleComponent },
+    { path: '', component: MapComponent },
    
 ];
 

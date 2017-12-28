@@ -1,6 +1,17 @@
-<div class="container-fluid">
+<div class="container-fluid" [hidden]='!isAuth'>
   <div class="row">
-    
-<app-google></app-google>
+    <app-nav
+    (isAuth)= "isAuth = $event"></app-nav>
+  </div>
+  <div class="row">
+    <app-map></app-map>
+</div>
+</div>
+
+<div class="container-fluid" [hidden]='isAuth'>
+  <div class="row">
+    <app-account
+      (isAuth)= "isAuth = $event">
+    </app-account>
 </div>
 </div>

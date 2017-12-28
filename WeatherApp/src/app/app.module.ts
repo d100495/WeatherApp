@@ -5,42 +5,38 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { AgmCoreModule } from '@agm/core';
 import { MapComponent } from './map/map.component';
-import { MapService } from './map/mapService';
-import { HttpClientModule } from '@angular/common/http';
-import { GoogleComponent } from './google/google.component';
-import { SocialLoginModule, AuthServiceConfig } from 'angular4-social-login';
-import { GoogleLoginProvider } from 'angular4-social-login';
+import { MapService } from './Services/mapService';
+
 import { NavComponent } from './nav/nav.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MapModule } from './map/map.module';
 import { SharedService } from '../Shared/shared.service';
-
-const config = new AuthServiceConfig([
-  {
-    id: GoogleLoginProvider.PROVIDER_ID,
-    provider: new GoogleLoginProvider('146476582627-eus7lbh08tc3j7sncsui8n79pgjtgtpn.apps.googleusercontent.com')
-  }
-]);
+import { AccountComponent } from './account/account.component';
+import { AuthService } from './Services/authService';
+import { AccountService } from './Services/accountService';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     MapComponent,
-    GoogleComponent,
-    NavComponent
+    NavComponent,
+    AccountComponent
   ],
-  imports: [
+  imports: [CommonModule,
+    FormsModule,
     MapModule,
     BrowserModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyC2MLYTYjIMBmj3P_Mvk2khw0YCcpBymKE'
     }),
     HttpClientModule,
-    SocialLoginModule.initialize(config),
     AppRoutingModule
   ],
-  providers: [SharedService, MapService],
+  providers: [SharedService, MapService, AuthService, AccountService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

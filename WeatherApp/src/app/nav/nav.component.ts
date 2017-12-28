@@ -1,7 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Output } from '@angular/core/src/metadata/directives';
-import { EventEmitter } from '@angular/core/src/event_emitter';
-import { SharedService } from '../../Shared/shared.service';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { AccountService } from '../Services/accountService';
 
 @Component({
   selector: 'app-nav',
@@ -9,12 +7,17 @@ import { SharedService } from '../../Shared/shared.service';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
-  constructor(private sharedService: SharedService) { }
-
-  SignOut(){
-    this.sharedService.SignOut();
-  }
+  constructor(private accountService: AccountService) { }
+  isAuthenticated: boolean;
+  @Output() isAuth = new EventEmitter();
   ngOnInit() {
+  }
+
+
+  LogOut(){
+    this.accountService.logOut();
+    this.isAuthenticated = false;
+    this.isAuth.emit(this.isAuthenticated);
   }
 
 }

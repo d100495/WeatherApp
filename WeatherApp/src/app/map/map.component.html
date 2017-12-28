@@ -4,10 +4,12 @@
   >
 
     <agm-info-window #infoWindow>
-      <strong>{{weather?.name}}</strong>
+      <strong>Lon: {{weather?.coord.lon}}</strong>
+      <strong>Lat: {{weather?.coord.lat}}</strong>
       <br>Temperatura: {{weather?.main.temp}} C
       <br> Prędkość wiatru: {{weather?.wind.speed}} km/h
       <br> Ciśnienie: {{weather?.main.pressure}} hPa
+      <br> Temp Odczuwalna {{weather?.WindChill}}
     </agm-info-window>
  </agm-marker>
 </agm-map>
