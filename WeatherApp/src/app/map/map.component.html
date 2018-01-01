@@ -1,3 +1,4 @@
+<div class="col-lg-12">
 <agm-map [latitude]="lat" [longitude]="lon">
   <agm-marker *ngFor="let m of markers" [latitude]="m?.lat" [longitude]="m?.lon" 
   (markerClick)="GetWeather(m.Cityname, infoWindow)"
@@ -13,3 +14,4 @@
     </agm-info-window>
  </agm-marker>
 </agm-map>
+</div>

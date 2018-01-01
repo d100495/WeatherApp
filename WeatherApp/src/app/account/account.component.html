@@ -1,6 +1,19 @@
-<label>name</label>
-<input [(ngModel)]= loginModel.username> <br>
-<label>pass</label>
+<div class="col-lg-4">
 
-<input [(ngModel)]= loginModel.password>
-<button (click)="Login()">login</button>
+</div>
+<div class="col-lg-4">
+    <form #loginForm="ngForm">
+        <div class="form-group">
+            <label for="username">Name</label>
+            <input class="form-control" [(ngModel)]= loginModel.username id="username" placeholder="Name" name="name">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input class="form-control" type="password" [(ngModel)]= loginModel.password id="password" placeholder="Password" name="password">
+        </div>
+        <button class="btn btn-primary" (click)="Login()">login</button>
+    </form>
+</div>
+<div class="col-lg-4">
+
+</div>
