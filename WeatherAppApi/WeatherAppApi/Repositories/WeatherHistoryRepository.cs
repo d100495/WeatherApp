@@ -27,7 +27,7 @@ namespace WeatherAppApi.Repositories
 
         public async Task<IEnumerable<WeatherHistory>> GetByUserId(string id)
         {
-            return await _context.WeatherHistory.Where(x => x.UserId == id).ToListAsync();
+            return await _context.WeatherHistory.Where(x => x.Id == id).ToListAsync();
         }
 
         public async Task Save()

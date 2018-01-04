@@ -43,7 +43,7 @@ namespace WeatherAppApi.Controllers
                 return errorResult;
             }
  
-            return Ok();
+            return Ok(userModel);
         }
 
         [HttpGet]

@@ -9,8 +9,8 @@ namespace WeatherAppApi.Interfaces
     public interface IAuthRepository : IDisposable
     {
         Task<IdentityResult> RegisterUser(UserModel userModel);
-        Task<IdentityUser> FindUser(string userName, string password);
-        Task<IdentityUser> FindById(string id);
+        Task<ApplicationUser> FindUser(string userName, string password);
+        Task<ApplicationUser> FindById(string id);
         void Dispose();
     }
 }
