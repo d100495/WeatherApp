@@ -5,6 +5,7 @@ using Ninject.Web.WebApi.OwinHost;
 using Owin;
 using System;
 using System.Web.Http;
+using Newtonsoft.Json;
 using WeatherAppApi.App_Start;
 using WeatherAppApi.Providers;
 
@@ -21,7 +22,6 @@ namespace WeatherAppApi
             HttpConfiguration config = new HttpConfiguration();
             WebApiConfig.Register(config);
             app.UseNinjectMiddleware(NinjectWebCommon.CreateKernel).UseNinjectWebApi(config);
-           // app.UseWebApi(config);
         }
 
         public void ConfigureOAuth(IAppBuilder app)
