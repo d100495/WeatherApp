@@ -17,7 +17,7 @@ using WeatherAppApi.Repositories;
 
 namespace WeatherAppApi.Controllers
 {
-    [Authorize]
+   
     public class WeatherController : ApiController
     {
         private IWeatherHistoryRepository _historyRepository;
@@ -29,6 +29,7 @@ namespace WeatherAppApi.Controllers
     
         
         [HttpPost]
+        [Authorize]
         public async Task<IHttpActionResult> PostHistory(Weather model)
         {
             if (!ModelState.IsValid)
@@ -36,7 +37,7 @@ namespace WeatherAppApi.Controllers
                 return BadRequest();
             }
             WeatherHistory weatherHistory = Mapper.Map<Weather, WeatherHistory>(model);
-            weatherHistory.UserId = User.Identity.GetUserId();
+            weatherHistory.Id = User.Identity.GetUserId();
             weatherHistory.Date = DateTime.Now;
             await _historyRepository.Add(weatherHistory);
             await _historyRepository.Save();
@@ -44,6 +45,7 @@ namespace WeatherAppApi.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<IEnumerable<WeatherHistory>> GetWeatherByUserId()
         {
             string id = User.Identity.GetUserId();
@@ -55,6 +57,19 @@ namespace WeatherAppApi.Controllers
             {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             }
+        }
+
+        public async Task<IHttpActionResult> PostHistoryFromFavorite(WeatherWithUserId model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            WeatherHistory weatherHistory = Mapper.Map<WeatherWithUserId, WeatherHistory>(model);
+            weatherHistory.Date = DateTime.Now;
+            await _historyRepository.Add(weatherHistory);
+            await _historyRepository.Save();
+            return Ok();
         }
 }
 }
