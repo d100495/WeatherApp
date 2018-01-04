@@ -15,6 +15,7 @@ namespace WeatherAppApi.App_Start
                 Mapper.Initialize((config) =>
                 {
                     config.CreateMap<Weather, WeatherHistory>().ReverseMap();
+                    config.CreateMap<WeatherWithUserId, WeatherHistory>().ReverseMap();
                 });
             }
        
