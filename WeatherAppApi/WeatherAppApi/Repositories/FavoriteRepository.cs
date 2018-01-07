@@ -68,7 +68,7 @@ namespace WeatherAppApi.Repositories
                         {
                             CityName = item.CityName,
                             Latitude = item.Latitude,
-                            Longitude = item.Latitude
+                            Longitude = item.Longitude
                             
                         });
                     }
