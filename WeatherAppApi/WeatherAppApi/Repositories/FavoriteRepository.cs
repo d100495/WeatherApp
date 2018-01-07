@@ -46,6 +46,8 @@ namespace WeatherAppApi.Repositories
             var dto = list.Select(x => new FavoriteDTO
             {
                 CityName = x.CityName,
+                Latitude = x.Latitude,
+                Longitude = x.Longitude,
                 Id = x.ApplicationUser.Select(a => a.Id)
             });
             return dto;
@@ -64,7 +66,10 @@ namespace WeatherAppApi.Repositories
                     {
                         fav.Add(new Favorite
                         {
-                            CityName = item.CityName
+                            CityName = item.CityName,
+                            Latitude = item.Latitude,
+                            Longitude = item.Latitude
+                            
                         });
                     }
                 }
