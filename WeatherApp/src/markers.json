@@ -43,5 +43,9 @@
         "Cityname": "Milano",
         "lat": 45.464272,
         "lon": 9.18951
+    },{
+        "Cityname" : "Malaga",
+        "lat": 36.720161,
+        "lon": -4.42034
     }
 ]

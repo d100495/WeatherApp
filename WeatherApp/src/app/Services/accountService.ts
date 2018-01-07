@@ -6,6 +6,7 @@ import { RequestOptions, RequestOptionsArgs } from '@angular/http';
 import { AuthService } from './authService';
 import { Observable } from 'rxjs/Observable';
 import { IUser } from '../account/User';
+import { Register } from '../account/Register';
 
 
 
@@ -14,7 +15,11 @@ export class AccountService {
     private url = 'http://localhost:55132/token';
     private accountUrl = 'http://localhost:55132/api/account';
     private httpOptions = {
-        headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization' : `Bearer ${this.auth.getToken()}` })
+        headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `Bearer ${this.auth.getToken()}` })
+    };
+
+    private httpOptionsRegister = {
+        headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
     constructor(private _http: HttpClient, public auth: AuthService) { }
 
@@ -27,11 +32,17 @@ export class AccountService {
         return this._http.post(this.url, body.toString());
     }
 
-    GetUserInfo(): Observable<IUser>{
+    Register(registerData: Register): Observable<Register> {
+        const url = 'http://localhost:55132/api/account/register';
+        return this._http.post<Register>(url, registerData,  this.httpOptionsRegister).pipe(
+            catchError((error: any) => Observable.throw(error.json().error || 'Server error'))
+        );
+    }
+    GetUserInfo(): Observable<IUser> {
         return this._http.get<IUser>(this.accountUrl, this.httpOptions);
     }
 
-    logOut(){
+    logOut() {
         localStorage.clear();
 
     }

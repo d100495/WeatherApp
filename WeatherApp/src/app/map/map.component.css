@@ -1,3 +1,48 @@
 agm-map {
     height: 600px;
   }
+
+  .weatherInfoTemp {
+    background-color: #7b7573;
+    font-weight: bold;
+    color: white;
+    padding: 5px;
+    border-radius: 6px;
+
+}
+.weatherInfoWindSpeed {
+  background-color:#529e93;
+  font-weight: bold;
+    color: white;
+    border-radius: 6px;
+    padding: 5px;
+}
+.weatherInfoPressure {
+    background-color:#2b9a59;
+    font-weight: bold;
+    color: white;
+    border-radius: 6px;
+    padding: 5px;
+}
+
+
+.weatherInfoWindChill {
+    background-color: #291d1b;
+    font-weight: bold;
+    color: white;
+    border-radius: 6px;
+    padding: 5px;
+}
+
+.weatherInfoWindHumid {
+    background-color: #49648a;
+    font-weight: bold;
+    color: white;
+    border-radius: 6px;
+    padding: 5px;
+}
+
+.latLongInfo{
+     text-align: center;
+       font-weight: bold;
+}

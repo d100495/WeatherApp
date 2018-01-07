@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MapService } from '../Services/mapService';
-import { Weather } from '../map/Weather';
+import { Weather } from '../Models/Weather';
 
 @Component({
     selector: 'app-history',

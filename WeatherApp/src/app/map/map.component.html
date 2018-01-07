@@ -1,16 +1,17 @@
-<div class="col-lg-12">
+<div class="col-lg-12" border-radius="10px">
 <agm-map [latitude]="lat" [longitude]="lon">
-  <agm-marker *ngFor="let m of markers" [latitude]="m?.lat" [longitude]="m?.lon" 
+  <agm-marker *ngFor="let m of markers" [latitude]="m?.lat" [longitude]="m?.lon"
   (markerClick)="GetWeather(m.Cityname, infoWindow)"
   >
 
     <agm-info-window #infoWindow>
-      <strong>Lon: {{weather?.Longitude}}</strong>
-      <strong>Lat: {{weather?.Latitude}}</strong>
-      <br>Temperatura: {{weather?.Temperature}} C
-      <br> Prędkość wiatru: {{weather?.WindSpeed}} km/h
-      <br> Ciśnienie: {{weather?.Pressure}} hPa
-      <br> Temp Odczuwalna {{weather?.WindChill}}
+    <div class="latLongInfo">  Lon: {{weather?.Longitude}}    |   Lat: {{weather?.Latitude}}</div>
+      <div class="weatherInfoTemp">Temperatura: {{weather?.Temperature}} C</div>
+      <div class="weatherInfoWindChill"> Temperatura Odczuwalna: {{weather?.WindChill}}</div>
+
+      <div class="weatherInfoWindSpeed">Prędkość wiatru: {{weather?.WindSpeed}} km/h</div>
+      <div class="weatherInfoPressure"> Ciśnienie: {{weather?.Pressure}} hPa</div>
+      <button (click)="AddToFavorite(m.Cityname, weather?.Longitude, weather?.Latitude)" class="btn btn-default">Add to Favorite</button>
     </agm-info-window>
  </agm-marker>
 </agm-map>

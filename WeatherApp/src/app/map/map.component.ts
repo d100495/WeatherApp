@@ -1,20 +1,25 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MapService } from '../Services/mapService';
-import { Marker } from './Marker';
-import { Weather } from './Weather';
-import { IWeather } from './IWeather';
+import { Marker } from '../Models/Marker';
+import { Weather } from '../Models/Weather';
+import { IWeather } from '../Models/IWeather';
+import { FavoriteService } from '../Services/favoriteService';
+import { Favorite } from '../Models/Favorite';
+
 @Component({
     selector: 'app-map',
     templateUrl: './map.component.html',
     styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit {
-    constructor(private _mapService: MapService) { }
+    constructor(private _mapService: MapService, private _favService: FavoriteService) { }
     lat = 50.083328;
     lon = 19.91667;
     weather: Weather;
     markers: Marker[];
     infoWindowOpened = null;
+    interval;
+    favorite = new Favorite();
     ngOnInit() {
         this.SetMarkers();
     }
@@ -37,4 +42,10 @@ export class MapComponent implements OnInit {
         this._mapService.PostWeather(this.weather).subscribe();
     }
 
+    AddToFavorite(cityName: string, lat : number, lon: number){
+        this.favorite.cityName = cityName;
+        this.favorite.latitude = lat;
+        this.favorite.longitude = lon;
+        this._favService.AddToFavorite(this.favorite).subscribe();
+    }
 }
