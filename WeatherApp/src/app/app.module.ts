@@ -19,6 +19,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { HistoryModule } from './history/history.module';
+import { FavoriteService } from './Services/favoriteService';
+import { FavoriteModule } from './favorite/favorite.module';
 
 
 @NgModule({
@@ -31,12 +33,13 @@ import { HistoryModule } from './history/history.module';
   imports: [CommonModule,
     FormsModule,
     MapModule,
+    FavoriteModule,
     HistoryModule,
     BrowserModule,
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [SharedService, AuthService, AccountService],
+  providers: [SharedService, AuthService, AccountService, FavoriteService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
