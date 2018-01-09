@@ -9,16 +9,20 @@ import { Weather } from '../Models/Weather';
 })
 
 export class HistoryComponent implements OnInit {
-    weather : Weather;
+    weather: Weather[];
     constructor(private _mapService: MapService) { }
 
-    GetHistory(){
+    GetHistory() {
         this._mapService.GetHistory().subscribe(response => {
             this.weather = response;
         });
     }
-
     ngOnInit() {
         this.GetHistory();
-     }
+        // setInterval(() => {
+        //     this.GetHistory();
+        // }, 5000);
+
+
+    }
 }

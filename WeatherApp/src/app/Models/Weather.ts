@@ -1,4 +1,4 @@
-export class Weather{
+export class Weather {
     Temperature: number;
     Longitude: number;
     Latitude: number;
@@ -6,13 +6,16 @@ export class Weather{
     WindSpeed: number;
     WindChill: number;
 
-    constructor(temperature: number, longitude: number, latitude: number, pressure: number, windSpeed: number){
-            this.Temperature = temperature;
-            this.Longitude = longitude;
-            this.Latitude = latitude;
-            this. Pressure = pressure;
-            this.WindSpeed = windSpeed;
-            this.WindChill = Math.round((13.12 + 0.6215 * this.Temperature - Math.pow((11.37 * this.WindSpeed), 0.16)
-             + Math.pow((0.3965 * this.Temperature * this.WindSpeed), 0.16)) * 100) / 100;
+    constructor(temperature: number, longitude: number, latitude: number, pressure: number, windSpeed: number) {
+        this.Temperature = temperature;
+        this.Longitude = longitude;
+        this.Latitude = latitude;
+        this.Pressure = pressure;
+        this.WindSpeed = windSpeed;
+        this.WindChill = Math.round(33 + (0.478 + 0.237 * Math.sqrt(this.WindSpeed) - 0.0124 * this.WindSpeed)
+            * (this.Temperature - 33)) * 100 / 100;
     }
 }
+
+// (0.045 * ((Math.pow(5.27, 0.5)  + 10.45 - 0.28 * this.WindSpeed))
+//             *(this.Temperature - 33) + 33)

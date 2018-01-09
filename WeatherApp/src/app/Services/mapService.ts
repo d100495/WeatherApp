@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import { Observable, BehaviorSubject } from 'rxjs/';
 import { Marker } from '../Models/Marker';
 import { Weather } from '../Models/Weather';
 import 'rxjs/add/operator/map';
@@ -33,10 +33,9 @@ export class MapService {
         return this._http.get<Marker[]>('../../markers.json');
     }
 
-    GetHistory(): Observable<Weather> {
+    GetHistory(): Observable<Weather[]> {
         const url = `${this.urlApi}/GetWeatherByUserId`;
-        return this._http.get<Weather>(url, this.httpOptions);
+        return this._http.get<Weather[]>(url, this.httpOptions);
     }
-
 
 }
