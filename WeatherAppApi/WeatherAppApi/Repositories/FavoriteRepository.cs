@@ -28,13 +28,13 @@ namespace WeatherAppApi.Repositories
 
         public async Task Add(Favorite model, string id)
         {
-            ApplicationUser app = _context.Users.Include(x => x.Favorite).FirstOrDefault(x => x.Id == id);
+            ApplicationUser user = _context.Users.Include(x => x.Favorite).FirstOrDefault(x => x.Id == id);
             Favorite fav = _context.Favorite.FirstOrDefault(x => x.CityName == model.CityName);
             if (fav == null)
             {
                 _context.Favorite.Add(model);
             }
-            app.Favorite.Add(model);
+            user.Favorite.Add(model);
             await Save();
         }
 
@@ -45,6 +45,7 @@ namespace WeatherAppApi.Repositories
 
             var dto = list.Select(x => new FavoriteDTO
             {
+                IdFav = x.FavoriteId,
                 CityName = x.CityName,
                 Latitude = x.Latitude,
                 Longitude = x.Longitude,
@@ -66,6 +67,7 @@ namespace WeatherAppApi.Repositories
                     {
                         fav.Add(new Favorite
                         {
+                            FavoriteId = item.IdFav,
                             CityName = item.CityName,
                             Latitude = item.Latitude,
                             Longitude = item.Longitude
@@ -77,9 +79,13 @@ namespace WeatherAppApi.Repositories
             return fav;
         }
 
-        public async Task Delete(string cityName)
+        public async Task Delete(int favId, string userId)
         {
-            throw new NotImplementedException();
+           ApplicationUser user = _context.Users.Include(x => x.Favorite).FirstOrDefault(x => x.Id == userId);
+            Favorite fav = _context.Favorite.FirstOrDefault(x => x.FavoriteId == favId);
+            if(user != null)
+            user.Favorite.Remove(fav);
+            await Save();
         }
     }
 }

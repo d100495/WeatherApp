@@ -20,6 +20,12 @@ export class FavoriteComponent implements OnInit {
         });
     }
 
+    DeleteFavorite(id: number) {
+        console.log(id);
+        if (id != null) {
+            this._favoriteService.DeleteFromFavorite(id).subscribe();
+        }
+    }
 
 
     ngOnInit() {

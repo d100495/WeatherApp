@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Microsoft.AspNet.Identity;
@@ -13,7 +9,7 @@ namespace WeatherAppApi.Controllers
 {
     public class FavoriteController : ApiController
     {
-        private IFavoriteRepository _favoriteRepository;
+        private readonly IFavoriteRepository _favoriteRepository;
 
         public FavoriteController(IFavoriteRepository repo)
         {
@@ -24,7 +20,9 @@ namespace WeatherAppApi.Controllers
         [Authorize]
         public async Task<IHttpActionResult> AddToFavorite(Favorite model)
         {
-            string id = User.Identity.GetUserId();
+            if (!ModelState.IsValid)
+                return BadRequest();
+            var id = User.Identity.GetUserId();
             await _favoriteRepository.Add(model, id);
             return Ok();
         }
@@ -33,7 +31,7 @@ namespace WeatherAppApi.Controllers
         [Authorize]
         public async Task<IEnumerable<Favorite>> GetByUserId()
         {
-            string id = User.Identity.GetUserId();
+            var id = User.Identity.GetUserId();
             var items = await _favoriteRepository.GetByUserId(id);
             return items;
         }
@@ -43,6 +41,17 @@ namespace WeatherAppApi.Controllers
         {
             var items = await _favoriteRepository.GetAll();
             return items;
+        }
+
+        [HttpDelete]
+        [Authorize]
+        public async Task<IHttpActionResult> DeleteById(int id)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest();
+            var userId = User.Identity.GetUserId();
+            await _favoriteRepository.Delete(id, userId);
+            return Ok();
         }
     }
 }

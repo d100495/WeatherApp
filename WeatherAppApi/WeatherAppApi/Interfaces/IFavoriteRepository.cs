@@ -13,6 +13,6 @@ namespace WeatherAppApi.Interfaces
         Task Add(Favorite model, string id);
         Task<IEnumerable<FavoriteDTO>> GetAll();
         Task<IEnumerable<Favorite>> GetByUserId(string id);
-        Task Delete(string cityName);
+        Task Delete(int favId, string userId);
     }
 }
