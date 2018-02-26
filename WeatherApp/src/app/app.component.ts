@@ -14,7 +14,7 @@ export class AppComponent implements OnInit{
   constructor(private _favoriteService: FavoriteService){}
   
   ngOnInit(): void {
-    this._favoriteService.Init();
+    
    }
  
 }

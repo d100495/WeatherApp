@@ -10,10 +10,11 @@ namespace WeatherAppApi.Controllers
     public class FavoriteController : ApiController
     {
         private readonly IFavoriteRepository _favoriteRepository;
-
-        public FavoriteController(IFavoriteRepository repo)
+        private IFavoritesService _favoritesService;
+        public FavoriteController(IFavoriteRepository repo, IFavoritesService dupa)
         {
             _favoriteRepository = repo;
+            _favoritesService = dupa;
         }
 
         [HttpPost]
@@ -42,6 +43,7 @@ namespace WeatherAppApi.Controllers
             var items = await _favoriteRepository.GetAll();
             return items;
         }
+
 
         [HttpDelete]
         [Authorize]

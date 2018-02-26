@@ -1,6 +1,6 @@
-export class Favorite{
+export class Favorite {
     idFav: number;
     cityName: string;
-    longitude : number;
+    longitude: number;
     latitude: number;
 }

@@ -59,17 +59,17 @@ namespace WeatherAppApi.Controllers
             }
         }
 
-        public async Task<IHttpActionResult> PostHistoryFromFavorite(WeatherWithUserId model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest();
-            }
-            WeatherHistory weatherHistory = Mapper.Map<WeatherWithUserId, WeatherHistory>(model);
-            weatherHistory.Date = DateTime.Now;
-            await _historyRepository.Add(weatherHistory);
-            await _historyRepository.Save();
-            return Ok();
-        }
+        //public async Task<IHttpActionResult> PostHistoryFromFavorite(WeatherHistory model)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest();
+        //    }
+        //    WeatherHistory weatherHistory = Mapper.Map<WeatherHistory, WeatherHistory>(model);
+        //    weatherHistory.Date = DateTime.Now;
+        //    await _historyRepository.Add(weatherHistory);
+        //    await _historyRepository.Save();
+        //    return Ok();
+        //}
 }
 }

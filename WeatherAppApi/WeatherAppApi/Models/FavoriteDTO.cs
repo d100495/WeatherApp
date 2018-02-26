@@ -7,7 +7,7 @@ namespace WeatherAppApi.Models
 {
     public class FavoriteDTO
     {
-        public int IdFav { get; set; }
+        public int FavoriteDTOId { get; set; }
         public string CityName { get; set; }
         public double Longitude { get; set; }
         public double Latitude { get; set; }
