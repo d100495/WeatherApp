@@ -3,6 +3,7 @@ import { MapService } from '../Services/mapService';
 import { CommonModule } from '@angular/common';
 import { FavoriteRoutingModule } from './favorite-routing.module';
 import { FavoriteComponent } from './favorite.component';
+import { FavoriteService } from '../Services/favoriteService';
 
 
 @NgModule({
@@ -10,6 +11,6 @@ import { FavoriteComponent } from './favorite.component';
         FavoriteRoutingModule],
     exports: [],
     declarations: [FavoriteComponent],
-    providers: [MapService],
+    providers: [MapService, FavoriteService],
 })
 export class FavoriteModule { }

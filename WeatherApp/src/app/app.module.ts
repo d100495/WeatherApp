@@ -19,7 +19,6 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { HistoryModule } from './history/history.module';
-import { FavoriteService } from './Services/favoriteService';
 import { FavoriteModule } from './favorite/favorite.module';
 
 
@@ -39,7 +38,7 @@ import { FavoriteModule } from './favorite/favorite.module';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [SharedService, AuthService, AccountService, FavoriteService],
+  providers: [SharedService, AuthService, AccountService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

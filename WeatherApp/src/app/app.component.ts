@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FavoriteService } from './Services/favoriteService';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +10,7 @@ export class AppComponent implements OnInit{
   title = 'app';
   isAuth = false;
 
-  constructor(private _favoriteService: FavoriteService){}
+  constructor(){}
   
   ngOnInit(): void {
     
