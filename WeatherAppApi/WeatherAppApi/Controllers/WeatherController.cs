@@ -36,6 +36,10 @@ namespace WeatherAppApi.Controllers
             {
                 return BadRequest();
             }
+            if (model == null)
+            {
+                return BadRequest();
+            }
             WeatherHistory weatherHistory = Mapper.Map<Weather, WeatherHistory>(model);
             weatherHistory.Id = User.Identity.GetUserId();
             weatherHistory.Date = DateTime.Now;
@@ -46,30 +50,19 @@ namespace WeatherAppApi.Controllers
 
         [HttpGet]
         [Authorize]
-        public async Task<IEnumerable<WeatherHistory>> GetWeatherByUserId()
+        public async Task<IHttpActionResult> GetWeatherByUserId()
         {
             string id = User.Identity.GetUserId();
             if (id != null)
             {
-                return await _historyRepository.GetByUserId(id);
+                var list = await _historyRepository.GetByUserId(id);
+                return Ok(list);
             }
             else
             {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                return NotFound();
             }
         }
 
-        //public async Task<IHttpActionResult> PostHistoryFromFavorite(WeatherHistory model)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest();
-        //    }
-        //    WeatherHistory weatherHistory = Mapper.Map<WeatherHistory, WeatherHistory>(model);
-        //    weatherHistory.Date = DateTime.Now;
-        //    await _historyRepository.Add(weatherHistory);
-        //    await _historyRepository.Save();
-        //    return Ok();
-        //}
 }
 }

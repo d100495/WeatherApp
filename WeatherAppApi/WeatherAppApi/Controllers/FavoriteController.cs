@@ -24,24 +24,32 @@ namespace WeatherAppApi.Controllers
             if (!ModelState.IsValid)
                 return BadRequest();
             var id = User.Identity.GetUserId();
+            if (id == null)
+            {
+                return NotFound();
+            }
             await _favoriteRepository.Add(model, id);
             return Ok();
         }
 
         [HttpGet]
         [Authorize]
-        public async Task<IEnumerable<Favorite>> GetByUserId()
+        public async Task<IHttpActionResult> GetByUserId()
         {
             var id = User.Identity.GetUserId();
+            if (id == null)
+            {
+                return NotFound();
+            }
             var items = await _favoriteRepository.GetByUserId(id);
-            return items;
+            return Ok(items);
         }
 
         [HttpGet]
-        public async Task<IEnumerable<FavoriteDTO>> GetAll()
+        public async Task<IHttpActionResult> GetAll()
         {
             var items = await _favoriteRepository.GetAll();
-            return items;
+            return Ok(items);
         }
 
 

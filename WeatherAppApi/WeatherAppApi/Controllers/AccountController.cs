@@ -47,10 +47,15 @@ namespace WeatherAppApi.Controllers
         }
 
         [HttpGet]
-        public async Task<IdentityUser> GetUserInfo()
+        public async Task<IHttpActionResult> GetUserInfo()
         {
             string userId = User.Identity.GetUserId();
-            return await _repo.FindById(userId);
+            if (userId == null)
+            {
+                return NotFound();
+            }
+            var user =  await _repo.FindById(userId);
+            return Ok(user);
 
         }
  
