@@ -4,7 +4,6 @@ import { Observable, BehaviorSubject } from 'rxjs/';
 import { FavoriteArray } from '../Models/FavoriteArray';
 import { MapService } from './mapService';
 import { Weather } from '../Models/Weather';
-import { WeatherWithUserId } from '../Models/WeatherWithUserId';
 import { Favorite } from '../Models/Favorite';
 import { AuthService } from './authService';
 import 'rxjs/add/operator/do';
@@ -19,9 +18,7 @@ export class FavoriteService {
         headers: new HttpHeaders({ 'Authorization': `Bearer ${this.auth.getToken()}` })
     };
     private urlApi = `http://localhost:55132/api/favorite`;
-    favorities: FavoriteArray[];
     weather: Weather;
-    private _model: WeatherWithUserId;
     constructor(private _http: HttpClient, private _mapService: MapService, private auth: AuthService) { }
 
     GetFavoritesByUserId(): Observable<Favorite[]> {
@@ -39,5 +36,5 @@ export class FavoriteService {
         const url = `${this.urlApi}/DeleteById/${id}`;
         return this._http.delete(url, this.htttpDelete);
     }
- 
+
 } 
