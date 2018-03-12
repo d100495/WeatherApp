@@ -200,10 +200,12 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\FavoriteController.cs" />
     <Compile Include="Controllers\WeatherController.cs" />
+    <Compile Include="Controllers\WeatherStationController.cs" />
     <Compile Include="HangFireContext.cs" />
     <Compile Include="Interfaces\IFavoriteRepository.cs" />
     <Compile Include="Interfaces\IFavoritesService.cs" />
     <Compile Include="Interfaces\IWeatherHistoryRepository.cs" />
+    <Compile Include="Interfaces\IWeatherStationRepository.cs" />
     <Compile Include="Migrations\201712182215380_init.cs" />
     <Compile Include="Migrations\201712182215380_init.Designer.cs">
       <DependentUpon>201712182215380_init.cs</DependentUpon>
@@ -232,12 +234,16 @@
     <Compile Include="Migrations\201801042012581_AddLatLonToFavoriteTable.Designer.cs">
       <DependentUpon>201801042012581_AddLatLonToFavoriteTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803122129023_FavoriteToWatherStation.cs" />
+    <Compile Include="Migrations\201803122129023_FavoriteToWatherStation.Designer.cs">
+      <DependentUpon>201803122129023_FavoriteToWatherStation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="AuthContext.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="JsonDeserializeModels\WeatherJson.cs" />
-    <Compile Include="Models\Favorite.cs" />
-    <Compile Include="Models\FavoriteDTO.cs" />
+    <Compile Include="Models\WeatherStation.cs" />
+    <Compile Include="Models\FavoriteWeatherStation.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\Weather.cs" />
     <Compile Include="Models\WeatherHistory.cs" />
@@ -247,6 +253,7 @@
     <Compile Include="Interfaces\IAuthRepository.cs" />
     <Compile Include="Repositories\FavoriteRepository.cs" />
     <Compile Include="Repositories\WeatherHistoryRepository.cs" />
+    <Compile Include="Repositories\WeatherStationRepository.cs" />
     <Compile Include="Services\FavoritesService.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -283,6 +290,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801042012581_AddLatLonToFavoriteTable.resx">
       <DependentUpon>201801042012581_AddLatLonToFavoriteTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803122129023_FavoriteToWatherStation.resx">
+      <DependentUpon>201803122129023_FavoriteToWatherStation.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

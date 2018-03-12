@@ -19,16 +19,10 @@ namespace WeatherAppApi
 {
     public class Startup
     {
-        //private IFavoritesService _favoritesService;
-        //public Startup(IFavoritesService _fav)
-        //{
-        //    _favoritesService = _fav;
-        //}
-
         public void Configuration(IAppBuilder app)
-        { 
+        {
             var db = new HangfireContext();
-         
+
             app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
             ConfigureOAuth(app);
             AutoMapperConfig.Initialize();
@@ -39,7 +33,7 @@ namespace WeatherAppApi
             Hangfire.GlobalConfiguration.Configuration.UseSqlServerStorage(db.Database.Connection.ConnectionString);
             app.UseHangfireDashboard();
             app.UseHangfireServer();
-            RecurringJob.AddOrUpdate<FavoritesService>(x=> x.GetWeatherFromFavoritesList(), Cron.Minutely);
+            RecurringJob.AddOrUpdate<FavoritesService>(x => x.GetWeatherFromFavoritesList(), Cron.Minutely);
         }
 
         public void ConfigureOAuth(IAppBuilder app)
@@ -51,15 +45,15 @@ namespace WeatherAppApi
                 AccessTokenExpireTimeSpan = TimeSpan.FromDays(1),
                 Provider = new SimpleAuthorizationServerProvider()
             };
- 
+
             // Token Generation
             app.UseOAuthAuthorizationServer(OAuthServerOptions);
             app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
- 
+
         }
 
-     
-     
+
+
     }
 
 

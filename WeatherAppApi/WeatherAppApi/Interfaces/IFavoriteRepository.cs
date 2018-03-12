@@ -7,12 +7,12 @@ using WeatherAppApi.Models;
 
 namespace WeatherAppApi.Interfaces
 {
-   public interface IFavoriteRepository
+    public interface IFavoriteRepository
     {
         Task Save();
-        Task Add(Favorite model, string id);
-        Task<IEnumerable<FavoriteDTO>> GetAll();
-        Task<IEnumerable<Favorite>> GetByUserId(string id);
-        Task Delete(int favId, string userId);
+        Task Add(WeatherStation model, string id);
+        Task<IEnumerable<FavoriteWeatherStation>> GetAll();
+        Task<IEnumerable<WeatherStation>> GetByUserId(string id);
+        Task Delete(int weatherStationId, string userId);
     }
 }

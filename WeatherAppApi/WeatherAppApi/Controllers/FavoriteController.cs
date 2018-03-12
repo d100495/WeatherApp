@@ -11,15 +11,15 @@ namespace WeatherAppApi.Controllers
     {
         private readonly IFavoriteRepository _favoriteRepository;
         private IFavoritesService _favoritesService;
-        public FavoriteController(IFavoriteRepository repo, IFavoritesService dupa)
+        public FavoriteController(IFavoriteRepository favoriteRepository, IFavoritesService favoritesService)
         {
-            _favoriteRepository = repo;
-            _favoritesService = dupa;
+            _favoriteRepository = favoriteRepository;
+            _favoritesService = favoritesService;
         }
 
         [HttpPost]
         [Authorize]
-        public async Task<IHttpActionResult> AddToFavorite(Favorite model)
+        public async Task<IHttpActionResult> AddToFavorite(WeatherStation model)
         {
             if (!ModelState.IsValid)
                 return BadRequest();

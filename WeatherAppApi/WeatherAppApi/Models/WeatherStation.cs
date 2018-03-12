@@ -7,19 +7,19 @@ using Newtonsoft.Json;
 
 namespace WeatherAppApi.Models
 {
-    public class Favorite
+    public class WeatherStation
     {
         [Key]
-        public int FavoriteId { get; set; }
+        public int WeatherStationId { get; set; }
         public string CityName { get;set; }
         public double Longitude { get; set; }
         public double Latitude { get; set; }
         [JsonIgnore]
-        public virtual ICollection<ApplicationUser> ApplicationUser { get; set; }
+        public virtual ICollection<ApplicationUser> ApplicationUsers { get; set; }
 
-        public Favorite()
+        public WeatherStation()
         {
-            this.ApplicationUser = new HashSet<ApplicationUser>();
+            this.ApplicationUsers = new HashSet<ApplicationUser>();
         }
     }
 }

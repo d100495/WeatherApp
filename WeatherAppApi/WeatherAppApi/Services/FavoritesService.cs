@@ -15,7 +15,7 @@ using Weather = WeatherAppApi.Models.Weather;
 
 namespace WeatherAppApi.Services
 {
-    
+
 
     public class FavoritesService : IFavoritesService
     {
@@ -35,13 +35,13 @@ namespace WeatherAppApi.Services
             var list = await _favoriteRepository.GetAll();
             foreach (var item in list)
             {
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://api.openweathermap.org/data/2.5/weather?q="+ item.CityName+ "&units=metric"
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://api.openweathermap.org/data/2.5/weather?q=" + item.CityName + "&units=metric"
                  + openWatherMapsApiKey);
 
                 var webResponse = (HttpWebResponse)request.GetResponse();
                 var reader = new StreamReader(webResponse.GetResponseStream());
                 string s = reader.ReadToEnd();
-                var json =  JsonConvert.DeserializeObject<WeatherJson>(s);
+                var json = JsonConvert.DeserializeObject<WeatherJson>(s);
                 Weather weather = new Weather();
                 weather = Mapper.Map<WeatherJson, Weather>(json);
                 weather.WindChill = Math.Round(33 + (0.478 + 0.237 * Math.Sqrt(weather.WindSpeed) - 0.0124 * weather.WindSpeed)
@@ -51,10 +51,10 @@ namespace WeatherAppApi.Services
                     WeatherHistory weatherHistory = Mapper.Map<Weather, WeatherHistory>(weather);
                     weatherHistory.Id = user;
                     weatherHistory.Date = DateTime.Now;
-                   await _weatherHistoryRepository.Add(weatherHistory);
-                   await _weatherHistoryRepository.Save();
+                    await _weatherHistoryRepository.Add(weatherHistory);
+                    await _weatherHistoryRepository.Save();
                 }
-              
+
             }
         }
 

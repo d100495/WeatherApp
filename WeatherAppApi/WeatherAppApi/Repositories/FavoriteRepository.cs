@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using Thinktecture.IdentityModel.Tokens;
 using WeatherAppApi.Interfaces;
 using WeatherAppApi.Models;
 
@@ -26,38 +20,37 @@ namespace WeatherAppApi.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task Add(Favorite model, string id)
+        public async Task Add(WeatherStation model, string id)
         {
-            ApplicationUser user = _context.Users.Include(x => x.Favorite).FirstOrDefault(x => x.Id == id);
-            Favorite fav = _context.Favorite.FirstOrDefault(x => x.CityName == model.CityName);
-            if (fav == null)
+            WeatherStation weatherStation = _context.WeatherStation.FirstOrDefault(x => x.CityName == model.CityName);
+            if (weatherStation != null)
             {
-                _context.Favorite.Add(model);
+                ApplicationUser user = _context.Users.Include(x => x.WeatherStations).FirstOrDefault(x => x.Id == id);
+                user.WeatherStations.Add(model);
+                await Save();
             }
-            user.Favorite.Add(model);
-            await Save();
         }
 
-        public async Task<IEnumerable<FavoriteDTO>> GetAll()
+        public async Task<IEnumerable<FavoriteWeatherStation>> GetAll()
         {
-            var list = await _context.Favorite.Include(x => x.ApplicationUser).Where(x => x.ApplicationUser.Count > 0)
+            var list = await _context.WeatherStation.Include(x => x.ApplicationUsers).Where(x => x.ApplicationUsers.Count > 0)
                 .ToListAsync();
 
-            var dto = list.Select(x => new FavoriteDTO
+            var dto = list.Select(x => new FavoriteWeatherStation()
             {
-                FavoriteDTOId = x.FavoriteId,
+                FavoriteWeatherStationId = x.WeatherStationId,
                 CityName = x.CityName,
                 Latitude = x.Latitude,
                 Longitude = x.Longitude,
-                Id = x.ApplicationUser.Select(a => a.Id)
+                Id = x.ApplicationUsers.Select(a => a.Id)
             });
             return dto;
 
         }
 
-        public async Task<IEnumerable<Favorite>> GetByUserId(string id)
+        public async Task<IEnumerable<WeatherStation>> GetByUserId(string id)
         {
-            List<Favorite> fav = new List<Favorite>();
+            List<WeatherStation> fav = new List<WeatherStation>();
             var list = await GetAll();
             foreach (var item in list)
             {
@@ -65,13 +58,13 @@ namespace WeatherAppApi.Repositories
                 {
                     if (x == id)
                     {
-                        fav.Add(new Favorite
+                        fav.Add(new WeatherStation()
                         {
-                            FavoriteId = item.FavoriteDTOId,
+                            WeatherStationId = item.FavoriteWeatherStationId,
                             CityName = item.CityName,
                             Latitude = item.Latitude,
                             Longitude = item.Longitude
-                            
+
                         });
                     }
                 }
@@ -79,12 +72,12 @@ namespace WeatherAppApi.Repositories
             return fav;
         }
 
-        public async Task Delete(int favId, string userId)
+        public async Task Delete(int weatherStationId, string userId)
         {
-           ApplicationUser user = _context.Users.Include(x => x.Favorite).FirstOrDefault(x => x.Id == userId);
-            Favorite fav = _context.Favorite.FirstOrDefault(x => x.FavoriteId == favId);
-            if(user != null)
-            user.Favorite.Remove(fav);
+            ApplicationUser user = _context.Users.Include(x => x.WeatherStations).FirstOrDefault(x => x.Id == userId);
+            WeatherStation weatherStation = _context.WeatherStation.FirstOrDefault(x => x.WeatherStationId == weatherStationId);
+            if (user != null)
+                user.WeatherStations.Remove(weatherStation);
             await Save();
         }
     }

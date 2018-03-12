@@ -11,11 +11,11 @@ namespace WeatherAppApi.Models
     {
         public ICollection<WeatherHistory> WeatherHistory { get; set; }
     
-        public ICollection<Favorite> Favorite { get; set; }
+        public ICollection<WeatherStation> WeatherStations { get; set; }
 
         public ApplicationUser()
         {
-            this.Favorite = new HashSet<Favorite>();
+            this.WeatherStations = new HashSet<WeatherStation>();
         }
     }
 }

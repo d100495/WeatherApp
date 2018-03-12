@@ -5,9 +5,9 @@ using System.Web;
 
 namespace WeatherAppApi.Models
 {
-    public class FavoriteDTO
+    public class FavoriteWeatherStation
     {
-        public int FavoriteDTOId { get; set; }
+        public int FavoriteWeatherStationId { get; set; }
         public string CityName { get; set; }
         public double Longitude { get; set; }
         public double Latitude { get; set; }
