@@ -4,6 +4,7 @@ import { MapRoutingModule } from './map-routing.module';
 import { MapService } from '../Services/mapService';
 import { MapComponent } from './map.component';
 import { AgmCoreModule } from '@agm/core';
+import { WeatherService } from '../Services/weatherService';
 
 @NgModule({
     declarations: [MapComponent],
@@ -13,6 +14,6 @@ import { AgmCoreModule } from '@agm/core';
         }),
         MapRoutingModule],
     exports: [],
-    providers: [MapService],
+    providers: [MapService, WeatherService],
 })
 export class MapModule { }

@@ -5,6 +5,7 @@ import { Weather } from '../Models/Weather';
 import { IWeather } from '../Models/IWeather';
 import { FavoriteService } from '../Services/favoriteService';
 import { Favorite } from '../Models/Favorite';
+import { WeatherService } from '../Services/weatherService';
 
 @Component({
     selector: 'app-map',
@@ -12,7 +13,7 @@ import { Favorite } from '../Models/Favorite';
     styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit {
-    constructor(private _mapService: MapService, private _favService: FavoriteService) { }
+    constructor(private _mapService: MapService, private _favService: FavoriteService, private _weatherService: WeatherService) { }
     lat = 50.083328;
     lon = 19.91667;
     weather: Weather;
@@ -24,7 +25,7 @@ export class MapComponent implements OnInit {
         this.SetMarkers();
     }
     GetWeather(cityName: string, infoWindow) {
-        this._mapService.GetWeather(cityName).subscribe(response => {
+        this._weatherService.GetWeather(cityName).subscribe(response => {
             this.weather = response;
             console.log(this.weather);
             this.PostWeather();
@@ -39,10 +40,10 @@ export class MapComponent implements OnInit {
     }
 
     PostWeather() {
-        this._mapService.PostWeather(this.weather).subscribe();
+        this._weatherService.PostWeather(this.weather).subscribe();
     }
 
-    AddToFavorite(cityName: string, lat : number, lon: number){
+    AddToFavorite(cityName: string, lat: number, lon: number) {
         this.favorite.cityName = cityName;
         this.favorite.latitude = lat;
         this.favorite.longitude = lon;

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MapService } from '../Services/mapService';
 import { Weather } from '../Models/Weather';
+import { WeatherService } from '../Services/weatherService';
 
 @Component({
     selector: 'app-history',
@@ -10,10 +11,10 @@ import { Weather } from '../Models/Weather';
 
 export class HistoryComponent implements OnInit {
     weather: Weather[];
-    constructor(private _mapService: MapService) { }
+    constructor(private _weatherService: WeatherService) { }
 
     GetHistory() {
-        this._mapService.GetHistory().subscribe(response => {
+        this._weatherService.GetHistory().subscribe(response => {
             this.weather = response;
         });
     }

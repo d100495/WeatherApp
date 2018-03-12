@@ -3,6 +3,7 @@ import { HistoryRoutingModule } from './history-routing.module';
 import { HistoryComponent } from './history.component';
 import { MapService } from '../Services/mapService';
 import { CommonModule } from '@angular/common';
+import { WeatherService } from '../Services/weatherService';
 
 
 @NgModule({
@@ -10,6 +11,6 @@ import { CommonModule } from '@angular/common';
         HistoryRoutingModule],
     exports: [],
     declarations: [HistoryComponent],
-    providers: [MapService],
+    providers: [WeatherService],
 })
 export class HistoryModule { }
