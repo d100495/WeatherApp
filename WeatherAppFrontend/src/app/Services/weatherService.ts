@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs/';
-import { Marker } from '../Models/Marker';
 import { Weather } from '../Models/Weather';
 import 'rxjs/add/operator/map';
 import { IWeather } from '../Models/IWeather';
