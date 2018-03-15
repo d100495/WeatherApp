@@ -49,6 +49,7 @@ namespace WeatherAppApi
             kernel.Bind<IAuthRepository>().To<AuthRepository>();
             kernel.Bind<IFavoriteRepository>().To<FavoriteRepository>();
             kernel.Bind<IFavoritesService>().To<FavoritesService>();
+            kernel.Bind<IWeatherStationRepository>().To<WeatherStationRepository>();
         }
     }
 }

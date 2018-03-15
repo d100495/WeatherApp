@@ -38,7 +38,7 @@ namespace WeatherAppApi.Repositories
         public async Task Delete(int weatherStationId)
         {
             WeatherStation weatherStation = await 
-                _context.WeatherStation.FirstOrDefaultAsync(x => x.WeatherStationId == weatherStationId);\
+                _context.WeatherStation.FirstOrDefaultAsync(x => x.WeatherStationId == weatherStationId);
             await Save();
         }
     }
