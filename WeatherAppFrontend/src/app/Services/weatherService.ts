@@ -5,6 +5,7 @@ import { Weather } from '../Models/Weather';
 import 'rxjs/add/operator/map';
 import { IWeather } from '../Models/IWeather';
 import { AuthService } from './authService';
+import { IWeatherForecast } from '../Models/IWeatherForecast';
 
 @Injectable()
 export class WeatherService {
@@ -33,5 +34,10 @@ export class WeatherService {
     GetHistory(): Observable<Weather[]> {
         const url = `${this.urlApi}/GetWeatherByUserId`;
         return this._http.get<Weather[]>(url, this.httpOptions);
+    }
+
+    GetForecastWeather(city: string): Observable<IWeatherForecast>{
+        const url = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric${this.apiKey}`;
+        return this._http.get<IWeatherForecast>(url);
     }
 }

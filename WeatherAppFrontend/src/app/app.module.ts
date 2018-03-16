@@ -20,6 +20,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { HistoryModule } from './history/history.module';
 import { FavoriteModule } from './favorite/favorite.module';
+import { WeatherDetailsComponent } from './weatherDetails/weatherDetails.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { FavoriteModule } from './favorite/favorite.module';
     AppComponent,
     NavComponent,
     AccountComponent,
-    HomeComponent
+    HomeComponent,
+    WeatherDetailsComponent
   ],
   imports: [CommonModule,
     FormsModule,
