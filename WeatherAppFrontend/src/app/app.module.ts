@@ -14,13 +14,14 @@ import { SharedService } from '../Shared/shared.service';
 import { AccountComponent } from './account/account.component';
 import { AuthService } from './Services/authService';
 import { AccountService } from './Services/accountService';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { HistoryModule } from './history/history.module';
 import { FavoriteModule } from './favorite/favorite.module';
 import { WeatherDetailsComponent } from './weatherDetails/weatherDetails.component';
+import { DateTransformPipe } from './Pipes/DateTransformPipe';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { WeatherDetailsComponent } from './weatherDetails/weatherDetails.compone
     NavComponent,
     AccountComponent,
     HomeComponent,
-    WeatherDetailsComponent
+    WeatherDetailsComponent,
+    DateTransformPipe
   ],
   imports: [CommonModule,
     FormsModule,
@@ -38,7 +40,7 @@ import { WeatherDetailsComponent } from './weatherDetails/weatherDetails.compone
     HistoryModule,
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [SharedService, AuthService, AccountService],
   bootstrap: [AppComponent]

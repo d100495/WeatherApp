@@ -6,7 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-weatherDetails',
   templateUrl: './weatherDetails.component.html',
-  styleUrls: ['./weatherDetails.component.css']
+  styleUrls: ['./weatherDetails.component.css'],
 })
 export class WeatherDetailsComponent implements OnInit {
   weather: IWeatherForecast;
@@ -19,7 +19,7 @@ export class WeatherDetailsComponent implements OnInit {
     const cityName = this._route.snapshot.paramMap.get('cityName');
     return this._weatherService.GetForecastWeather(cityName).subscribe(response => {
       this.weather = response;
-    console.log(this.weather);
+      console.log(this.weather);
     });
   }
 

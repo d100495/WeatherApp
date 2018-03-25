@@ -11,7 +11,6 @@ export interface ListEntity {
   weather?: (WeatherEntity)[] | null;
   clouds: Clouds;
   wind: Wind;
-  rain: Rain;
   sys: Sys;
   dt_txt: string;
 }
@@ -38,9 +37,7 @@ export interface Wind {
   speed: number;
   deg: number;
 }
-export interface Rain {
-  3h: number;
-}
+
 export interface Sys {
   pod: string;
 }
