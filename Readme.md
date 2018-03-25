@@ -7,7 +7,7 @@ Aplikacja pogodowa, stworzona za pomocą ASP.NET Web Api 2 oraz Angular 5. Proje
 
  - Klient na telefony z systemem Android
  - Wizualizacja danych
- - Sprawdzenie prognozy pogody (Aplikacja obecnie ma możliwość sprawdzenia aktualnej pogody)
+ - Sprawdzenie prognozy pogody (Aplikacja obecnie ma możliwość sprawdzenia aktualnej pogody) ✔
  - Możliwość dodania własnego API pogodowego.
 
 
