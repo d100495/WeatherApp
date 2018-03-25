@@ -1,4 +1,5 @@
-﻿<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -188,6 +189,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\AuthContext.mdf" />
+    <Content Include="App_Data\AuthContext_log.ldf">
+      <DependentUpon>AuthContext.mdf</DependentUpon>
+    </Content>
+    <Content Include="App_Data\HangfireContext.mdf" />
+    <Content Include="App_Data\HangfireContext_log.ldf">
+      <DependentUpon>HangfireContext.mdf</DependentUpon>
+    </Content>
     <Content Include="App_Readme\readme.txt" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -206,39 +215,6 @@
     <Compile Include="Interfaces\IFavoritesService.cs" />
     <Compile Include="Interfaces\IWeatherHistoryRepository.cs" />
     <Compile Include="Interfaces\IWeatherStationRepository.cs" />
-    <Compile Include="Migrations\201712182215380_init.cs" />
-    <Compile Include="Migrations\201712182215380_init.Designer.cs">
-      <DependentUpon>201712182215380_init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201712211519259_WeatherHistory.cs" />
-    <Compile Include="Migrations\201712211519259_WeatherHistory.Designer.cs">
-      <DependentUpon>201712211519259_WeatherHistory.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201712212109503_WeatherHistoryUserIdIntToString.cs" />
-    <Compile Include="Migrations\201712212109503_WeatherHistoryUserIdIntToString.Designer.cs">
-      <DependentUpon>201712212109503_WeatherHistoryUserIdIntToString.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201801021442130_UsersWeatherHistory.cs" />
-    <Compile Include="Migrations\201801021442130_UsersWeatherHistory.Designer.cs">
-      <DependentUpon>201801021442130_UsersWeatherHistory.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201801021534514_Favorities.cs" />
-    <Compile Include="Migrations\201801021534514_Favorities.Designer.cs">
-      <DependentUpon>201801021534514_Favorities.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201801021917581_ApplicationUser.cs" />
-    <Compile Include="Migrations\201801021917581_ApplicationUser.Designer.cs">
-      <DependentUpon>201801021917581_ApplicationUser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201801042012581_AddLatLonToFavoriteTable.cs" />
-    <Compile Include="Migrations\201801042012581_AddLatLonToFavoriteTable.Designer.cs">
-      <DependentUpon>201801042012581_AddLatLonToFavoriteTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201803122129023_FavoriteToWatherStation.cs" />
-    <Compile Include="Migrations\201803122129023_FavoriteToWatherStation.Designer.cs">
-      <DependentUpon>201803122129023_FavoriteToWatherStation.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="AuthContext.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="JsonDeserializeModels\WeatherJson.cs" />
@@ -266,35 +242,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201712182215380_init.resx">
-      <DependentUpon>201712182215380_init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712211519259_WeatherHistory.resx">
-      <DependentUpon>201712211519259_WeatherHistory.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712212109503_WeatherHistoryUserIdIntToString.resx">
-      <DependentUpon>201712212109503_WeatherHistoryUserIdIntToString.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801021442130_UsersWeatherHistory.resx">
-      <DependentUpon>201801021442130_UsersWeatherHistory.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801021534514_Favorities.resx">
-      <DependentUpon>201801021534514_Favorities.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801021917581_ApplicationUser.resx">
-      <DependentUpon>201801021917581_ApplicationUser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801042012581_AddLatLonToFavoriteTable.resx">
-      <DependentUpon>201801042012581_AddLatLonToFavoriteTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201803122129023_FavoriteToWatherStation.resx">
-      <DependentUpon>201803122129023_FavoriteToWatherStation.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
