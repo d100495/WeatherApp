@@ -25,7 +25,6 @@ export class ApixuService implements IWeatherService {
         const url = `http://api.apixu.com/v1/forecast.json?key=${this.apiKey}&q=${city}&days=10`;
         return this._http.get<IForecastWeatherApixu>(url).map(
             res => {
-                console.log(res);
                 let array = new Array<ForecastWeather>();
                 for (let model of res.forecast.forecastday) {
                     array.push(new ForecastWeather(model.date, model.day.condition.text,

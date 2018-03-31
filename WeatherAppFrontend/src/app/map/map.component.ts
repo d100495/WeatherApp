@@ -2,11 +2,12 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MapService } from '../Services/mapService';
 import { IWeatherStation } from '../Models/IWeatherStation';
 import { Weather } from '../Models/Weather';
-import { IWeather } from '../Models/IWeather';
 import { FavoriteService } from '../Services/favoriteService';
 import { Favorite } from '../Models/Favorite';
 import { WeatherService } from '../Services/weatherService';
 import { ActivatedRoute } from '@angular/router';
+import { OpenWeatherMapsService } from '../Services/openWeatherMapsService';
+import { WeatherFactoryService } from '../Services/WeatherFactoryService';
 
 @Component({
     selector: 'app-map',
@@ -15,7 +16,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class MapComponent implements OnInit {
     constructor(private _mapService: MapService, private _favService: FavoriteService, private _weatherService: WeatherService,
-        private _route: ActivatedRoute) { }
+        private _route: ActivatedRoute, private _weatherFactoryService: WeatherFactoryService) { }
     lat = 50.083328;
     lon = 19.91667;
     weather: Weather;
@@ -25,10 +26,10 @@ export class MapComponent implements OnInit {
     ngOnInit() {
         this.SetMarkers();
     }
+
     GetWeather(cityName: string, infoWindow) {
-        this._weatherService.GetWeather(cityName).subscribe(response => {
+        this._weatherFactoryService.instance.GetWeather(cityName).subscribe(response => {
             this.weather = response;
-            console.log(this.weather);
             this.PostWeather();
         });
         if (this.infoWindowOpened !== null) {

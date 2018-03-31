@@ -21,7 +21,6 @@ import { HomeComponent } from './home/home.component';
 import { HistoryModule } from './history/history.module';
 import { FavoriteModule } from './favorite/favorite.module';
 import { WeatherDetailsComponent } from './weatherDetails/weatherDetails.component';
-import { DateTransformPipe } from './Pipes/DateTransformPipe';
 
 
 @NgModule({
@@ -31,7 +30,6 @@ import { DateTransformPipe } from './Pipes/DateTransformPipe';
     AccountComponent,
     HomeComponent,
     WeatherDetailsComponent,
-    DateTransformPipe
   ],
   imports: [CommonModule,
     FormsModule,
