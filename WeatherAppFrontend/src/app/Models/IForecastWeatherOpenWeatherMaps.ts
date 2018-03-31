@@ -1,4 +1,4 @@
-export interface IWeatherForecast {
+export interface IForecastWeatherOpenWeatherMaps {
   cod: string;
   message: number;
   cnt: number;

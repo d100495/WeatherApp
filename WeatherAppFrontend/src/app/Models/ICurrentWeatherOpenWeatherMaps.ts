@@ -1,4 +1,4 @@
-export interface IWeather {
+export interface ICurrentWeatherOpenWeatherMaps {
     main: IMain;
     wind: IWind;
     coord: ICoord;
