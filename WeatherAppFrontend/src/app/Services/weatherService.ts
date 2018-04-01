@@ -13,7 +13,7 @@ export class WeatherService {
     private httpOptions = {
         headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `Bearer ${this.auth.getToken()}` })
     };
-    private urlApi = 'http://localhost:55132/api/weather';
+    private urlApi = 'http://weatherapp-001-site1.gtempurl.com/api/weather';
     constructor(private _http: HttpClient, private auth: AuthService) { }
     private apiKey = '&APPID=409014fbcefa18db869de6c154c71e71';
 

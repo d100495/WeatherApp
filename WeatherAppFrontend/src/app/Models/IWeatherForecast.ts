@@ -39,7 +39,7 @@ export interface Wind {
   deg: number;
 }
 export interface Rain {
-  3h: number;
+  h: number;
 }
 export interface Sys {
   pod: string;

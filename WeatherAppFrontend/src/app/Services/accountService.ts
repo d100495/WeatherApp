@@ -12,8 +12,8 @@ import { Register } from '../account/Register';
 
 @Injectable()
 export class AccountService {
-    private url = 'http://localhost:55132/token';
-    private accountUrl = 'http://localhost:55132/api/account';
+    private url = 'http://weatherapp-001-site1.gtempurl.com/token';
+    private accountUrl = 'http://weatherapp-001-site1.gtempurl.com/api/account';
     private httpOptions = {
         headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `Bearer ${this.auth.getToken()}` })
     };
@@ -33,7 +33,7 @@ export class AccountService {
     }
 
     Register(registerData: Register): Observable<Register> {
-        const url = 'http://localhost:55132/api/account/register';
+        const url = 'http://weatherapp-001-site1.gtempurl.com/api/account/register';
         return this._http.post<Register>(url, registerData,  this.httpOptionsRegister).pipe(
             catchError((error: any) => Observable.throw(error.json().error || 'Server error'))
         );

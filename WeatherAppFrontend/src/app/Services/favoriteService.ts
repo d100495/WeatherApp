@@ -17,7 +17,7 @@ export class FavoriteService {
     private htttpDelete = {
         headers: new HttpHeaders({ 'Authorization': `Bearer ${this.auth.getToken()}` })
     };
-    private urlApi = `http://localhost:55132/api/favorite`;
+    private urlApi = `http://weatherapp-001-site1.gtempurl.com/api/favorite`;
     weather: Weather;
     constructor(private _http: HttpClient, private _mapService: MapService, private auth: AuthService) { }
 
@@ -37,4 +37,4 @@ export class FavoriteService {
         return this._http.delete(url, this.htttpDelete);
     }
 
-} 
+}
