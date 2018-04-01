@@ -4,7 +4,6 @@ import { Observable, BehaviorSubject } from 'rxjs/';
 import { IWeatherStation } from '../Models/IWeatherStation';
 import { Weather } from '../Models/Weather';
 import 'rxjs/add/operator/map';
-import { IWeather } from '../Models/IWeather';
 import { AuthService } from './authService';
 @Injectable()
 export class MapService {
