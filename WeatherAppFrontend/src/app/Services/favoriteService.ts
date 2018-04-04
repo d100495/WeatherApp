@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs/';
-import { FavoriteArray } from '../Models/FavoriteArray';
 import { MapService } from './mapService';
 import { Weather } from '../Models/Weather';
 import { Favorite } from '../Models/Favorite';

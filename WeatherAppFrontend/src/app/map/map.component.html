@@ -12,8 +12,9 @@
       <div class="weatherInfoWindSpeed">Prędkość wiatru: {{weather?.WindSpeed}} km/h</div>
       <div class="weatherInfoPressure"> Ciśnienie: {{weather?.Pressure}} hPa</div>
       <button (click)="AddToFavorite(m.Cityname, weather?.Longitude, weather?.Latitude)" class="btn btn-default">Add to Favorite</button>
-      <button [routerLink]="['/details', m.cityName]">Details</button>
+      <button [routerLink]="['/details', m.cityName]" class="btn btn-default">Details</button>
     </agm-info-window>
  </agm-marker>
 </agm-map>
+<button (click)="switchService()"></button>
 </div>

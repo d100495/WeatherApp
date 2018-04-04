@@ -1,4 +1,33 @@
-<div class="container-fluid">
-  <button (click)="GetForecastWeather()">sadasd</button>
-  {{cityName}}
+<div class="col-lg-3"></div>
+<div class="col-lg-6">
+  <div class="table-responsive">
+      <div class="table">
+          <tbody>
+              <tr *ngFor="let model of weather">
+                  <th>{{model.Date | slice:0:10}}
+                  <tr><td>{{model.Date | slice: 10:16}}</td></tr>
+                  <tr><td><img src={{model.IconUrl}}>
+                  {{model.Description}}
+                  </td></tr>
+                </th>
+                  <div class="table">
+                    <tbody>
+                      <tr>
+                        <td >{{model.Temperature}} °C</td>
+                        <td>Temperature max: {{model.TempMax}} °C</td>
+                        <td>Temperature min: {{model.TempMin}} °C</td>
+                      </tr>
+                      <tr>
+                        <td>Humidity: {{model.Humidity}} %</td>
+                        <td>Wind Speed: {{model.WindSpeed}} m/s</td>
+                        <td>WindChill: {{model.WindChill}} °C</td>
+                      </tr>
+                      
+                    </tbody>
+                  </div>
+              </tr>
+          </tbody>
+      </div>
+  </div>
 </div>
+<div class="col-lg-3"></div>
