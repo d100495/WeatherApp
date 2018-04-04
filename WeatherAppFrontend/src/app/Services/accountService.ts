@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, tap, map } from 'rxjs/operators';
-import { Login } from '../account/Login';
 import { RequestOptions, RequestOptionsArgs } from '@angular/http';
 import { AuthService } from './authService';
 import { Observable } from 'rxjs/Observable';
-import { IUser } from '../account/User';
-import { Register } from '../account/Register';
+import { Login } from '../Models/Login';
+import { Register } from '../Models/Register';
+import { IUser } from '../Models/User';
 
 
 
@@ -15,13 +15,13 @@ export class AccountService {
     private url = 'http://weatherapp-001-site1.gtempurl.com/token';
     private accountUrl = 'http://weatherapp-001-site1.gtempurl.com/api/account';
     private httpOptions = {
-        headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `Bearer ${this.auth.getToken()}` })
+        headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `Bearer ${this._authService.getToken()}` })
     };
 
     private httpOptionsRegister = {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    constructor(private _http: HttpClient, public auth: AuthService) { }
+    constructor(private _http: HttpClient, public _authService: AuthService) { }
 
 
     Login(loginData: Login): Observable<any> {
@@ -43,6 +43,7 @@ export class AccountService {
     }
 
     logOut() {
+        this._authService.IsAuth = false;
         localStorage.clear();
 
     }
