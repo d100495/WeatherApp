@@ -45,8 +45,6 @@ public class WeatherStationsActivity extends AppCompatActivity {
     //Navigation bar
     DrawerLayout mDrawerLayout;
     NavigationView nav_bar;
-    MenuItem nav_mobile;
-    MenuItem nav_desktop;
 
     //HTTPConnection variables
     private StringRequest stringRequest;
@@ -67,14 +65,32 @@ public class WeatherStationsActivity extends AppCompatActivity {
                     @Override
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
                         // set item as selected to persist highlight
-                        menuItem.setChecked(true);
+                            menuItem.setChecked(true);
+
                         // close drawer when item is tapped
                         mDrawerLayout.closeDrawers();
 
 
+                        if(menuItem.getTitle().equals(getString(R.string.menuItem_desktop)))
+                        {
+                            Intent intent = new Intent(getApplicationContext(), WebViewActivity.class);
+                            startActivity(intent);
+                        }
+
+                        if(menuItem.getTitle().equals(getString(R.string.menuItem_mobile)))
+                        {
+                            //TODO Activity refreshing
+
+                                Intent intent = new Intent(getApplicationContext(), WeatherStationsActivity.class);
+                                startActivity(intent);
+
+                        }
+
                         return true;
                     }
                 });
+
+
 
 
         //TODO Delete Debug info
@@ -139,8 +155,6 @@ public class WeatherStationsActivity extends AppCompatActivity {
         TestTextView = findViewById(R.id.TestTextView2);
         listView1 = findViewById(R.id.listView1);
         nav_bar = findViewById(R.id.nav_bar);
-        nav_mobile = findViewById(R.id.nav_mobile);
-        nav_desktop = findViewById(R.id.nav_desktop);
         mDrawerLayout = findViewById(R.id.drawer_layout);
     }
 

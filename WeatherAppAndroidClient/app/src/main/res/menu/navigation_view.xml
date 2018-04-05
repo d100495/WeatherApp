@@ -6,14 +6,14 @@
         android:icon="@android:drawable/ic_menu_view"
         android:textSize="10dp"
         android:gravity="center"
-        android:title="Mobile">
+        android:title="@string/menuItem_mobile">
     </item>
 
     <item
         android:id="@+id/nav_desktop"
         android:icon="@android:drawable/ic_menu_camera"
         android:gravity="center"
-        android:title="Desktop">
+        android:title="@string/menuItem_desktop">
     </item>
 
 </menu>
