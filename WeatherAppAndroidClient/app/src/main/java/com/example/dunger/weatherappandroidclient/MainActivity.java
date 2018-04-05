@@ -52,59 +52,57 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
     private void Login() {
 
-                String url = "http://weatherapp-001-site1.gtempurl.com/token";
-                //String accountUrl = "http://weatherapp-001-site1.gtempurl.com/api/account";
+        String url = "http://weatherapp-001-site1.gtempurl.com/token";
+        //String accountUrl = "http://weatherapp-001-site1.gtempurl.com/api/account";
 
-                stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Log.i(TAG,"Response: "+ response.toString());
+        stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.i(TAG, "Response: " + response.toString());
 
-                        token = new Gson().fromJson(response.toString(),Token.class);
+                token = new Gson().fromJson(response.toString(), Token.class);
 
-                        //TODO Debug info
-                        Log.i(TAG,"JSON Obj: "+
-                                "\naccess_token: "+token.getAccess_token() +
-                                "\nToken_type: "+token.getToken_type() +
-                                "\nExpires_in: "+token.getExpires_in()+"\n\n");
+                //TODO Delete Debug info
+                Log.i(TAG, "JSON Obj: " +
+                        "\naccess_token: " + token.getAccess_token() +
+                        "\nToken_type: " + token.getToken_type() +
+                        "\nExpires_in: " + token.getExpires_in() + "\n\n");
 
-                        Toast.makeText(getApplicationContext(),
-                                "Logged in!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),
+                        "Logged in!", Toast.LENGTH_SHORT).show();
 
-                        Intent intent = new Intent(getApplicationContext(), WeatherStationsActivity.class);
+                Intent intent = new Intent(getApplicationContext(), WeatherStationsActivity.class);
 //                        intent.putExtra("token", response.toString());
-                        startActivity(intent);
+                startActivity(intent);
 
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        //TODO Debug info
-                        Log.i(TAG,"Error: "+ error.toString());
-                        Toast.makeText(getApplicationContext(),
-                                "Error: Incorrect username or password", Toast.LENGTH_SHORT).show();
-                    }
-                })
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //TODO Delete Debug info
+                Log.i(TAG, "Error: " + error.toString());
+                Toast.makeText(getApplicationContext(),
+                        "Error: Incorrect username or password", Toast.LENGTH_SHORT).show();
+            }
+        })
 
-                {
-                    @Override
-                    protected Map<String, String> getParams()
-                    {
-                        Map<String, String>  params = new HashMap<String, String>();
-                        params.put("grant_type", "password");
-                        params.put("username", usernameEditText.getText().toString());
-                        params.put("password", passwordEditText.getText().toString());
-                        return params;
-                    }
-                };
-                RequestQueueSingleton.getInstance(this).addToRequestQueue(stringRequest);
+        {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("grant_type", "password");
+                params.put("username", usernameEditText.getText().toString());
+                params.put("password", passwordEditText.getText().toString());
+                return params;
+            }
+        };
+        RequestQueueSingleton.getInstance(this).addToRequestQueue(stringRequest);
     }//Post
 
 
-    private void initViews(){
+    private void initViews() {
         LoginButton = findViewById(R.id.LoginButton);
         usernameEditText = findViewById(R.id.usernameEditText);
         passwordEditText = findViewById(R.id.passwordEditText);

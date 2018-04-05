@@ -23,7 +23,7 @@
 
         <EditText
             android:layout_width="match_parent"
-            android:hint="Username"
+            android:hint="@string/hint_username"
             android:text="Dungr"
             android:id="@+id/usernameEditText"
             android:layout_marginRight="40dp"
@@ -37,16 +37,16 @@
             android:id="@+id/passwordEditText"
             android:layout_marginRight="40dp"
             android:layout_marginLeft="40dp"
-            android:hint="Password"
+            android:hint="@string/hint_password"
             android:inputType="textPassword"
             android:layout_height="wrap_content" />
 
         <Button
             android:layout_width="match_parent"
-            android:text="Login"
+            android:text="@string/text_loginButton"
             android:textColor="#FFFFFFFF"
             android:textSize="30sp"
-            android:background="@drawable/buttonshape"
+            android:background="@drawable/button_shape_login"
             android:shadowColor="#A8A8A8"
             android:layout_marginRight="50dp"
             android:layout_marginTop="60dp"
