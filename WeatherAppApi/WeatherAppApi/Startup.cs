@@ -1,35 +1,35 @@
-﻿using Microsoft.Owin;
+﻿using Hangfire;
+using Microsoft.Owin;
 using Microsoft.Owin.Security.OAuth;
 using Ninject.Web.Common.OwinHost;
 using Ninject.Web.WebApi.OwinHost;
 using Owin;
 using System;
-using System.Diagnostics;
 using System.Web.Http;
-using Hangfire;
-using Newtonsoft.Json;
+using System.Web.Http.Cors;
 using WeatherAppApi.App_Start;
-using WeatherAppApi.Interfaces;
 using WeatherAppApi.Providers;
-using WeatherAppApi.Repositories;
 using WeatherAppApi.Services;
 
 [assembly: OwinStartup(typeof(WeatherAppApi.Startup))]
+
 namespace WeatherAppApi
 {
     public class Startup
     {
         public void Configuration(IAppBuilder app)
         {
-            var db = new HangfireContext();
-
-            app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
-            ConfigureOAuth(app);
-            AutoMapperConfig.Initialize();
             HttpConfiguration config = new HttpConfiguration();
+          
             WebApiConfig.Register(config);
-            app.UseNinjectMiddleware(NinjectWebCommon.CreateKernel).UseNinjectWebApi(config);
+            var db = new HangfireContext();
+            app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
 
+            ConfigureOAuth(app);
+           // app.UseWebApi(config);
+            AutoMapperConfig.Initialize();
+           
+            app.UseNinjectMiddleware(NinjectWebCommon.CreateKernel).UseNinjectWebApi(config);
             Hangfire.GlobalConfiguration.Configuration.UseSqlServerStorage(db.Database.Connection.ConnectionString);
             app.UseHangfireDashboard();
             app.UseHangfireServer();
@@ -49,12 +49,6 @@ namespace WeatherAppApi
             // Token Generation
             app.UseOAuthAuthorizationServer(OAuthServerOptions);
             app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
-
         }
-
-
-
     }
-
-
 }
