@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -33,11 +34,11 @@ public class accountService {
     private static final String PREFERENCES_NAME = "tokenPreferences";
 
     //View variables
-    private EditText usernameEditText;
-    private EditText passwordEditText;
+    private static EditText usernameEditText;
+    private static EditText passwordEditText;
 
     //HTTPConnection variables
-    private StringRequest stringRequest;
+    private static StringRequest stringRequest;
     private static final String TAG = MainActivity.class.getSimpleName();
 
 
@@ -52,17 +53,15 @@ public class accountService {
     }
 
 
-    public void Login() {
-
+    public static void Login() {
         String url = "http://weatherapp-001-site1.gtempurl.com/token";
 
         stringRequest = new StringRequest(Request.Method.POST, url
         , new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-
                 token = new Gson().fromJson(response.toString(), Token.class);
-                SetToken();
+                SaveToken();
 
                 Toast.makeText(activity.getApplicationContext(),
                         "Logged in!", Toast.LENGTH_SHORT).show();
@@ -98,11 +97,19 @@ public class accountService {
         String restored_token_type = prefs.getString("token_type",null);
         int restored_expires_in = prefs.getInt("expires_in", 0);
 
-        token=new Token(restored_access_token,restored_token_type,restored_expires_in);
-        return token;
+        if(restored_access_token.equals(null) || token.getAccess_token().equals(null) || token.getExpires_in() < 10)
+        {
+            Login();
+            return token;
+        }
+        else
+        {
+            token=new Token(restored_access_token,restored_token_type,restored_expires_in);
+            return token;
+        }
     }
 
-    public static boolean SetToken(){
+    public static boolean SaveToken(){
         SharedPreferences.Editor editor = activity.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE).edit();
         editor.putString("access_token", token.getAccess_token());
         editor.putString("token_type",token.getToken_type());
