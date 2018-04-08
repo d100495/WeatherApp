@@ -5,7 +5,7 @@ import { Weather } from '../Models/Weather';
 import { FavoriteService } from '../Services/favoriteService';
 import { Favorite } from '../Models/Favorite';
 import { WeatherService } from '../Services/weatherService';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { OpenWeatherMapsService } from '../Services/openWeatherMapsService';
 import { WeatherFactoryService } from '../Services/WeatherFactoryService';
 
@@ -16,7 +16,7 @@ import { WeatherFactoryService } from '../Services/WeatherFactoryService';
 })
 export class MapComponent implements OnInit {
     constructor(private _mapService: MapService, private _favService: FavoriteService, private _weatherService: WeatherService,
-        private _route: ActivatedRoute, private _weatherFactoryService: WeatherFactoryService) { }
+        private _router: Router, private _weatherFactoryService: WeatherFactoryService) { }
     lat = 50.083328;
     lon = 19.91667;
     weather: Weather;
@@ -27,8 +27,8 @@ export class MapComponent implements OnInit {
         this.SetMarkers();
     }
 
-    GetWeather(cityName: string, infoWindow) {
-        this._weatherFactoryService.instance.GetWeather(cityName).subscribe(response => {
+    GetWeather(lat: number, lon: number, infoWindow) {
+        this._weatherFactoryService.instance.GetWeather(lat, lon).subscribe(response => {
             this.weather = response;
             this.PostWeather();
         });
@@ -53,4 +53,11 @@ export class MapComponent implements OnInit {
         this._favService.AddToFavorite(this.favorite).subscribe();
     }
 
+    onDetails(lat: number, lon: number){
+        const params = {
+            lat: lat,
+            lon : lon
+        };
+        this._router.navigate(['details'], {queryParams: params});
+    }
 }

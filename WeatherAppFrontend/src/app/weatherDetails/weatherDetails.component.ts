@@ -17,9 +17,10 @@ export class WeatherDetailsComponent implements OnInit {
     this.GetForecastWeather();
   }
 
-  GetForecastWeather(){
-    const cityName = this._route.snapshot.paramMap.get('cityName');
-    return this._weatherService.instance.GetForecastWeather(cityName).subscribe(response => {
+  GetForecastWeather() {
+    const lat = this._route.snapshot.paramMap.get('lat');
+    const lon = this._route.snapshot.paramMap.get('lon');
+    return this._weatherService.instance.GetForecastWeather(+lat, +lon).subscribe(response => {
       this.weather = response;
       console.log(this.weather);
     });

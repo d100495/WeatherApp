@@ -14,17 +14,17 @@ export class OpenWeatherMapsService implements IWeatherService {
     constructor(private _http: HttpClient) { }
     private apiKey = '&APPID=409014fbcefa18db869de6c154c71e71';
 
-    GetWeather(city: string): Observable<Weather> {
+    GetWeather(lon: number, lat: number): Observable<Weather> {
         console.log('open');
-        const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric${this.apiKey}`;
+        const url = `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric${this.apiKey}`;
         return this._http.get<ICurrentWeatherOpenWeatherMaps>(url).map(
             res =>
                 new Weather(res.main.temp, res.coord.lon, res.coord.lat, res.main.pressure, res.wind.speed)
         );
     }
 
-    GetForecastWeather(city: string): Observable<ForecastWeather[]> {
-        const url = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric${this.apiKey}`;
+    GetForecastWeather(lon: number, lat: number): Observable<ForecastWeather[]> {
+        const url = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric${this.apiKey}`;
         return this._http.get<IForecastWeatherOpenWeatherMaps>(url).map(
             res => {
                 console.log(res);
