@@ -9,7 +9,7 @@ import { LoginGuardService } from '../Services/loginGuardService';
 
 const routes: Routes = [
     { path: 'map', component: MapComponent, canActivate: [LoginGuardService] },
-    { path: 'details/:cityName', component: WeatherDetailsComponent},
+    { path: 'details', component: WeatherDetailsComponent},
 ];
 
 @NgModule({
