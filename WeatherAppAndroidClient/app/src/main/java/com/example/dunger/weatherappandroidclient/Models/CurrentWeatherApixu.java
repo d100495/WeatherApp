@@ -50,6 +50,38 @@ public class CurrentWeatherApixu {
             this.localtime_epoch = localtime_epoch;
             this.localtime = localtime;
         }
+
+        public String getName() {
+            return name;
+        }
+
+        public String getRegion() {
+            return region;
+        }
+
+        public String getCountry() {
+            return country;
+        }
+
+        public float getLat() {
+            return lat;
+        }
+
+        public float getLon() {
+            return lon;
+        }
+
+        public String getTz_id() {
+            return tz_id;
+        }
+
+        public int getLocaltime_epoch() {
+            return localtime_epoch;
+        }
+
+        public String getLocaltime() {
+            return localtime;
+        }
     }
 
     public class Current{
