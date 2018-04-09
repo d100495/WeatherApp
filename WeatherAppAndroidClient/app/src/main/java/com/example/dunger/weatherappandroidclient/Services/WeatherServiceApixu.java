@@ -1,17 +1,9 @@
 package com.example.dunger.weatherappandroidclient.Services;
 
 import android.app.Activity;
-import android.util.Log;
 
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.example.dunger.weatherappandroidclient.Models.CurrentWeatherApixu;
 import com.example.dunger.weatherappandroidclient.Models.IWeatherService;
-import com.example.dunger.weatherappandroidclient.Volley.RequestQueueSingleton;
-import com.example.dunger.weatherappandroidclient.WeatherStationsActivity;
-import com.google.gson.Gson;
 
 /**
  * Created by Dunger on 2018-04-08.
@@ -35,7 +27,7 @@ public class WeatherServiceApixu implements IWeatherService{
     }
     //TODO Implementing RxJava
     @Override
-    public String GetCurrentWeather(String city) {
+    public void GetCurrentWeather(String city) {
 
    /*     String url = "http://api.apixu.com/v1/current.json?key="+apixuAPIKey+"&q=Warszawa";
 
@@ -51,11 +43,9 @@ public class WeatherServiceApixu implements IWeatherService{
             }
         });
         RequestQueueSingleton.getInstance(activity).addToRequestQueue(stringRequest);*/
-        return null;
     }
 
     @Override
-    public String GetForecastWeather(String city) {
-        return null;
+    public void GetForecastWeather(String city) {
     }
 }

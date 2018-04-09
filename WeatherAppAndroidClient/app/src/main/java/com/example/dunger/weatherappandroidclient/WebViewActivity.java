@@ -29,7 +29,7 @@ public class WebViewActivity extends AppCompatActivity {
 
         myWebView.loadUrl("http://adamko-001-site1.ftempurl.com/");
 
-        NavigationBar navigationBar = new NavigationBar(WebViewActivity.this);
+        NavigationBar navigationBar = new NavigationBar(WebViewActivity.this); //required if navigation bar is used in this activity
         
 
     }

@@ -22,6 +22,14 @@ public class CurrentWeatherApixu {
         return current;
     }
 
+    @Override
+    public String toString() {
+        return "CurrentWeatherApixu{" +
+                "location:" + location.toString() +
+                ", current:" + current.toString() +
+                '}';
+    }
+
     public class Location{
         String name;
         String region;

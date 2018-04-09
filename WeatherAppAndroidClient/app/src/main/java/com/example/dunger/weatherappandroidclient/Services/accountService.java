@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -33,48 +32,39 @@ public class accountService {
     private static Token token;
     private static final String PREFERENCES_NAME = "tokenPreferences";
 
-    //View variables
-    private static EditText usernameEditText;
-    private static EditText passwordEditText;
-
     //HTTPConnection variables
     private static StringRequest stringRequest;
     private static final String TAG = MainActivity.class.getSimpleName();
 
-
     public accountService(Activity activity){
         this.activity=activity;
-        initViews();
     }
 
-    private void initViews() {
-        usernameEditText = activity.findViewById(R.id.usernameEditText);
-        passwordEditText = activity.findViewById(R.id.passwordEditText);
-    }
+    public static void Login(final String username, final String password) {
 
-
-    public static void Login() {
         String url = "http://weatherapp-001-site1.gtempurl.com/token";
-
         stringRequest = new StringRequest(Request.Method.POST, url
         , new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                token = new Gson().fromJson(response.toString(), Token.class);
-                SaveToken();
+                if(!response.isEmpty())
+                {
+                    token = new Gson().fromJson(response.toString(), Token.class);
+                    SaveTokenInMemory(token);
+                    Toast.makeText(activity.getApplicationContext(),
+                            activity.getString(R.string.logginsuccess_notification), Toast.LENGTH_SHORT).show();
 
-                Toast.makeText(activity.getApplicationContext(),
-                        "Logged in!", Toast.LENGTH_SHORT).show();
-
-                Intent intent = new Intent(activity.getApplicationContext(), WeatherStationsActivity.class);
-                activity.startActivity(intent);
-
+                    Intent intent = new Intent(activity.getApplicationContext(), WeatherStationsActivity.class);
+                    activity.startActivity(intent);
+                }else {
+                    Log.i(TAG, "\n\nResponse is empty!");
+                }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(activity.getApplicationContext(),
-                        "Error: Incorrect username or password", Toast.LENGTH_SHORT).show();
+                        activity.getString(R.string.logginerror_notification), Toast.LENGTH_SHORT).show();
             }
         })
 
@@ -83,8 +73,8 @@ public class accountService {
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("grant_type", "password");
-                params.put("username", usernameEditText.getText().toString());
-                params.put("password", passwordEditText.getText().toString());
+                params.put("username", username);
+                params.put("password", password);
                 return params;
             }
         };
@@ -99,7 +89,8 @@ public class accountService {
 
         if(restored_access_token.equals(null) || token.getAccess_token().equals(null) || token.getExpires_in() < 10)
         {
-            Login();
+            Intent intent = new Intent(activity.getApplicationContext(), MainActivity.class);
+            activity.startActivity(intent);
             return token;
         }
         else
@@ -109,7 +100,7 @@ public class accountService {
         }
     }
 
-    public static boolean SaveToken(){
+    public static boolean SaveTokenInMemory(Token token){
         SharedPreferences.Editor editor = activity.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE).edit();
         editor.putString("access_token", token.getAccess_token());
         editor.putString("token_type",token.getToken_type());

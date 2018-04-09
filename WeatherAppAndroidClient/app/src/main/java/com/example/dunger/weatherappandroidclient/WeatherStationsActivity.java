@@ -58,11 +58,14 @@ public class WeatherStationsActivity extends AppCompatActivity {
         initViews();
 
         GetWeatherStations();
+        //TODO Delete Debug info
+        Log.i(TAG, "OnCreate ==========================");
 
-        NavigationBar navigationBar = new NavigationBar(WeatherStationsActivity.this);
+        NavigationBar navigationBar = new NavigationBar(WeatherStationsActivity.this); //required if navigation bar is used in this activity
+
         //TODO Delete Debug info
         TestTextView.setMovementMethod(new ScrollingMovementMethod());
-
+        //TODO Delete Debug info
         TestButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,6 +74,9 @@ public class WeatherStationsActivity extends AppCompatActivity {
                                 "\naccess_token: " + GetToken().getAccess_token() +
                                 "\n\nToken_type: " + GetToken().getToken_type() +
                                 "\n\nExpires_in: " + GetToken().getExpires_in());
+
+                Intent intent = new Intent(getApplicationContext(), WeatherCurrentActivity.class);
+                startActivity(intent);
             }
         });
     }//onCreate
