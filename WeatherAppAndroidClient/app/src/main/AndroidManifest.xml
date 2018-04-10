@@ -24,7 +24,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".WeatherStationsActivity" />
-        <activity android:name=".WebViewActivity"></activity>
+        <activity android:name=".WebViewActivity" />
+        <activity android:name=".WeatherCurrentActivity"></activity>
     </application>
 
 </manifest>

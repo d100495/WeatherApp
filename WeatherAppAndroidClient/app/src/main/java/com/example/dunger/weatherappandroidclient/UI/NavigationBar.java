@@ -45,6 +45,7 @@ public class NavigationBar {
 
                         if(menuItem.getTitle().equals(activity.getString(R.string.menuItem_desktop)))
                         {
+                            //TODO Activity refreshing should not be possible
                             Intent intent = new Intent(activity.getApplicationContext(), WebViewActivity.class);
                             activity.startActivity(intent);
                         }

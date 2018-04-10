@@ -22,6 +22,14 @@ public class CurrentWeatherApixu {
         return current;
     }
 
+    @Override
+    public String toString() {
+        return "CurrentWeatherApixu{" +
+                "location:" + location.toString() +
+                ", current:" + current.toString() +
+                '}';
+    }
+
     public class Location{
         String name;
         String region;
@@ -41,6 +49,38 @@ public class CurrentWeatherApixu {
             this.tz_id = tz_id;
             this.localtime_epoch = localtime_epoch;
             this.localtime = localtime;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public String getRegion() {
+            return region;
+        }
+
+        public String getCountry() {
+            return country;
+        }
+
+        public float getLat() {
+            return lat;
+        }
+
+        public float getLon() {
+            return lon;
+        }
+
+        public String getTz_id() {
+            return tz_id;
+        }
+
+        public int getLocaltime_epoch() {
+            return localtime_epoch;
+        }
+
+        public String getLocaltime() {
+            return localtime;
         }
     }
 

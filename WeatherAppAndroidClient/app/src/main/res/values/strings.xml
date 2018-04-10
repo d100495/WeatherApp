@@ -5,5 +5,7 @@
     <string name="text_loginButton">Login</string>
     <string name="menuItem_mobile">Mobile</string>
     <string name="menuItem_desktop">Desktop</string>
+    <string name="logginsuccess_notification">Logged in!</string>
+    <string name="logginerror_notification">Error: Incorrect username or password</string>
 
 </resources>
