@@ -8,12 +8,10 @@
     android:orientation="vertical"
     android:gravity="bottom">
 
-
-    <TextView
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:text="MENU"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+        android:src="@drawable/weatherapp_navigationbar_logo"
+        />
 
 </LinearLayout>

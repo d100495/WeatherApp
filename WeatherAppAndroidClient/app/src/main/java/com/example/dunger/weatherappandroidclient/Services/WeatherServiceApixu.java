@@ -8,6 +8,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.dunger.weatherappandroidclient.Models.CurrentWeatherApixu;
 import com.example.dunger.weatherappandroidclient.Models.IWeatherService;
 import com.example.dunger.weatherappandroidclient.R;
 import com.example.dunger.weatherappandroidclient.Volley.RequestQueueSingleton;
@@ -29,10 +30,6 @@ public class WeatherServiceApixu implements IWeatherService{
     private static final String TAG = WeatherServiceApixu.class.getSimpleName();
     String apixuAPIKey = "be73dbae410147e79fa130000183103";
 
-    //Null objects
-    String currentWeather="";
-    String forecastWeather="";
-
     public WeatherServiceApixu(Activity activity) {
         this.activity = activity;
         initViews();
@@ -53,9 +50,8 @@ public class WeatherServiceApixu implements IWeatherService{
             @Override
             public void onResponse(String response) {
                 //TODO CurrentWeatherApixu model fix for Gson serialization
-                Gson gson = new Gson();
-                //gson.fromJson(response.toString(),WeatherServiceApixu.class);
-                TestTextViewCurrentWeather.setText(response.toString());
+                CurrentWeatherApixu currentWeatherApixu = new Gson().fromJson(response.toString(),CurrentWeatherApixu.class);
+                TestTextViewCurrentWeather.setText(currentWeatherApixu.toString());
             }
         }, new Response.ErrorListener() {
             @Override

@@ -7,5 +7,7 @@
     <string name="menuItem_desktop">Desktop</string>
     <string name="logginsuccess_notification">Logged in!</string>
     <string name="logginerror_notification">Error: Incorrect username or password</string>
+    <string name="navbar_open">Open</string>
+    <string name="navbar_close">Close</string>
 
 </resources>

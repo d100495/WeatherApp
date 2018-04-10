@@ -14,19 +14,12 @@ public class CurrentWeatherApixu {
         this.current = current;
     }
 
-    public Location getLocation() {
-        return location;
-    }
-
-    public Current getCurrent() {
-        return current;
-    }
 
     @Override
     public String toString() {
-        return "CurrentWeatherApixu{" +
-                "location:" + location.toString() +
-                ", current:" + current.toString() +
+        return "\nCurrentWeatherApixu{" +
+                "location:" + location.toString() +"\n" +
+                ", current:" + current.toString() +"\n" +
                 '}';
     }
 
@@ -37,10 +30,11 @@ public class CurrentWeatherApixu {
         float lat;
         float lon;
         String tz_id;
-        int localtime_epoch;
+        double localtime_epoch;
         String localtime;
 
-        public Location(String name, String region, String country, float lat, float lon, String tz_id, int localtime_epoch, String localtime) {
+
+        public Location(String name, String region, String country, float lat, float lon, String tz_id, double localtime_epoch, String localtime) {
             this.name = name;
             this.region = region;
             this.country = country;
@@ -51,64 +45,45 @@ public class CurrentWeatherApixu {
             this.localtime = localtime;
         }
 
-        public String getName() {
-            return name;
-        }
-
-        public String getRegion() {
-            return region;
-        }
-
-        public String getCountry() {
-            return country;
-        }
-
-        public float getLat() {
-            return lat;
-        }
-
-        public float getLon() {
-            return lon;
-        }
-
-        public String getTz_id() {
-            return tz_id;
-        }
-
-        public int getLocaltime_epoch() {
-            return localtime_epoch;
-        }
-
-        public String getLocaltime() {
-            return localtime;
+        @Override
+        public String toString() {
+            return "\nLocation{" +
+                    "name='" + name + '\'' +"\n" +
+                    ", region='" + region + '\'' +"\n" +
+                    ", country='" + country + '\'' +"\n" +
+                    ", lat=" + lat +"\n" +
+                    ", lon=" + lon +"\n" +
+                    ", tz_id='" + tz_id + '\'' +"\n" +
+                    ", localtime_epoch=" + localtime_epoch +"\n" +
+                    ", localtime='" + localtime + '\'' +"\n" +
+                    '}';
         }
     }
 
     public class Current{
-        int last_updated_epoch;
+        double last_updated_epoch;
         String last_updated;
         float temp_c;
         float temp_f;
-        short is_day;
+        float is_day;
         Condition condition;
         float wind_mph;
         float wind_kph;
         short wind_degree;
         String wind_dir;
-        int pressure_mb;
+        float pressure_mb;
         float pressure_in;
-        int precip_mm;
-        short precip_in;
-        short humidity;
-        short cloud;
-        short feelslike_c;
-        short feelslike_f;
-        short vis_km;
-        short vis_miles;
+        float precip_mm;
+        float precip_in;
+        float humidity;
+        float cloud;
+        float feelslike_c;
+        float feelslike_f;
+        float vis_km;
+        float vis_miles;
 
-        public Current(int last_updated_epoch, String last_updated, float temp_c, float temp_f, short is_day, Condition condition,
-                       float wind_mph, float wind_kph, short wind_degree, String wind_dir, int pressure_mb, float pressure_in, int precip_mm,
-                       short precip_in, short humidity, short cloud, short feelslike_c, short feelslike_f, short vis_km, short vis_miles) {
+
+        public Current(double last_updated_epoch, String last_updated, float temp_c, float temp_f, float is_day, Condition condition, float wind_mph, float wind_kph, short wind_degree, String wind_dir, float pressure_mb, float pressure_in, float precip_mm, float precip_in, float humidity, float cloud, float feelslike_c, float feelslike_f, float vis_km, float vis_miles) {
             this.last_updated_epoch = last_updated_epoch;
             this.last_updated = last_updated;
             this.temp_c = temp_c;
@@ -131,21 +106,57 @@ public class CurrentWeatherApixu {
             this.vis_miles = vis_miles;
         }
 
+        @Override
+        public String toString() {
+            return "\nCurrent{" +
+                    "last_updated_epoch=" + last_updated_epoch + "\n" +
+                    ", last_updated='" + last_updated + '\'' +"\n" +
+                    ", temp_c=" + temp_c +"\n" +
+                    ", temp_f=" + temp_f +"\n" +
+                    ", is_day=" + is_day +"\n" +
+                    ", condition=" + condition +"\n" +
+                    ", wind_mph=" + wind_mph +"\n" +
+                    ", wind_kph=" + wind_kph +"\n" +
+                    ", wind_degree=" + wind_degree +"\n" +
+                    ", wind_dir='" + wind_dir + '\'' +"\n" +
+                    ", pressure_mb=" + pressure_mb +"\n" +
+                    ", pressure_in=" + pressure_in +"\n" +
+                    ", precip_mm=" + precip_mm +"\n" +
+                    ", precip_in=" + precip_in +"\n" +
+                    ", humidity=" + humidity +"\n" +
+                    ", cloud=" + cloud +"\n" +
+                    ", feelslike_c=" + feelslike_c +"\n" +
+                    ", feelslike_f=" + feelslike_f +"\n" +
+                    ", vis_km=" + vis_km +"\n" +
+                    ", vis_miles=" + vis_miles +"\n" +
+                    '}';
+        }
+    }
+
         public class Condition{
             String text;
             String icon;
             float code;
+
 
             public Condition(String text, String icon, float code) {
                 this.text = text;
                 this.icon = icon;
                 this.code = code;
             }
-    }
 
-
-    }
-
+            @Override
+            public String toString() {
+                return "\nCondition{" +"\n" +
+                        "text='" + text + '\'' +"\n" +
+                        ", icon='" + icon + '\'' +"\n" +
+                        ", code=" + code +"\n" +
+                        '}';
+            }
+        }
 
 
 }
+
+
+

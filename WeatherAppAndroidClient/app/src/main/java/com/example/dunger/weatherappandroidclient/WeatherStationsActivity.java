@@ -2,6 +2,7 @@ package com.example.dunger.weatherappandroidclient;
 
 import android.content.Intent;
 import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -42,13 +43,20 @@ public class WeatherStationsActivity extends AppCompatActivity {
     Button TestButton;
     TextView TestTextView;
     ListView listView1;
+
     //Navigation bar
     DrawerLayout mDrawerLayout;
-    NavigationView nav_bar;
 
     //HTTPConnection variables
     private StringRequest stringRequest;
     private static final String TAG = WeatherStationsActivity.class.getName();
+
+    private void initViews() {
+        TestButton = findViewById(R.id.TestButton2);
+        TestTextView = findViewById(R.id.TestTextView2);
+        listView1 = findViewById(R.id.listView1);
+        mDrawerLayout = findViewById(R.id.drawer_layout);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +69,9 @@ public class WeatherStationsActivity extends AppCompatActivity {
         //TODO Delete Debug info
         Log.i(TAG, "OnCreate ==========================");
 
-        NavigationBar navigationBar = new NavigationBar(WeatherStationsActivity.this); //required if navigation bar is used in this activity
+        NavigationBar navigationBar = new NavigationBar(this); //required if navigation bar exists in this activity_layout
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);//required if navigation bar exists in this activity_layout
+
 
         //TODO Delete Debug info
         TestTextView.setMovementMethod(new ScrollingMovementMethod());
@@ -110,13 +120,6 @@ public class WeatherStationsActivity extends AppCompatActivity {
         RequestQueueSingleton.getInstance(this).addToRequestQueue(stringRequest);
     }
 
-    private void initViews() {
-        TestButton = findViewById(R.id.TestButton2);
-        TestTextView = findViewById(R.id.TestTextView2);
-        listView1 = findViewById(R.id.listView1);
-        nav_bar = findViewById(R.id.nav_bar);
-        mDrawerLayout = findViewById(R.id.drawer_layout);
-    }
 
     private void PopulateWeatherStationsListView() {
         if (stations != null) {
@@ -131,5 +134,22 @@ public class WeatherStationsActivity extends AppCompatActivity {
         }
 
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                if(mDrawerLayout.isDrawerOpen(GravityCompat.START))
+                {
+                    mDrawerLayout.closeDrawer(GravityCompat.START);
+                }
+                else
+                {
+                    mDrawerLayout.openDrawer(GravityCompat.START);  // OPEN DRAWER
+                }
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }//required if navigation bar exists in this activity_layout
 
 }
