@@ -7,24 +7,49 @@
     android:layout_height="match_parent"
     tools:context="com.example.dunger.weatherappandroidclient.WeatherCurrentActivity">
 
+<LinearLayout
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
-        android:background="@color/white"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
-        <!--TODO Delete Debug info-->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_launcher"
+            />
         <TextView
             android:layout_width="match_parent"
-            android:id="@+id/TestTextViewCurrentWeather"
-            android:scrollbars="vertical"
-            android:maxLines="500"
-            android:hint="Textview"
-            android:height="500px"
-            android:layout_height="match_parent" />
+            android:text="sdfg"
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="100dp"
+            android:textSize="20dp"
+            android:text="dsgsdgsdg"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:textSize="40dp"
+            android:text="dsgsdgsdg"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+</LinearLayout>
+
+
 
 
     <android.support.design.widget.NavigationView

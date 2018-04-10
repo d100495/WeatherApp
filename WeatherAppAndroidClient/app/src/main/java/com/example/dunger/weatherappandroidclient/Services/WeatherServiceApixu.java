@@ -23,7 +23,6 @@ public class WeatherServiceApixu implements IWeatherService{
     Activity activity;
 
     //View variables
-    TextView TestTextViewCurrentWeather;
 
     //HTTPConnection variables
     private StringRequest stringRequest;
@@ -37,7 +36,6 @@ public class WeatherServiceApixu implements IWeatherService{
     }
 
     private void initViews() {
-        TestTextViewCurrentWeather = activity.findViewById(R.id.TestTextViewCurrentWeather);
     }
 
     //TODO Implementing RxJava
@@ -51,7 +49,6 @@ public class WeatherServiceApixu implements IWeatherService{
             public void onResponse(String response) {
                 //TODO CurrentWeatherApixu model fix for Gson serialization
                 CurrentWeatherApixu currentWeatherApixu = new Gson().fromJson(response.toString(),CurrentWeatherApixu.class);
-                TestTextViewCurrentWeather.setText(currentWeatherApixu.toString());
             }
         }, new Response.ErrorListener() {
             @Override
