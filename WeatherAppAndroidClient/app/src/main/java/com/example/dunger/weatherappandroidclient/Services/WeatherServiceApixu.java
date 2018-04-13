@@ -12,6 +12,7 @@ import com.example.dunger.weatherappandroidclient.Models.CurrentWeatherApixu;
 import com.example.dunger.weatherappandroidclient.Models.IWeatherService;
 import com.example.dunger.weatherappandroidclient.R;
 import com.example.dunger.weatherappandroidclient.Volley.RequestQueueSingleton;
+import com.example.dunger.weatherappandroidclient.WeatherCurrentActivity;
 import com.google.gson.Gson;
 
 /**
@@ -49,6 +50,18 @@ public class WeatherServiceApixu implements IWeatherService{
             public void onResponse(String response) {
                 //TODO CurrentWeatherApixu model fix for Gson serialization
                 CurrentWeatherApixu currentWeatherApixu = new Gson().fromJson(response.toString(),CurrentWeatherApixu.class);
+
+                WeatherCurrentActivity.getInstance().SetViewElementsValues(
+                        "https:"+currentWeatherApixu.getCurrent().getCondition().getIcon(),
+                        currentWeatherApixu.getLocation().getName(),
+                        currentWeatherApixu.getLocation().getLat(),
+                        currentWeatherApixu.getLocation().getLon(),
+                        currentWeatherApixu.getCurrent().getHumidity(),
+                        currentWeatherApixu.getCurrent().getTemp_c(),
+                        currentWeatherApixu.getCurrent().getWind_kph(),
+                        currentWeatherApixu.getCurrent().getCloud(),
+                        currentWeatherApixu.getCurrent().getPressure_mb()
+                        );
             }
         }, new Response.ErrorListener() {
             @Override

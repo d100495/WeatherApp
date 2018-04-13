@@ -23,6 +23,14 @@ public class CurrentWeatherApixu {
                 '}';
     }
 
+    public Location getLocation() {
+        return location;
+    }
+
+    public Current getCurrent() {
+        return current;
+    }
+
     public class Location{
         String name;
         String region;
@@ -57,6 +65,38 @@ public class CurrentWeatherApixu {
                     ", localtime_epoch=" + localtime_epoch +"\n" +
                     ", localtime='" + localtime + '\'' +"\n" +
                     '}';
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public String getRegion() {
+            return region;
+        }
+
+        public String getCountry() {
+            return country;
+        }
+
+        public float getLat() {
+            return lat;
+        }
+
+        public float getLon() {
+            return lon;
+        }
+
+        public String getTz_id() {
+            return tz_id;
+        }
+
+        public double getLocaltime_epoch() {
+            return localtime_epoch;
+        }
+
+        public String getLocaltime() {
+            return localtime;
         }
     }
 
@@ -131,6 +171,86 @@ public class CurrentWeatherApixu {
                     ", vis_miles=" + vis_miles +"\n" +
                     '}';
         }
+
+        public double getLast_updated_epoch() {
+            return last_updated_epoch;
+        }
+
+        public String getLast_updated() {
+            return last_updated;
+        }
+
+        public float getTemp_c() {
+            return temp_c;
+        }
+
+        public float getTemp_f() {
+            return temp_f;
+        }
+
+        public float getIs_day() {
+            return is_day;
+        }
+
+        public Condition getCondition() {
+            return condition;
+        }
+
+        public float getWind_mph() {
+            return wind_mph;
+        }
+
+        public float getWind_kph() {
+            return wind_kph;
+        }
+
+        public short getWind_degree() {
+            return wind_degree;
+        }
+
+        public String getWind_dir() {
+            return wind_dir;
+        }
+
+        public float getPressure_mb() {
+            return pressure_mb;
+        }
+
+        public float getPressure_in() {
+            return pressure_in;
+        }
+
+        public float getPrecip_mm() {
+            return precip_mm;
+        }
+
+        public float getPrecip_in() {
+            return precip_in;
+        }
+
+        public float getHumidity() {
+            return humidity;
+        }
+
+        public float getCloud() {
+            return cloud;
+        }
+
+        public float getFeelslike_c() {
+            return feelslike_c;
+        }
+
+        public float getFeelslike_f() {
+            return feelslike_f;
+        }
+
+        public float getVis_km() {
+            return vis_km;
+        }
+
+        public float getVis_miles() {
+            return vis_miles;
+        }
     }
 
         public class Condition{
@@ -152,6 +272,18 @@ public class CurrentWeatherApixu {
                         ", icon='" + icon + '\'' +"\n" +
                         ", code=" + code +"\n" +
                         '}';
+            }
+
+            public String getText() {
+                return text;
+            }
+
+            public String getIcon() {
+                return icon;
+            }
+
+            public float getCode() {
+                return code;
             }
         }
 
