@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -79,6 +80,19 @@ public class WeatherStationsActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        //TODO Markers from Google Maps API
+        listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                WeatherStation weatherStation = (com.example.dunger.weatherappandroidclient.Models.WeatherStation)(adapterView.getItemAtPosition(i));
+
+                Intent intent = new Intent(getApplicationContext(), WeatherCurrentActivity.class);
+                intent.putExtra("station",weatherStation.getCityName());
+                startActivity(intent);
+            }
+        });
+
     }//onCreate
 
     public static WeatherStationsActivity getInstance(){

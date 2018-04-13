@@ -54,7 +54,8 @@ public class WeatherServiceApixu implements IWeatherService{
                         currentWeatherApixu.getCurrent().getTemp_c(),
                         currentWeatherApixu.getCurrent().getWind_kph(),
                         currentWeatherApixu.getCurrent().getCloud(),
-                        currentWeatherApixu.getCurrent().getPressure_mb()
+                        currentWeatherApixu.getCurrent().getPressure_mb(),
+                        currentWeatherApixu.getCurrent().getCondition().getText()
                         );
             }
         }, new Response.ErrorListener() {

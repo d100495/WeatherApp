@@ -1,5 +1,6 @@
 package com.example.dunger.weatherappandroidclient;
 
+import android.content.Intent;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -34,6 +35,7 @@ public class WeatherCurrentActivity extends AppCompatActivity {
     TextView currentWindspeedValue;
     TextView currentCloudsValue;
     TextView currentPressureValue;
+    TextView currentWeatherDescription;
 
     private void initViews() {
         mDrawerLayout = findViewById(R.id.drawer_layout);
@@ -46,6 +48,7 @@ public class WeatherCurrentActivity extends AppCompatActivity {
         currentWindspeedValue=findViewById(R.id.currentWindspeedValue);
         currentCloudsValue=findViewById(R.id.currentCloudsValue);
         currentPressureValue=findViewById(R.id.currentPressureValue);
+        currentWeatherDescription=findViewById(R.id.currentWeatherDescription);
     }
 
     @Override
@@ -59,8 +62,12 @@ public class WeatherCurrentActivity extends AppCompatActivity {
         NavigationBar navigationBar = new NavigationBar(this); //required if navigation bar exists in this activity_layout
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);//required if navigation bar exists in this activity_layout
 
+        //TODO city/lat,lon as parameters
+        Intent intent = getIntent();
+        intent.getStringExtra("station");
+
         IWeatherService  weatherService= WeatherFactoryService.createService("Apixu",WeatherCurrentActivity.this);
-        weatherService.GetCurrentWeather("Katowice");
+        weatherService.GetCurrentWeather(intent.getStringExtra("station"));
     }//onCreate()
 
     public static WeatherCurrentActivity getInstance(){
@@ -68,7 +75,7 @@ public class WeatherCurrentActivity extends AppCompatActivity {
     }
 
 
-    public void SetViewElementsValues(String image,String city, float lat, float lon, float humidity, float temperature, float windspeed,float clouds,float pressure ){
+    public void SetViewElementsValues(String image,String city, float lat, float lon, float humidity, float temperature, float windspeed,float clouds,float pressure,String description){
         Picasso.get().load(image).into(currentWeatherImage);
         currentCityString.setText(city);
         currentLatString.setText(Float.toString(lat));
@@ -78,6 +85,7 @@ public class WeatherCurrentActivity extends AppCompatActivity {
         currentWindspeedValue.setText(Float.toString(windspeed));
         currentCloudsValue.setText(Float.toString(clouds));
         currentPressureValue.setText(Float.toString(pressure));
+        currentWeatherDescription.setText(description);
     }
 
     @Override
