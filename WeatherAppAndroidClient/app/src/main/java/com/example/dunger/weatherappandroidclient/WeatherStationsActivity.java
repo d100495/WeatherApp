@@ -19,6 +19,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.dunger.weatherappandroidclient.Models.CurrentWeatherApixu;
 import com.example.dunger.weatherappandroidclient.Models.WeatherStation;
+import com.example.dunger.weatherappandroidclient.Services.WeatherStationsService;
 import com.example.dunger.weatherappandroidclient.UI.NavigationBar;
 import com.example.dunger.weatherappandroidclient.Volley.RequestQueueSingleton;
 import com.google.gson.Gson;
@@ -31,9 +32,7 @@ import static com.example.dunger.weatherappandroidclient.Services.accountService
 
 public class WeatherStationsActivity extends AppCompatActivity {
 
-
-    //Variables for GSON
-    WeatherStation[] stations;
+    static WeatherStationsActivity weatherStationsActivity;
 
     //UI variables
     Button TestButton;
@@ -42,8 +41,7 @@ public class WeatherStationsActivity extends AppCompatActivity {
     //Navigation bar
     DrawerLayout mDrawerLayout;
 
-    //HTTPConnection variables
-    private StringRequest stringRequest;
+    //Debug variables
     private static final String TAG = WeatherStationsActivity.class.getName();
 
     private void initViews() {
@@ -58,8 +56,10 @@ public class WeatherStationsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_weather_stations);
 
         initViews();
+        weatherStationsActivity=this;
 
-        GetWeatherStations();
+        WeatherStationsService weatherStationsService = new WeatherStationsService(this);
+        weatherStationsService.GetWeatherStations();
 
         //TODO static getInstance() for navigation bar
         NavigationBar navigationBar = new NavigationBar(this); //required if navigation bar exists in this activity_layout
@@ -81,44 +81,17 @@ public class WeatherStationsActivity extends AppCompatActivity {
         });
     }//onCreate
 
-
-    private void GetWeatherStations() {
-        String url = "http://weatherapp-001-site1.gtempurl.com/api/weatherstation/getall";
-
-        stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                stations = new Gson().fromJson(response, WeatherStation[].class);
-
-                PopulateWeatherStationsListView();
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.i(TAG, "CONNECTION Error: " + error.toString());
-            }
-        })
-
-        {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("Authorization", GetToken().getToken_type() + " " + GetToken().getAccess_token());
-                return params;
-            }
-        };
-        RequestQueueSingleton.getInstance(this).addToRequestQueue(stringRequest);
+    public static WeatherStationsActivity getInstance(){
+        return weatherStationsActivity;
     }
 
-
-    private void PopulateWeatherStationsListView() {
+    public void PopulateWeatherStationsListView(WeatherStation[] stations) {
         if (stations != null) {
             ArrayAdapter<WeatherStation> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, stations);
             listView1.setAdapter(adapter);
         } else {
             Log.i(TAG, "\n\nStations==NULL");
         }
-
     }
 
     @Override

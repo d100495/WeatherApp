@@ -61,7 +61,7 @@ public class WeatherCurrentActivity extends AppCompatActivity {
 
         IWeatherService  weatherService= WeatherFactoryService.createService("Apixu",WeatherCurrentActivity.this);
         weatherService.GetCurrentWeather("Katowice");
-    }
+    }//onCreate()
 
     public static WeatherCurrentActivity getInstance(){
         return weatherCurrentActivity;

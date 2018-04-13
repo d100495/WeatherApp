@@ -6,5 +6,6 @@ package com.example.dunger.weatherappandroidclient.Models;
 
 public interface IWeatherService {
     public void GetCurrentWeather(String city);
+    //TODO Implementing forecast weather for every service
     public void GetForecastWeather(String city);
 }

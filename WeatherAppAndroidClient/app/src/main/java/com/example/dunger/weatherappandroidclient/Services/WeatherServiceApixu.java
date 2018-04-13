@@ -32,11 +32,6 @@ public class WeatherServiceApixu implements IWeatherService{
 
     public WeatherServiceApixu(Activity activity) {
         this.activity = activity;
-        initViews();
-
-    }
-
-    private void initViews() {
     }
 
     //TODO Implementing RxJava
