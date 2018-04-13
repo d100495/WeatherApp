@@ -1,19 +1,16 @@
 package com.example.dunger.weatherappandroidclient;
 
 import android.content.Intent;
-import android.support.design.widget.NavigationView;
+import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -37,11 +34,9 @@ public class WeatherStationsActivity extends AppCompatActivity {
 
     //Variables for GSON
     WeatherStation[] stations;
-    CurrentWeatherApixu currentWeatherApixu;
 
     //UI variables
     Button TestButton;
-    TextView TestTextView;
     ListView listView1;
 
     //Navigation bar
@@ -53,7 +48,6 @@ public class WeatherStationsActivity extends AppCompatActivity {
 
     private void initViews() {
         TestButton = findViewById(R.id.TestButton2);
-        TestTextView = findViewById(R.id.TestTextView2);
         listView1 = findViewById(R.id.listView1);
         mDrawerLayout = findViewById(R.id.drawer_layout);
     }
@@ -66,21 +60,17 @@ public class WeatherStationsActivity extends AppCompatActivity {
         initViews();
 
         GetWeatherStations();
-        //TODO Delete Debug info
-        Log.i(TAG, "OnCreate ==========================");
 
+        //TODO static getInstance() for navigation bar
         NavigationBar navigationBar = new NavigationBar(this); //required if navigation bar exists in this activity_layout
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);//required if navigation bar exists in this activity_layout
 
-
-        //TODO Delete Debug info
-        TestTextView.setMovementMethod(new ScrollingMovementMethod());
         //TODO Delete Debug info
         TestButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                TestTextView.append(
-                        "\nJSON Obj: " +
+                    Log.i(TAG,
+                           "\nJSON Obj: " +
                                 "\naccess_token: " + GetToken().getAccess_token() +
                                 "\n\nToken_type: " + GetToken().getToken_type() +
                                 "\n\nExpires_in: " + GetToken().getExpires_in());
@@ -123,10 +113,6 @@ public class WeatherStationsActivity extends AppCompatActivity {
 
     private void PopulateWeatherStationsListView() {
         if (stations != null) {
-            //TODO Delete Debug info
-            for (WeatherStation x : stations) {
-                TestTextView.append("\n" + x.wholeString() + "\n");
-            }
             ArrayAdapter<WeatherStation> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, stations);
             listView1.setAdapter(adapter);
         } else {

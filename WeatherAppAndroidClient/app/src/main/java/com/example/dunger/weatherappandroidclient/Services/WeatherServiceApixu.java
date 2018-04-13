@@ -48,7 +48,6 @@ public class WeatherServiceApixu implements IWeatherService{
         stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                //TODO CurrentWeatherApixu model fix for Gson serialization
                 CurrentWeatherApixu currentWeatherApixu = new Gson().fromJson(response.toString(),CurrentWeatherApixu.class);
 
                 WeatherCurrentActivity.getInstance().SetViewElementsValues(

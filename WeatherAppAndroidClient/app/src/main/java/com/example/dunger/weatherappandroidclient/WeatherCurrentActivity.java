@@ -55,15 +55,12 @@ public class WeatherCurrentActivity extends AppCompatActivity {
         weatherCurrentActivity=this;
         initViews();
 
+        //TODO static getInstance() for navigation bar
         NavigationBar navigationBar = new NavigationBar(this); //required if navigation bar exists in this activity_layout
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);//required if navigation bar exists in this activity_layout
 
         IWeatherService  weatherService= WeatherFactoryService.createService("Apixu",WeatherCurrentActivity.this);
         weatherService.GetCurrentWeather("Katowice");
-
-
-        //TODO Current weather data displaying
-
     }
 
     public static WeatherCurrentActivity getInstance(){
