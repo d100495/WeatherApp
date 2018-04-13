@@ -37,9 +37,6 @@ public class WeatherCurrentActivity extends AppCompatActivity {
 
 
         //TODO Current weather data displaying
-
-
-
     }
 
     @Override
