@@ -8,9 +8,11 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.dunger.weatherappandroidclient.Models.CurrentWeatherApixu;
 import com.example.dunger.weatherappandroidclient.Models.IWeatherService;
 import com.example.dunger.weatherappandroidclient.R;
 import com.example.dunger.weatherappandroidclient.Volley.RequestQueueSingleton;
+import com.example.dunger.weatherappandroidclient.WeatherCurrentActivity;
 import com.google.gson.Gson;
 
 /**
@@ -22,25 +24,14 @@ public class WeatherServiceApixu implements IWeatherService{
     Activity activity;
 
     //View variables
-    TextView TestTextViewCurrentWeather;
 
     //HTTPConnection variables
     private StringRequest stringRequest;
     private static final String TAG = WeatherServiceApixu.class.getSimpleName();
     String apixuAPIKey = "be73dbae410147e79fa130000183103";
 
-    //Null objects
-    String currentWeather="";
-    String forecastWeather="";
-
     public WeatherServiceApixu(Activity activity) {
         this.activity = activity;
-        initViews();
-
-    }
-
-    private void initViews() {
-        TestTextViewCurrentWeather = activity.findViewById(R.id.TestTextViewCurrentWeather);
     }
 
     //TODO Implementing RxJava
@@ -52,10 +43,20 @@ public class WeatherServiceApixu implements IWeatherService{
         stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                //TODO CurrentWeatherApixu model fix for Gson serialization
-                Gson gson = new Gson();
-                //gson.fromJson(response.toString(),WeatherServiceApixu.class);
-                TestTextViewCurrentWeather.setText(response.toString());
+                CurrentWeatherApixu currentWeatherApixu = new Gson().fromJson(response.toString(),CurrentWeatherApixu.class);
+
+                WeatherCurrentActivity.getInstance().SetViewElementsValues(
+                        "https:"+currentWeatherApixu.getCurrent().getCondition().getIcon(),
+                        currentWeatherApixu.getLocation().getName(),
+                        currentWeatherApixu.getLocation().getLat(),
+                        currentWeatherApixu.getLocation().getLon(),
+                        currentWeatherApixu.getCurrent().getHumidity(),
+                        currentWeatherApixu.getCurrent().getTemp_c(),
+                        currentWeatherApixu.getCurrent().getWind_kph(),
+                        currentWeatherApixu.getCurrent().getCloud(),
+                        currentWeatherApixu.getCurrent().getPressure_mb(),
+                        currentWeatherApixu.getCurrent().getCondition().getText()
+                        );
             }
         }, new Response.ErrorListener() {
             @Override
