@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
                 accService.Login(usernameEditText.getText().toString(),passwordEditText.getText().toString());
             }
         });
-
     }
 
     private void initViews() {

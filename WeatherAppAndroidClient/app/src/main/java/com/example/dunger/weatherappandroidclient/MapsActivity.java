@@ -1,29 +1,42 @@
 package com.example.dunger.weatherappandroidclient;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.ArrayAdapter;
 
+import com.example.dunger.weatherappandroidclient.Models.WeatherStation;
+import com.example.dunger.weatherappandroidclient.Services.WeatherStationsService;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
-    private GoogleMap mMap;
+    private static GoogleMap mMap;
+
+    static MapsActivity mapsActivity;
+
+    //Debug variables
+    private static final String TAG = MapsActivity.class.getName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+
+        mapsActivity=this;
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
-
 
     /**
      * Manipulates the map once available.
@@ -38,9 +51,39 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        WeatherStationsService weatherStationsService = new WeatherStationsService(MapsActivity.this);
+        weatherStationsService.GetWeatherStations();
+
+        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+                Intent intent = new Intent(getApplicationContext(), WeatherCurrentActivity.class);
+                intent.putExtra("station",marker.getTitle());
+                startActivity(intent);
+            }
+        });
     }
+
+    public void PopulateMapWithWeatherStations(WeatherStation[] stations) {
+        if (stations != null) {
+            for(WeatherStation x : stations){
+                Marker marker = mMap.addMarker(
+                        new MarkerOptions()
+                        .position(new LatLng(x.getLatitude(),x.getLongitude()))
+                        .title(x.getCityName())
+                );
+                marker.showInfoWindow();
+            }
+            //TODO getting lat,lon from device
+            //Move the camera to the user's location and zoom in
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(50.26,19.02), 8.0f));
+        } else {
+            Log.i(TAG, "\n\nStations==NULL");
+        }
+    }
+
+    public static MapsActivity getInstance(){
+        return mapsActivity;
+    }
+
 }

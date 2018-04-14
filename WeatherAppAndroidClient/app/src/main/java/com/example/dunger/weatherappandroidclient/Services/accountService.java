@@ -12,10 +12,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.dunger.weatherappandroidclient.MainActivity;
+import com.example.dunger.weatherappandroidclient.MapsActivity;
 import com.example.dunger.weatherappandroidclient.Models.Token;
 import com.example.dunger.weatherappandroidclient.R;
 import com.example.dunger.weatherappandroidclient.Volley.RequestQueueSingleton;
-import com.example.dunger.weatherappandroidclient.WeatherStationsActivity;
 import com.google.gson.Gson;
 
 import java.util.HashMap;
@@ -54,7 +54,7 @@ public class accountService {
                     Toast.makeText(activity.getApplicationContext(),
                             activity.getString(R.string.logginsuccess_notification), Toast.LENGTH_SHORT).show();
 
-                    Intent intent = new Intent(activity.getApplicationContext(), WeatherStationsActivity.class);
+                    Intent intent = new Intent(activity.getApplicationContext(), MapsActivity.class);
                     activity.startActivity(intent);
                 }else {
                     Log.i(TAG, "\n\nResponse is empty!");

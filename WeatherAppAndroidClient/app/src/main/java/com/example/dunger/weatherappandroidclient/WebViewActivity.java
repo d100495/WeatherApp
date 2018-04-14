@@ -39,7 +39,6 @@ public class WebViewActivity extends AppCompatActivity {
         //TODO static getInstance() for navigation bar
         NavigationBar navigationBar = new NavigationBar(this); //required if navigation bar exists in this activity_layout
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);//required if navigation bar exists in this activity_layout
-
     }
 
     @Override
