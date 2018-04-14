@@ -25,8 +25,10 @@ public class WeatherServiceApixu implements IWeatherService{
 
     //HTTPConnection variables
     private StringRequest stringRequest;
-    private static final String TAG = WeatherServiceApixu.class.getSimpleName();
     String apixuAPIKey = "be73dbae410147e79fa130000183103";
+
+    //Debug variables
+    private static final String TAG = WeatherServiceApixu.class.getSimpleName();
 
     public WeatherServiceApixu(Activity activity) {
         this.activity = activity;
