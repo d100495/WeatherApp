@@ -8,9 +8,9 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.dunger.weatherappandroidclient.MapsActivity;
 import com.example.dunger.weatherappandroidclient.Models.WeatherStation;
 import com.example.dunger.weatherappandroidclient.Volley.RequestQueueSingleton;
-import com.example.dunger.weatherappandroidclient.WeatherStationsActivity;
 import com.google.gson.Gson;
 
 import java.util.HashMap;
@@ -33,7 +33,7 @@ public class WeatherStationsService {
     private StringRequest stringRequest;
 
     //Debug variables
-    private static final String TAG = WeatherStationsActivity.class.getName();
+    private static final String TAG = WeatherStationsService.class.getName();
 
     public WeatherStationsService(Activity activity) {
         this.activity = activity;
@@ -46,7 +46,7 @@ public class WeatherStationsService {
             @Override
             public void onResponse(String response) {
                 stations = new Gson().fromJson(response, WeatherStation[].class);
-                WeatherStationsActivity.getInstance().PopulateWeatherStationsListView(stations);
+                MapsActivity.getInstance().PopulateMapWithWeatherStations(stations);
             }
         }, new Response.ErrorListener() {
             @Override

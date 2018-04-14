@@ -12,10 +12,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.dunger.weatherappandroidclient.MainActivity;
+import com.example.dunger.weatherappandroidclient.MapsActivity;
 import com.example.dunger.weatherappandroidclient.Models.Token;
 import com.example.dunger.weatherappandroidclient.R;
 import com.example.dunger.weatherappandroidclient.Volley.RequestQueueSingleton;
-import com.example.dunger.weatherappandroidclient.WeatherStationsActivity;
 import com.google.gson.Gson;
 
 import java.util.HashMap;
@@ -54,7 +54,7 @@ public class accountService {
                     Toast.makeText(activity.getApplicationContext(),
                             activity.getString(R.string.logginsuccess_notification), Toast.LENGTH_SHORT).show();
 
-                    Intent intent = new Intent(activity.getApplicationContext(), WeatherStationsActivity.class);
+                    Intent intent = new Intent(activity.getApplicationContext(), MapsActivity.class);
                     activity.startActivity(intent);
                 }else {
                     Log.i(TAG, "\n\nResponse is empty!");
@@ -87,10 +87,11 @@ public class accountService {
         String restored_token_type = prefs.getString("token_type",null);
         int restored_expires_in = prefs.getInt("expires_in", 0);
 
-        if(restored_access_token.equals(null) || token.getAccess_token().equals(null) || token.getExpires_in() < 10)
+        if(restored_access_token ==null || token.getAccess_token() ==null || token.getExpires_in() < 10)
         {
             Intent intent = new Intent(activity.getApplicationContext(), MainActivity.class);
             activity.startActivity(intent);
+            token=new Token("","",0);
             return token;
         }
         else

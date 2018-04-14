@@ -8,8 +8,9 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.MenuItem;
 
+import com.example.dunger.weatherappandroidclient.MapsActivity;
+import com.example.dunger.weatherappandroidclient.OptionsActivity;
 import com.example.dunger.weatherappandroidclient.R;
-import com.example.dunger.weatherappandroidclient.WeatherStationsActivity;
 import com.example.dunger.weatherappandroidclient.WebViewActivity;
 
 /**
@@ -47,11 +48,6 @@ public class NavigationBar {
                         // close drawer when item is tapped
                         drawerLayout.closeDrawers();
 
-                      /*  if(menuItem.getItemId()==R.string.navbar_open)
-                        {
-                            drawerLayout.openDrawer(GravityCompat.START);  // OPEN DRAWER
-                            return true;
-                        }*/
                         if(actionBarDrawerToggle.onOptionsItemSelected(menuItem))
                         {
                             return true;
@@ -65,13 +61,18 @@ public class NavigationBar {
                         if(menuItem.getItemId()==R.id.nav_mobile)
                         {
                             //TODO Activity refreshing should not be possible
-                            Intent intent = new Intent(activity.getApplicationContext(), WeatherStationsActivity.class);
+                            Intent intent = new Intent(activity.getApplicationContext(), MapsActivity.class);
+                            activity.startActivity(intent);
+                        }
+                        if(menuItem.getItemId()==R.id.nav_options)
+                        {
+                            //TODO Activity refreshing should not be possible
+                            Intent intent = new Intent(activity.getApplicationContext(), OptionsActivity.class);
                             activity.startActivity(intent);
                         }
                         else {
                             drawerLayout.openDrawer(GravityCompat.START);  // OPEN DRAWER
                         }
-
                         return true;
                     }
                 });

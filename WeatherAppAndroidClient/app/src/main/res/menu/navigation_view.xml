@@ -1,19 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item
-        android:id="@+id/nav_mobile"
-        android:icon="@mipmap/ic_mobile"
-        android:textSize="10dp"
-        android:gravity="center"
-        android:title="@string/menuItem_mobile">
-    </item>
+    <group android:id="@+id/nav_group1">
+        <item
+            android:id="@+id/nav_mobile"
+            android:icon="@mipmap/ic_mobile"
+            android:textSize="10dp"
+            android:gravity="center"
+            android:title="@string/menuItem_mobile">
+        </item>
 
-    <item
-        android:id="@+id/nav_desktop"
-        android:icon="@mipmap/ic_desktop"
-        android:gravity="center"
-        android:title="@string/menuItem_desktop">
-    </item>
+        <item
+            android:id="@+id/nav_desktop"
+            android:icon="@mipmap/ic_desktop"
+            android:gravity="center"
+            android:title="@string/menuItem_desktop">
+        </item>
+    </group>
+
+    <group android:id="@+id/nav_group2">
+        <item
+            android:id="@+id/nav_options"
+            android:icon="@mipmap/ic_settings"
+            android:gravity="center"
+            android:title="@string/menuItem_options">
+        </item>
+    </group>
+
 
 </menu>

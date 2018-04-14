@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,12 +19,11 @@ import com.example.dunger.weatherappandroidclient.Services.WeatherFactoryService
 import com.example.dunger.weatherappandroidclient.UI.NavigationBar;
 import com.squareup.picasso.Picasso;
 
+import static com.example.dunger.weatherappandroidclient.OptionsActivity.GetChosenAPI;
+
 public class WeatherCurrentActivity extends AppCompatActivity {
 
     static WeatherCurrentActivity weatherCurrentActivity;
-
-    //Navigation bar
-    DrawerLayout mDrawerLayout;
 
     //UI variables
     ImageView currentWeatherImage;
@@ -36,9 +36,9 @@ public class WeatherCurrentActivity extends AppCompatActivity {
     TextView currentCloudsValue;
     TextView currentPressureValue;
     TextView currentWeatherDescription;
+    LinearLayout currentLinearLayoutTemperature;
 
     private void initViews() {
-        mDrawerLayout = findViewById(R.id.drawer_layout);
         currentWeatherImage=findViewById(R.id.currentWeatherImage);
         currentCityString=findViewById(R.id.currentCityString);
         currentLatString=findViewById(R.id.currentLatString);
@@ -49,6 +49,7 @@ public class WeatherCurrentActivity extends AppCompatActivity {
         currentCloudsValue=findViewById(R.id.currentCloudsValue);
         currentPressureValue=findViewById(R.id.currentPressureValue);
         currentWeatherDescription=findViewById(R.id.currentWeatherDescription);
+        currentLinearLayoutTemperature=findViewById(R.id.currentLinearLayoutTemperature);
     }
 
     @Override
@@ -66,7 +67,7 @@ public class WeatherCurrentActivity extends AppCompatActivity {
         Intent intent = getIntent();
         intent.getStringExtra("station");
 
-        IWeatherService  weatherService= WeatherFactoryService.createService("Apixu",WeatherCurrentActivity.this);
+        IWeatherService  weatherService= WeatherFactoryService.createService(GetChosenAPI(this),WeatherCurrentActivity.this);
         weatherService.GetCurrentWeather(intent.getStringExtra("station"));
     }//onCreate()
 
@@ -80,16 +81,41 @@ public class WeatherCurrentActivity extends AppCompatActivity {
         currentCityString.setText(city);
         currentLatString.setText(Float.toString(lat));
         currentLongString.setText(Float.toString(lon));
-        currentHumidityValue.setText(Float.toString(humidity));
-        currentTemperatureValue.setText(Float.toString(temperature));
-        currentWindspeedValue.setText(Float.toString(windspeed));
-        currentCloudsValue.setText(Float.toString(clouds));
-        currentPressureValue.setText(Float.toString(pressure));
+        currentHumidityValue.setText(Float.toString(humidity)+"[%]");
+        currentTemperatureValue.setText(Float.toString(temperature)+"[°C]");
+        currentWindspeedValue.setText(Float.toString(windspeed)+"[km/h]");
+        currentCloudsValue.setText(Float.toString(clouds)+"[%]");
+        currentPressureValue.setText(Float.toString(pressure)+"[mb]");
         currentWeatherDescription.setText(description);
+
+        SetViewElementsColors(temperature);
+    }
+
+    private void SetViewElementsColors(float temperature){
+        //TODO Add more elements
+        if(temperature>11 && temperature<=25)
+        {
+            currentLinearLayoutTemperature.setBackgroundColor(getResources().getColor(R.color.yellow_100));
+        }
+        if(temperature>0 && temperature<=11)
+        {
+            currentLinearLayoutTemperature.setBackgroundColor(getResources().getColor(R.color.light_blue_100));
+        }
+        if(temperature<=0)
+        {
+            currentLinearLayoutTemperature.setBackgroundColor(getResources().getColor(R.color.blue_100));
+        }
+        if (temperature>25)
+        {
+            currentLinearLayoutTemperature.setBackgroundColor(getResources().getColor(R.color.red_100));
+        }
+
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        //Navigation bar
+        DrawerLayout mDrawerLayout = findViewById(R.id.drawer_layout);
         switch (item.getItemId()) {
             case android.R.id.home:
                 if(mDrawerLayout.isDrawerOpen(GravityCompat.START))

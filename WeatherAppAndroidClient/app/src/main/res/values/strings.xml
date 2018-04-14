@@ -16,4 +16,12 @@
     <string name="currentWeatherWindspeed">Wind speed</string>
     <string name="currentWeatherClouds">Clouds</string>
     <string name="currentWeatherPressure">Pressure</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="menuItem_options">Options</string>
+
+
+
+    <!--DO NOT EDIT BELOW THIS LINE!-->
+    <string name="APIoption_Apixu">Apixu</string>
+    <string name="APIoption_OpenWeather">OpenWeather</string>
 </resources>

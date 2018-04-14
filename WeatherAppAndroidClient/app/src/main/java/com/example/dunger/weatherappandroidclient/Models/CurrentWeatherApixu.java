@@ -14,7 +14,6 @@ public class CurrentWeatherApixu {
         this.current = current;
     }
 
-
     @Override
     public String toString() {
         return "\nCurrentWeatherApixu{" +
