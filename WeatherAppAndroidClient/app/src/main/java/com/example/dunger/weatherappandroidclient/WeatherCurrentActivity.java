@@ -1,14 +1,18 @@
 package com.example.dunger.weatherappandroidclient;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.dunger.weatherappandroidclient.Models.IWeatherService;
 import com.example.dunger.weatherappandroidclient.Services.WeatherFactoryService;
@@ -65,7 +69,7 @@ public class WeatherCurrentActivity extends AppCompatActivity {
         Intent intent = getIntent();
         intent.getStringExtra("station");
 
-        IWeatherService  weatherService= WeatherFactoryService.createService("Apixu",WeatherCurrentActivity.this);
+        IWeatherService  weatherService= WeatherFactoryService.createService("OpenWeather",WeatherCurrentActivity.this);
         weatherService.GetCurrentWeather(intent.getStringExtra("station"));
     }//onCreate()
 

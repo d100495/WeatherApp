@@ -71,6 +71,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         new MarkerOptions()
                         .position(new LatLng(x.getLatitude(),x.getLongitude()))
                         .title(x.getCityName())
+                        .snippet(getResources().getString(R.string.currentWeatherLatitude)+x.getLatitude()+" | "+getResources().getString(R.string.currentWeatherLongitude)+x.getLongitude())
                 );
                 marker.showInfoWindow();
             }
