@@ -67,7 +67,7 @@ public class WeatherCurrentActivity extends AppCompatActivity {
         Intent intent = getIntent();
         intent.getStringExtra("station");
 
-        IWeatherService  weatherService= WeatherFactoryService.createService(GetChosenAPI(),WeatherCurrentActivity.this);
+        IWeatherService  weatherService= WeatherFactoryService.createService(GetChosenAPI(this),WeatherCurrentActivity.this);
         weatherService.GetCurrentWeather(intent.getStringExtra("station"));
     }//onCreate()
 

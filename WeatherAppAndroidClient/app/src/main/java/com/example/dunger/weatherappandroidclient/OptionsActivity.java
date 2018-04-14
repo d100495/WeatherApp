@@ -40,13 +40,13 @@ public class OptionsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_options);
         initViews();
+
         activity=this;
 
         APIs=new ArrayList<>();
         APIs.add(imageViewApixu);
         APIs.add(imageViewOpenWeatherMap);
         //Add more ImageViews here
-
 
         SetAlphaAndImageViewOnClickListeners(APIs);
 
@@ -58,7 +58,7 @@ public class OptionsActivity extends AppCompatActivity {
     private void SetAlphaAndImageViewOnClickListeners(final List<ImageView> imageViews){
         for (final ImageView imageView : imageViews)
         {
-            if(imageView.getTag().equals(GetChosenAPI())){
+            if(imageView.getTag().equals(GetChosenAPI(activity))){
                 imageView.setAlpha(1f);
             }else {
                 imageView.setAlpha(0.3f);
@@ -72,7 +72,7 @@ public class OptionsActivity extends AppCompatActivity {
                     }
                     SaveChosenAPIoptionInMemory(view.getTag().toString());
                     view.setAlpha(1f);
-                    Toast.makeText(activity.getApplicationContext(),
+                    Toast.makeText(getApplicationContext().getApplicationContext(),
                             view.getTag().toString(), Toast.LENGTH_SHORT).show();
                 }
             });
@@ -85,7 +85,7 @@ public class OptionsActivity extends AppCompatActivity {
         return editor.commit();
     }
 
-    public static String GetChosenAPI(){
+    public static String GetChosenAPI(Activity activity){
         SharedPreferences prefs = activity.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE);
         String restored_Chosen_API = prefs.getString("API", null);
         if(!(restored_Chosen_API==null))
