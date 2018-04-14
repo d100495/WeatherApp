@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { FavoriteService } from '../Services/favoriteService';
 import { Favorite } from '../Models/Favorite';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
     selector: 'app-favorite',
@@ -13,22 +14,21 @@ export class FavoriteComponent implements OnInit {
 
     favorite: Favorite[];
 
+    ngOnInit() {
+        this.GetByUserId();
+    }
     GetByUserId() {
         return this._favoriteService.GetFavoritesByUserId().subscribe(response => {
             this.favorite = response;
-            console.log(response);
         });
     }
 
     DeleteFavorite(id: number) {
-        console.log(id);
         if (id != null) {
             this._favoriteService.DeleteFromFavorite(id).subscribe();
+            this.GetByUserId();
         }
     }
 
 
-    ngOnInit() {
-        this.GetByUserId();
-    }
 }

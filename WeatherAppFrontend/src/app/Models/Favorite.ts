@@ -1,5 +1,5 @@
 export class Favorite {
-    idFav: number;
+    weatherStationId: number;
     cityName: string;
     longitude: number;
     latitude: number;

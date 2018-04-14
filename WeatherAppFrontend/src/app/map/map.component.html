@@ -11,8 +11,8 @@
 
       <div class="weatherInfoWindSpeed">Prędkość wiatru: {{weather?.WindSpeed}} km/h</div>
       <div class="weatherInfoPressure"> Ciśnienie: {{weather?.Pressure}} hPa</div>
-      <button (click)="AddToFavorite(m.Cityname, weather?.Longitude, weather?.Latitude)" class="btn btn-default">Add to Favorite</button>
-      <button (click)="onDetails(m.Latitude, m.Longitude)" class="btn btn-default">Details</button>
+      <button (click)="AddToFavorite(m.cityName, weather?.Longitude, weather?.Latitude)" class="btn buttonDetails btn-default">Add to Favorite</button>
+      <button (click)="OnDetails(m.Latitude, m.Longitude)" class="btn buttonDetails btn-default">Details</button>
     </agm-info-window>
  </agm-marker>
 </agm-map>
