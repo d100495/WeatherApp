@@ -8,11 +8,11 @@
                 <th></th>
             </thead>
             <tbody>
-                <tr *ngFor="let model of favorite;">
+                <tr *ngFor="let model of favorite">
                     <td>{{model.cityName}}</td>
                     <td>{{model.longitude}}</td>
                     <td>{{model.latitude}}</td>
-                    <td><button (click)="DeleteFavorite(model.favoriteId)" class="btn btn-default">Delete</button></td>
+                    <td><button (click)="DeleteFavorite(model.weatherStationId)" class="btn btn-default">Delete</button></td>
                 </tr>
             </tbody>
         </div>
