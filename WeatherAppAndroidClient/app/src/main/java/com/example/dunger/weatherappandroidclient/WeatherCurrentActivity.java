@@ -80,11 +80,11 @@ public class WeatherCurrentActivity extends AppCompatActivity {
         currentCityString.setText(city);
         currentLatString.setText(Float.toString(lat));
         currentLongString.setText(Float.toString(lon));
-        currentHumidityValue.setText(Float.toString(humidity));
-        currentTemperatureValue.setText(Float.toString(temperature));
-        currentWindspeedValue.setText(Float.toString(windspeed));
-        currentCloudsValue.setText(Float.toString(clouds));
-        currentPressureValue.setText(Float.toString(pressure));
+        currentHumidityValue.setText(Float.toString(humidity)+"[%]");
+        currentTemperatureValue.setText(Float.toString(temperature)+"[°C]");
+        currentWindspeedValue.setText(Float.toString(windspeed)+"[km/h]");
+        currentCloudsValue.setText(Float.toString(clouds)+"[%]");
+        currentPressureValue.setText(Float.toString(pressure)+"[mb]");
         currentWeatherDescription.setText(description);
     }
 

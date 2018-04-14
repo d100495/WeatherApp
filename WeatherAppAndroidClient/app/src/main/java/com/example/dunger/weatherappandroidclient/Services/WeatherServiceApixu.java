@@ -23,8 +23,6 @@ public class WeatherServiceApixu implements IWeatherService{
 
     Activity activity;
 
-    //View variables
-
     //HTTPConnection variables
     private StringRequest stringRequest;
     private static final String TAG = WeatherServiceApixu.class.getSimpleName();

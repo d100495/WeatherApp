@@ -117,7 +117,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:gravity="center"
-                    android:textSize="20dp"
+                    android:textSize="@dimen/currentWeatherActivity_detailsValue_descriptionTextSize"
                     android:text="@string/currentWeatherHumidity"
                     android:layout_height="match_parent" />
                 <LinearLayout
@@ -126,16 +126,17 @@
                     android:gravity="center"
                     android:layout_height="match_parent">
                     <ImageView
-                        android:layout_width="60dp"
+                        android:layout_width="@dimen/currentWeatherActivity_detailsValue_imageWidth"
                         android:src="@mipmap/ic_water_percent"
-                        android:layout_height="60dp" />
+                        android:layout_height="@dimen/currentWeatherActivity_detailsValue_imageHeight" />
+
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
                         android:id="@+id/currentHumidityValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:text="00"
-                        android:textSize="30dp"
-                        android:layout_height="wrap_content" />
+                        android:textSize="@dimen/currentWeatherActivity_detailsValue_textSize" />
                 </LinearLayout>
             </LinearLayout>
             <!--Wind speed-->
@@ -147,7 +148,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:gravity="center"
-                    android:textSize="20dp"
+                    android:textSize="@dimen/currentWeatherActivity_detailsValue_descriptionTextSize"
                     android:text="@string/currentWeatherWindspeed"
                     android:layout_height="match_parent" />
                 <LinearLayout
@@ -156,15 +157,15 @@
                     android:gravity="center"
                     android:layout_height="match_parent">
                     <ImageView
-                        android:layout_width="60dp"
+                        android:layout_width="@dimen/currentWeatherActivity_detailsValue_imageWidth"
                         android:src="@mipmap/ic_weather_windy"
-                        android:layout_height="60dp" />
+                        android:layout_height="@dimen/currentWeatherActivity_detailsValue_imageHeight" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:text="00"
                         android:id="@+id/currentWindspeedValue"
-                        android:textSize="30dp"
+                        android:textSize="@dimen/currentWeatherActivity_detailsValue_textSize"
                         android:layout_height="wrap_content" />
                 </LinearLayout>
             </LinearLayout>
@@ -177,7 +178,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:gravity="center"
-                    android:textSize="20dp"
+                    android:textSize="@dimen/currentWeatherActivity_detailsValue_descriptionTextSize"
                     android:text="@string/currentWeatherClouds"
                     android:layout_height="match_parent" />
                 <LinearLayout
@@ -186,15 +187,15 @@
                     android:gravity="center"
                     android:layout_height="match_parent">
                     <ImageView
-                        android:layout_width="60dp"
+                        android:layout_width="@dimen/currentWeatherActivity_detailsValue_imageWidth"
                         android:src="@mipmap/ic_cloud_outline"
-                        android:layout_height="60dp" />
+                        android:layout_height="@dimen/currentWeatherActivity_detailsValue_imageHeight" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:id="@+id/currentCloudsValue"
                         android:text="00"
-                        android:textSize="30dp"
+                        android:textSize="@dimen/currentWeatherActivity_detailsValue_textSize"
                         android:layout_height="wrap_content" />
                 </LinearLayout>
             </LinearLayout>
@@ -217,7 +218,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:gravity="center"
-                    android:textSize="20dp"
+                    android:textSize="@dimen/currentWeatherActivity_detailsValue_descriptionTextSize"
                     android:text="@string/currentWeatherTemperature"
                     android:layout_height="match_parent" />
                 <LinearLayout
@@ -226,15 +227,15 @@
                     android:gravity="center"
                     android:layout_height="match_parent">
                     <ImageView
-                        android:layout_width="60dp"
+                        android:layout_width="@dimen/currentWeatherActivity_detailsValue_imageWidth"
                         android:src="@mipmap/ic_thermometer"
-                        android:layout_height="60dp" />
+                        android:layout_height="@dimen/currentWeatherActivity_detailsValue_imageHeight" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:text="00"
                         android:id="@+id/currentTemperatureValue"
-                        android:textSize="30dp"
+                        android:textSize="@dimen/currentWeatherActivity_detailsValue_textSize"
                         android:layout_height="wrap_content" />
                 </LinearLayout>
             </LinearLayout>
@@ -247,7 +248,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:gravity="center"
-                    android:textSize="20dp"
+                    android:textSize="@dimen/currentWeatherActivity_detailsValue_descriptionTextSize"
                     android:text="@string/currentWeatherPressure"
                     android:layout_height="match_parent" />
                 <LinearLayout
@@ -256,15 +257,15 @@
                     android:gravity="center"
                     android:layout_height="match_parent">
                     <ImageView
-                        android:layout_width="60dp"
+                        android:layout_width="@dimen/currentWeatherActivity_detailsValue_imageWidth"
                         android:src="@mipmap/ic_arrow_collapse"
-                        android:layout_height="60dp" />
+                        android:layout_height="@dimen/currentWeatherActivity_detailsValue_imageHeight" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:text="00"
                         android:id="@+id/currentPressureValue"
-                        android:textSize="30dp"
+                        android:textSize="@dimen/currentWeatherActivity_detailsValue_textSize"
                         android:layout_height="wrap_content" />
                 </LinearLayout>
             </LinearLayout>
