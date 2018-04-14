@@ -43,7 +43,7 @@ public class WeatherServiceOpenWeatherMap implements IWeatherService {
                 CurrentWeatherOpenWeather currentWeatherOpenWeather = new Gson().fromJson(response.toString(),CurrentWeatherOpenWeather.class);
 
                 float temperature_Celsius=Math.round(currentWeatherOpenWeather.getMain().getTemp()-273.15f);
-                float windspeed_metersPerSec = Math.round(currentWeatherOpenWeather.getWind().getSpeed()*3.6f);
+                float windspeed_kmh = Math.round(currentWeatherOpenWeather.getWind().getSpeed()*3.6f);
 
                 WeatherCurrentActivity.getInstance().SetViewElementsValues(
                         "http://openweathermap.org/img/w/"+currentWeatherOpenWeather.getWeather()[0].getIcon()+".png",
@@ -52,7 +52,7 @@ public class WeatherServiceOpenWeatherMap implements IWeatherService {
                         currentWeatherOpenWeather.getCoord().getLon(),
                         currentWeatherOpenWeather.getMain().getHumidity(),
                         temperature_Celsius,
-                        windspeed_metersPerSec,
+                        windspeed_kmh,
                         currentWeatherOpenWeather.getClouds().getAll(),
                         currentWeatherOpenWeather.getMain().getPressure(),
                         currentWeatherOpenWeather.getWeather()[0].getDescription()

@@ -6,4 +6,6 @@
     <dimen name="currentWeatherActivity_detailsValue_imageWidth">40dp</dimen>
     <dimen name="currentWeatherActivity_detailsValue_imageHeight">50dp</dimen>
     <dimen name="currentWeatherActivity_detailsValue_descriptionTextSize">18dp</dimen>
+    <dimen name="optionsLogoWidth">100dp</dimen>
+    <dimen name="optionsLogoHeight">100dp</dimen>
 </resources>

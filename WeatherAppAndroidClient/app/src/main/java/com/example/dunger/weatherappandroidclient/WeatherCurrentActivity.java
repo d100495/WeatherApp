@@ -19,12 +19,11 @@ import com.example.dunger.weatherappandroidclient.Services.WeatherFactoryService
 import com.example.dunger.weatherappandroidclient.UI.NavigationBar;
 import com.squareup.picasso.Picasso;
 
+import static com.example.dunger.weatherappandroidclient.OptionsActivity.GetChosenAPI;
+
 public class WeatherCurrentActivity extends AppCompatActivity {
 
     static WeatherCurrentActivity weatherCurrentActivity;
-
-    //Navigation bar
-    DrawerLayout mDrawerLayout;
 
     //UI variables
     ImageView currentWeatherImage;
@@ -40,7 +39,6 @@ public class WeatherCurrentActivity extends AppCompatActivity {
     LinearLayout currentLinearLayoutTemperature;
 
     private void initViews() {
-        mDrawerLayout = findViewById(R.id.drawer_layout);
         currentWeatherImage=findViewById(R.id.currentWeatherImage);
         currentCityString=findViewById(R.id.currentCityString);
         currentLatString=findViewById(R.id.currentLatString);
@@ -69,7 +67,7 @@ public class WeatherCurrentActivity extends AppCompatActivity {
         Intent intent = getIntent();
         intent.getStringExtra("station");
 
-        IWeatherService  weatherService= WeatherFactoryService.createService("OpenWeather",WeatherCurrentActivity.this);
+        IWeatherService  weatherService= WeatherFactoryService.createService(GetChosenAPI(),WeatherCurrentActivity.this);
         weatherService.GetCurrentWeather(intent.getStringExtra("station"));
     }//onCreate()
 
@@ -116,6 +114,8 @@ public class WeatherCurrentActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        //Navigation bar
+        DrawerLayout mDrawerLayout = findViewById(R.id.drawer_layout);
         switch (item.getItemId()) {
             case android.R.id.home:
                 if(mDrawerLayout.isDrawerOpen(GravityCompat.START))

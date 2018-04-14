@@ -14,11 +14,7 @@ import com.example.dunger.weatherappandroidclient.UI.NavigationBar;
 
 public class WebViewActivity extends AppCompatActivity {
 
-    //Navigation bar
-    DrawerLayout mDrawerLayout;
-
     private void initViews() {
-        mDrawerLayout = findViewById(R.id.drawer_layout);
     }
 
     @Override
@@ -43,6 +39,8 @@ public class WebViewActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        //Navigation bar
+        DrawerLayout mDrawerLayout = findViewById(R.id.drawer_layout);
         switch (item.getItemId()) {
             case android.R.id.home:
                 if(mDrawerLayout.isDrawerOpen(GravityCompat.START))

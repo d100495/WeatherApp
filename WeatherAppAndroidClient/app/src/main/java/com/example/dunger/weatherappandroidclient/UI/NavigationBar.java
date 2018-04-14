@@ -9,6 +9,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.MenuItem;
 
 import com.example.dunger.weatherappandroidclient.MapsActivity;
+import com.example.dunger.weatherappandroidclient.OptionsActivity;
 import com.example.dunger.weatherappandroidclient.R;
 import com.example.dunger.weatherappandroidclient.WebViewActivity;
 
@@ -61,6 +62,12 @@ public class NavigationBar {
                         {
                             //TODO Activity refreshing should not be possible
                             Intent intent = new Intent(activity.getApplicationContext(), MapsActivity.class);
+                            activity.startActivity(intent);
+                        }
+                        if(menuItem.getItemId()==R.id.nav_options)
+                        {
+                            //TODO Activity refreshing should not be possible
+                            Intent intent = new Intent(activity.getApplicationContext(), OptionsActivity.class);
                             activity.startActivity(intent);
                         }
                         else {

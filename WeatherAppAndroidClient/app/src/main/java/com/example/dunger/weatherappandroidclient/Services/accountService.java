@@ -87,10 +87,11 @@ public class accountService {
         String restored_token_type = prefs.getString("token_type",null);
         int restored_expires_in = prefs.getInt("expires_in", 0);
 
-        if(restored_access_token.equals(null) || token.getAccess_token().equals(null) || token.getExpires_in() < 10)
+        if(restored_access_token ==null || token.getAccess_token() ==null || token.getExpires_in() < 10)
         {
             Intent intent = new Intent(activity.getApplicationContext(), MainActivity.class);
             activity.startActivity(intent);
+            token=new Token("","",0);
             return token;
         }
         else
