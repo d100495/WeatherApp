@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +37,7 @@ public class WeatherCurrentActivity extends AppCompatActivity {
     TextView currentCloudsValue;
     TextView currentPressureValue;
     TextView currentWeatherDescription;
+    LinearLayout currentLinearLayoutTemperature;
 
     private void initViews() {
         mDrawerLayout = findViewById(R.id.drawer_layout);
@@ -49,6 +51,7 @@ public class WeatherCurrentActivity extends AppCompatActivity {
         currentCloudsValue=findViewById(R.id.currentCloudsValue);
         currentPressureValue=findViewById(R.id.currentPressureValue);
         currentWeatherDescription=findViewById(R.id.currentWeatherDescription);
+        currentLinearLayoutTemperature=findViewById(R.id.currentLinearLayoutTemperature);
     }
 
     @Override
@@ -86,6 +89,25 @@ public class WeatherCurrentActivity extends AppCompatActivity {
         currentCloudsValue.setText(Float.toString(clouds)+"[%]");
         currentPressureValue.setText(Float.toString(pressure)+"[mb]");
         currentWeatherDescription.setText(description);
+
+        SetViewElementsColors(temperature);
+    }
+
+    private void SetViewElementsColors(float temperature){
+        //TODO Add more elements
+        if(temperature>0 && temperature<=25)
+        {
+            currentLinearLayoutTemperature.setBackgroundColor(getResources().getColor(R.color.yellow_100));
+        }
+        if(temperature<=0)
+        {
+            currentLinearLayoutTemperature.setBackgroundColor(getResources().getColor(R.color.blue_100));
+        }
+        if (temperature>25)
+        {
+            currentLinearLayoutTemperature.setBackgroundColor(getResources().getColor(R.color.red_100));
+        }
+
     }
 
     @Override

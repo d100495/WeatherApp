@@ -76,7 +76,7 @@ public class WeatherStationsActivity extends AppCompatActivity {
                                 "\n\nToken_type: " + GetToken().getToken_type() +
                                 "\n\nExpires_in: " + GetToken().getExpires_in());
 
-                Intent intent = new Intent(getApplicationContext(), WeatherCurrentActivity.class);
+                Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
                 startActivity(intent);
             }
         });
