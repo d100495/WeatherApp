@@ -25,6 +25,9 @@ public class WeatherCurrentActivity extends AppCompatActivity {
 
     static WeatherCurrentActivity weatherCurrentActivity;
 
+    IWeatherService  weatherService;
+    Intent intent;
+
     //UI variables
     ImageView currentWeatherImage;
     TextView currentCityString;
@@ -53,6 +56,13 @@ public class WeatherCurrentActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        weatherService= WeatherFactoryService.createService(GetChosenAPI(this),WeatherCurrentActivity.this);
+        weatherService.GetCurrentWeather(intent.getStringExtra("station"));
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather_current);
@@ -64,10 +74,9 @@ public class WeatherCurrentActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);//required if navigation bar exists in this activity_layout
 
         //TODO city/lat,lon as parameters
-        Intent intent = getIntent();
-        intent.getStringExtra("station");
+        intent = getIntent();
 
-        IWeatherService  weatherService= WeatherFactoryService.createService(GetChosenAPI(this),WeatherCurrentActivity.this);
+        weatherService= WeatherFactoryService.createService(GetChosenAPI(this),WeatherCurrentActivity.this);
         weatherService.GetCurrentWeather(intent.getStringExtra("station"));
     }//onCreate()
 
