@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,10 +10,10 @@ namespace WeatherAppApi.Repositories
 {
     public class FavoriteRepository : IFavoriteRepository
     {
-        private AuthContext _context;
+        private readonly AuthContext _context;
         public FavoriteRepository(AuthContext context)
         {
-            this._context = context;
+            _context = context;
         }
 
         public async Task Save()
@@ -20,15 +21,13 @@ namespace WeatherAppApi.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task Add(WeatherStation model, string id)
+        public async Task Add(WeatherStation model, string idUser)
         {
-            WeatherStation weatherStation = _context.WeatherStation.FirstOrDefault(x => x.CityName == model.CityName);
-            if (weatherStation != null)
-            {
-                ApplicationUser user = _context.Users.Include(x => x.WeatherStations).FirstOrDefault(x => x.Id == id);
-                user.WeatherStations.Add(model);
-                await Save();
-            }
+              ApplicationUser user = _context.Users.Include(x => x.WeatherStations).FirstOrDefault(x => x.Id == idUser);
+              user?.WeatherStations.Add(model);
+              await Save();
+              
+           
         }
 
         public async Task<IEnumerable<FavoriteWeatherStation>> GetAll()

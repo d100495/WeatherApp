@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Threading.Tasks;
 using WeatherAppApi.Interfaces;
 using WeatherAppApi.Models;
 
@@ -21,7 +18,18 @@ namespace WeatherAppApi.Repositories
             _ctx = new AuthContext();
             _userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(_ctx));
         }
- 
+
+        public string GetUserId()
+        {
+            var id =  System.Web.HttpContext.Current.User.Identity.GetUserId();
+            if (id == null)
+            {
+                throw new InvalidOperationException("User not exist");
+            }
+            return id;
+
+        }
+
         public async Task<IdentityResult> RegisterUser(UserModel userModel)
         {
             ApplicationUser user = new ApplicationUser()

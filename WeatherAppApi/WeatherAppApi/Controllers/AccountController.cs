@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+﻿using Microsoft.AspNet.Identity;
 using System.Threading.Tasks;
 using System.Web.Http;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using WeatherAppApi.Interfaces;
 using WeatherAppApi.Models;
-using WeatherAppApi.Repositories;
 
 namespace WeatherAppApi.Controllers
 {
@@ -88,7 +81,6 @@ namespace WeatherAppApi.Controllers
  
                 if (ModelState.IsValid)
                 {
-                    // No ModelState errors are available to send, so just return an empty BadRequest.
                     return BadRequest();
                 }
  
