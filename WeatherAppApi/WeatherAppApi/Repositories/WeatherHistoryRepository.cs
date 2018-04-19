@@ -21,6 +21,10 @@ namespace WeatherAppApi.Repositories
 
         public async Task Add(WeatherHistory model)
         {
+            if (model == null)
+            {
+                throw new InvalidOperationException("Weather history model cannot be null");
+            }
             _context.WeatherHistory.Add(model);
             await Save();
         }

@@ -1,7 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using WeatherAppApi.Models;
 
 namespace WeatherAppApi.Interfaces
@@ -11,6 +10,7 @@ namespace WeatherAppApi.Interfaces
         Task<IdentityResult> RegisterUser(UserModel userModel);
         Task<ApplicationUser> FindUser(string userName, string password);
         Task<ApplicationUser> FindById(string id);
+        string GetUserId();
         void Dispose();
     }
 }

@@ -245,7 +245,9 @@
     <Compile Include="Repositories\WeatherStationRepository.cs" />
     <Compile Include="Services\FavoritesService.cs" />
     <Compile Include="Interfaces\IPaginationService.cs" />
+    <Compile Include="Services\IWeatherHistoryService.cs" />
     <Compile Include="Services\PaginationService.cs" />
+    <Compile Include="Services\WeatherHistoryService.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>

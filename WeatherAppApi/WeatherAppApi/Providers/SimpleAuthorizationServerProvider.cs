@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Owin.Security.OAuth;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using System.Web;
-using System.Web.Http.Cors;
-using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.Owin.Security.OAuth;
 using WeatherAppApi.Repositories;
 
 namespace WeatherAppApi.Providers

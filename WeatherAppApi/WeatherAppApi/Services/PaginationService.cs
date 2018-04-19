@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Policy;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Http.Routing;
 using WeatherAppApi.Interfaces;
-using WeatherAppApi.Models;
 using WeatherAppApi.Models.Pagination;
 
 namespace WeatherAppApi.Services
@@ -21,12 +16,12 @@ namespace WeatherAppApi.Services
             pageLinkBuilderFactory = _pageLinkBuilderFactory;
         }
 
-        private async Task<int> TotalPages()
+        public async Task<int> TotalPages()
         {
             return await pagination.TotalNumberOfRecords();
         }
 
-        public async Task<PaginationModel<T>> GetPageLinks(string idUser, UrlHelper urlHelper, IEnumerable<T> data, int pageNo = 1, int pageSize = 50)
+        public async Task<PaginationModel<T>> GetPageLinks(UrlHelper urlHelper, IEnumerable<T> data, int pageNo = 1, int pageSize = 50)
         {
             var total = await TotalPages();
             var linkBuilder = pageLinkBuilderFactory.Create(urlHelper, "GetWeatherByUserId", null, pageNo, pageSize,

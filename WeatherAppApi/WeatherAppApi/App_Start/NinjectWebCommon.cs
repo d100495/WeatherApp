@@ -57,7 +57,7 @@ namespace WeatherAppApi
             kernel.Bind<IPagination<WeatherHistory>>().To<WeatherHistoryRepository>().InSingletonScope();
             kernel.Bind<IPageLinkBuilder>().To<PageLinkBuilder>();
             kernel.Bind<IPageLinkBuilderFactory>().ToFactory();
-
+            kernel.Bind<IWeatherHistoryService>().To<WeatherHistoryService>();
         }
     }
 }
