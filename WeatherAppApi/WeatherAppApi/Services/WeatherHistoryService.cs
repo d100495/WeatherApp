@@ -5,9 +5,11 @@ using System.Security.Policy;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Routing;
 using AutoMapper;
 using WeatherAppApi.Interfaces;
 using WeatherAppApi.Models;
+using WeatherAppApi.Models.Pagination;
 
 namespace WeatherAppApi.Services
 {
@@ -15,11 +17,13 @@ namespace WeatherAppApi.Services
     {
         private IWeatherHistoryRepository weatherHistoryRepository;
         private IAuthRepository authRepository;
-      
-        public WeatherHistoryService(IWeatherHistoryRepository _weatherHistoryRepository, IAuthRepository _authRepository)
+        private IPaginationService<WeatherHistory> paginationService;     
+        
+        public WeatherHistoryService(IWeatherHistoryRepository _weatherHistoryRepository, IAuthRepository _authRepository, IPaginationService<WeatherHistory> _paginationService)
         {
             weatherHistoryRepository = _weatherHistoryRepository;
             authRepository = _authRepository;
+            paginationService = _paginationService;
         }
 
         public async Task AddHistory(Weather model)
@@ -34,6 +38,14 @@ namespace WeatherAppApi.Services
         {
             var id = authRepository.GetUserId();
             return await weatherHistoryRepository.GetByUserId(id);
+        }
+
+        public async Task<PaginationModel<WeatherHistory>> GetPagedWeatherHistoryByUserId(UrlHelper url, int pageNo = 1, int pageSize = 50)
+        {
+            string id = authRepository.GetUserId();
+            var data = await weatherHistoryRepository.Paginate(id, pageNo, pageSize);
+            var model = await paginationService.GetPageLinks(url, data, pageNo, pageSize);
+            return model;
         }
     }
 }
