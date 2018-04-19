@@ -42,7 +42,7 @@ public class accountService {
 
     public static void Login(final String username, final String password) {
 
-        String url = "http://weatherapp-001-site1.gtempurl.com/token";
+        String url = "http://mypenisred1-001-site1.atempurl.com/token";
         stringRequest = new StringRequest(Request.Method.POST, url
         , new Response.Listener<String>() {
             @Override

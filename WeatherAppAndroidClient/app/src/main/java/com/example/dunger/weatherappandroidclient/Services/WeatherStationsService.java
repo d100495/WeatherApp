@@ -40,7 +40,7 @@ public class WeatherStationsService {
     }
 
     public void GetWeatherStations() {
-        String url = "http://weatherapp-001-site1.gtempurl.com/api/weatherstation/getall";
+        String url = "http://mypenisred1-001-site1.atempurl.com/api/weatherstation/getall";
 
         stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override

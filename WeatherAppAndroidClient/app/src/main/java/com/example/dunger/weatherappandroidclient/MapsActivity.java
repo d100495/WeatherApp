@@ -94,7 +94,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 //                                          int[] grantResults)
                 // to handle the case where the user grants the permission. See the documentation
                 // for ActivityCompat#requestPermissions for more details.
-                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(50.26,19.02), 8.0f));
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(50.26,19.02), 8.0f)); //Temporary position for tests
                 Toast.makeText(getApplicationContext(),
                         getString(R.string.GPSMissingPermissions_notification), Toast.LENGTH_SHORT).show();
             }
