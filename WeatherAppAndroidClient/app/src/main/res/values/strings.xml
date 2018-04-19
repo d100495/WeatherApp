@@ -18,7 +18,7 @@
     <string name="currentWeatherPressure">Pressure</string>
     <string name="title_activity_maps">Map</string>
     <string name="menuItem_options">Options</string>
-
+    <string name="GPSMissingPermissions_notification">GPS is not available!</string>
 
 
     <!--DO NOT EDIT BELOW THIS LINE!-->
