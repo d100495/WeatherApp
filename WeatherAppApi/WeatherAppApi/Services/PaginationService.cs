@@ -10,6 +10,7 @@ namespace WeatherAppApi.Services
     {
         private IPagination<T> pagination;
         private IPageLinkBuilderFactory pageLinkBuilderFactory;
+
         public PaginationService(IPagination<T> _pagination, IPageLinkBuilderFactory _pageLinkBuilderFactory)
         {
             pagination = _pagination;

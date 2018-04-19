@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Web.Http.Routing;
 using WeatherAppApi.Models;
+using WeatherAppApi.Models.Pagination;
 
 namespace WeatherAppApi.Services
 {
@@ -8,5 +10,8 @@ namespace WeatherAppApi.Services
     {
         Task AddHistory(Weather model);
         Task<IEnumerable<WeatherHistory>> GetAllWeatherHistoryByUserId();
+
+        Task<PaginationModel<WeatherHistory>> GetPagedWeatherHistoryByUserId(UrlHelper url, int pageNo = 1,
+            int pageSize = 50);
     }
 }
