@@ -31,4 +31,6 @@
     <string name="forecastUnit_WindSpeed">[km/h]</string>
     <string name="forecastUnit_Temperature">[°C]</string>
     <string name="menuItem_favorites">Favorites</string>
+
+    <string name="deletedFavoriteStation_notification">Station removed!</string>
 </resources>

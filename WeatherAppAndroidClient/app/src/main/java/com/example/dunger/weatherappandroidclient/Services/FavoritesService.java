@@ -2,6 +2,7 @@ package com.example.dunger.weatherappandroidclient.Services;
 
 import android.app.Activity;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -10,6 +11,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.dunger.weatherappandroidclient.FavoritesActivity;
 import com.example.dunger.weatherappandroidclient.Models.WeatherStation;
+import com.example.dunger.weatherappandroidclient.R;
 import com.example.dunger.weatherappandroidclient.Volley.RequestQueueSingleton;
 import com.google.gson.Gson;
 
@@ -29,6 +31,7 @@ public class FavoritesService {
     private static Activity activity;
     //HTTPConnection variables
     private static StringRequest stringRequest;
+    String baseurl = "http://mypenisred1-001-site1.atempurl.com/";
     //Variables for GSON
     WeatherStation[] stations;
 
@@ -37,7 +40,7 @@ public class FavoritesService {
     }
 
     public void GetFavorites() {
-        String url = "http://mypenisred1-001-site1.atempurl.com/api/favorite/GetByUserId";
+        String url = baseurl+"api/favorite/GetByUserId";
 
         stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -58,6 +61,36 @@ public class FavoritesService {
                     );
                 }
                 FavoritesActivity.getInstance().SetForecastListAdapterValues(weatherStations);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.i(TAG, "CONNECTION Error: " + error.toString());
+            }
+        })
+
+        {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Authorization", GetToken().getToken_type() + " " + GetToken().getAccess_token());
+                return params;
+            }
+        };
+        RequestQueueSingleton.getInstance(activity).addToRequestQueue(stringRequest);
+    }
+
+    public void DeleteFromFavorites(int id) {
+        String url = baseurl+"api/favorite/DeleteById/"+id;
+
+        stringRequest = new StringRequest(Request.Method.DELETE, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.i(TAG, "DeleteFromFavorites : " + response.toString());
+                Toast.makeText(activity.getApplicationContext(),
+                        activity.getString(R.string.deletedFavoriteStation_notification), Toast.LENGTH_SHORT).show();
+
+                GetFavorites();
             }
         }, new Response.ErrorListener() {
             @Override

@@ -12,8 +12,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.dunger.weatherappandroidclient.FavoritesActivity;
 import com.example.dunger.weatherappandroidclient.Models.WeatherStation;
 import com.example.dunger.weatherappandroidclient.R;
+import com.example.dunger.weatherappandroidclient.Services.FavoritesService;
 
 import java.util.List;
 
@@ -39,7 +41,7 @@ public class FavoritesListAdapter extends ArrayAdapter<WeatherStation> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         //Row details
-        int weatherStationId = getItem(position).getWeatherStationId();
+        final int weatherStationId = getItem(position).getWeatherStationId();
         String cityName = getItem(position).getCityName();
         double lat = getItem(position).getLatitude();
         double lon = getItem(position).getLongitude();
@@ -83,7 +85,8 @@ public class FavoritesListAdapter extends ArrayAdapter<WeatherStation> {
         holder.holderViewFavoriteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO delete single weatherstation in favorites by id
+                FavoritesService favoritesService = new FavoritesService(FavoritesActivity.getInstance());
+                favoritesService.DeleteFromFavorites(weatherStationId);
             }
         });
 
