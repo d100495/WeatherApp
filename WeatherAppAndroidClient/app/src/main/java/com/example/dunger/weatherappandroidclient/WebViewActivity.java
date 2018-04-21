@@ -30,7 +30,7 @@ public class WebViewActivity extends AppCompatActivity {
         webSettings.setAppCacheEnabled(true);
         webSettings.setDomStorageEnabled(true);
 
-        myWebView.loadUrl("http://adamko-001-site1.ftempurl.com/");
+        myWebView.loadUrl("http://mypenisred1-001-site1.atempurl.com/");
 
         //TODO static getInstance() for navigation bar
         NavigationBar navigationBar = new NavigationBar(this); //required if navigation bar exists in this activity_layout

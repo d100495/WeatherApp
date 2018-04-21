@@ -3,7 +3,6 @@ package com.example.dunger.weatherappandroidclient;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.database.Observable;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -20,7 +19,7 @@ import java.util.List;
 
 public class OptionsActivity extends AppCompatActivity {
 
-    private static Activity activity;
+    private static OptionsActivity optionsActivity;
 
     //UI Variables
     List<ImageView> APIs;
@@ -41,7 +40,7 @@ public class OptionsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_options);
         initViews();
 
-        activity=this;
+        optionsActivity =this;
 
         APIs=new ArrayList<>();
         APIs.add(imageViewApixu);
@@ -58,7 +57,7 @@ public class OptionsActivity extends AppCompatActivity {
     private void SetAlphaAndImageViewOnClickListeners(final List<ImageView> imageViews){
         for (final ImageView imageView : imageViews)
         {
-            if(imageView.getTag().equals(GetChosenAPI(activity))){
+            if(imageView.getTag().equals(GetChosenAPI(optionsActivity))){
                 imageView.setAlpha(1f);
             }else {
                 imageView.setAlpha(0.3f);
@@ -80,7 +79,7 @@ public class OptionsActivity extends AppCompatActivity {
     }
 
     public static boolean SaveChosenAPIoptionInMemory(String API){
-        SharedPreferences.Editor editor = activity.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE).edit();
+        SharedPreferences.Editor editor = optionsActivity.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE).edit();
         editor.putString("API", API);
         return editor.commit();
     }

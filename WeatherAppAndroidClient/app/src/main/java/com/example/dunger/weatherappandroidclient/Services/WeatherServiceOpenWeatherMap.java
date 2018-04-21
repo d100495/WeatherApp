@@ -9,10 +9,17 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.dunger.weatherappandroidclient.Models.CurrentWeatherApixu;
 import com.example.dunger.weatherappandroidclient.Models.CurrentWeatherOpenWeather;
+import com.example.dunger.weatherappandroidclient.Models.ForecastWeatherApixu;
+import com.example.dunger.weatherappandroidclient.Models.ForecastWeatherForListAdapter;
+import com.example.dunger.weatherappandroidclient.Models.ForecastWeatherOpenWeather;
 import com.example.dunger.weatherappandroidclient.Models.IWeatherService;
 import com.example.dunger.weatherappandroidclient.Volley.RequestQueueSingleton;
 import com.example.dunger.weatherappandroidclient.WeatherCurrentActivity;
+import com.example.dunger.weatherappandroidclient.WeatherForecastActivity;
 import com.google.gson.Gson;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Dunger on 2018-04-09.
@@ -69,6 +76,43 @@ public class WeatherServiceOpenWeatherMap implements IWeatherService {
 
     @Override
     public void GetForecastWeather(String city) {
+        String url = "http://api.openweathermap.org/data/2.5/forecast?q="+city+"&units=metric$"+openWeatherAPIkey;
 
+        stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                ForecastWeatherOpenWeather forecastWeatherOpenWeather = new Gson().fromJson(response.toString(),ForecastWeatherOpenWeather.class);
+
+                List<ForecastWeatherForListAdapter> forecastWeatherForListAdapter = new ArrayList<>();
+
+                for(ForecastWeatherOpenWeather.List forecastday : forecastWeatherOpenWeather.getList())
+                {
+                    float avgTemperature_Celsius=Math.round(forecastday.getMain().getTemp()-273.15f);
+                    float maxTemperature_Celsius=Math.round(forecastday.getMain().getTempMax()-273.15f);
+                    float windspeed_kmh = Math.round(forecastday.getWind().getSpeed()*3.6f);
+
+                    forecastWeatherForListAdapter.add(new ForecastWeatherForListAdapter(
+                                    forecastday.getMain().getHumidity(),
+                                    avgTemperature_Celsius,
+                                    maxTemperature_Celsius,
+                                    windspeed_kmh,
+                            "http://openweathermap.org/img/w/"+forecastday.getWeather().get(0).getIcon()+".png",
+                                    forecastday.getWeather().get(0).getDescription(),
+                                    forecastday.getDtTxt()
+                            )
+                    );
+                }
+
+                WeatherForecastActivity.getInstance().SetForecastListAdapterValues(forecastWeatherForListAdapter);
+                //TODO delete debug info
+                Log.i(TAG, "ForecastWeatherForListAdapter OpenWeather GSON obj: " + forecastWeatherOpenWeather.toString());
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.i(TAG, "CONNECTION Error: " + error.toString());
+            }
+        });
+        RequestQueueSingleton.getInstance(activity).addToRequestQueue(stringRequest);
     }
 }

@@ -54,21 +54,25 @@ public class NavigationBar {
                         }
                         if(menuItem.getItemId()==R.id.nav_desktop)
                         {
-                            //TODO Activity refreshing should not be possible
-                            Intent intent = new Intent(activity.getApplicationContext(), WebViewActivity.class);
-                            activity.startActivity(intent);
+                            if(!(activity.getClass()==WebViewActivity.class)) {
+                                Intent intent = new Intent(activity.getApplicationContext(), WebViewActivity.class);
+                                activity.startActivity(intent);
+                            }
                         }
                         if(menuItem.getItemId()==R.id.nav_mobile)
                         {
-                            //TODO Activity refreshing should not be possible
-                            Intent intent = new Intent(activity.getApplicationContext(), MapsActivity.class);
-                            activity.startActivity(intent);
+                            if(!(activity.getClass()==MapsActivity.class)) {
+                                Intent intent = new Intent(activity.getApplicationContext(), MapsActivity.class);
+                                activity.startActivity(intent);
+                            }
                         }
                         if(menuItem.getItemId()==R.id.nav_options)
                         {
-                            //TODO Activity refreshing should not be possible
-                            Intent intent = new Intent(activity.getApplicationContext(), OptionsActivity.class);
-                            activity.startActivity(intent);
+                            if(!(activity.getClass()==OptionsActivity.class)) {
+                                Intent intent = new Intent(activity.getApplicationContext(), OptionsActivity.class);
+                                activity.startActivity(intent);
+                            }
+
                         }
                         else {
                             drawerLayout.openDrawer(GravityCompat.START);  // OPEN DRAWER

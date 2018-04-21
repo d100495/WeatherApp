@@ -8,4 +8,7 @@
     <dimen name="currentWeatherActivity_detailsValue_descriptionTextSize">18dp</dimen>
     <dimen name="optionsLogoWidth">100dp</dimen>
     <dimen name="optionsLogoHeight">100dp</dimen>
+    <dimen name="forecastListElementHeight">70dp</dimen>
+    <dimen name="forecastListIconHeight">25dp</dimen>
+    <dimen name="forecastListIconWidth">25dp</dimen>
 </resources>

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -25,6 +26,9 @@ public class WeatherCurrentActivity extends AppCompatActivity {
 
     static WeatherCurrentActivity weatherCurrentActivity;
 
+    IWeatherService  weatherService;
+    Intent intent;
+
     //UI variables
     ImageView currentWeatherImage;
     TextView currentCityString;
@@ -37,6 +41,7 @@ public class WeatherCurrentActivity extends AppCompatActivity {
     TextView currentPressureValue;
     TextView currentWeatherDescription;
     LinearLayout currentLinearLayoutTemperature;
+    Button showForecastWeatherButton;
 
     private void initViews() {
         currentWeatherImage=findViewById(R.id.currentWeatherImage);
@@ -50,6 +55,14 @@ public class WeatherCurrentActivity extends AppCompatActivity {
         currentPressureValue=findViewById(R.id.currentPressureValue);
         currentWeatherDescription=findViewById(R.id.currentWeatherDescription);
         currentLinearLayoutTemperature=findViewById(R.id.currentLinearLayoutTemperature);
+        showForecastWeatherButton = findViewById(R.id.showForecastWeatherButton);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        weatherService= WeatherFactoryService.createService(GetChosenAPI(this),WeatherCurrentActivity.this);
+        weatherService.GetCurrentWeather(intent.getStringExtra("station"));
     }
 
     @Override
@@ -64,11 +77,19 @@ public class WeatherCurrentActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);//required if navigation bar exists in this activity_layout
 
         //TODO city/lat,lon as parameters
-        Intent intent = getIntent();
-        intent.getStringExtra("station");
+        intent = getIntent();
 
-        IWeatherService  weatherService= WeatherFactoryService.createService(GetChosenAPI(this),WeatherCurrentActivity.this);
+        weatherService= WeatherFactoryService.createService(GetChosenAPI(this),WeatherCurrentActivity.this);
         weatherService.GetCurrentWeather(intent.getStringExtra("station"));
+
+        showForecastWeatherButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent1 = new Intent(getApplicationContext(), WeatherForecastActivity.class);
+                intent1.putExtra("station", intent.getStringExtra("station"));
+                startActivity(intent1);
+            }
+        });
     }//onCreate()
 
     public static WeatherCurrentActivity getInstance(){

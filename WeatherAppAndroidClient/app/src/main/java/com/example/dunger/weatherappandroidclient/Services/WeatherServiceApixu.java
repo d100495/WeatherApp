@@ -2,18 +2,22 @@ package com.example.dunger.weatherappandroidclient.Services;
 
 import android.app.Activity;
 import android.util.Log;
-import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.dunger.weatherappandroidclient.Models.CurrentWeatherApixu;
+import com.example.dunger.weatherappandroidclient.Models.ForecastWeatherApixu;
+import com.example.dunger.weatherappandroidclient.Models.ForecastWeatherForListAdapter;
 import com.example.dunger.weatherappandroidclient.Models.IWeatherService;
-import com.example.dunger.weatherappandroidclient.R;
 import com.example.dunger.weatherappandroidclient.Volley.RequestQueueSingleton;
 import com.example.dunger.weatherappandroidclient.WeatherCurrentActivity;
+import com.example.dunger.weatherappandroidclient.WeatherForecastActivity;
 import com.google.gson.Gson;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Dunger on 2018-04-08.
@@ -69,5 +73,39 @@ public class WeatherServiceApixu implements IWeatherService{
 
     @Override
     public void GetForecastWeather(String city) {
+        String url = "http://api.apixu.com/v1/forecast.json?key="+apixuAPIKey+"&q="+city+"&days=10";
+
+        stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                ForecastWeatherApixu forecastWeatherApixu = new Gson().fromJson(response.toString(),ForecastWeatherApixu.class);
+
+                List<ForecastWeatherForListAdapter> forecastWeatherForListAdapter = new ArrayList<>();
+
+                for(ForecastWeatherApixu.Forecastday forecastday : forecastWeatherApixu.getForecast().getForecastday())
+                {
+                    forecastWeatherForListAdapter.add(new ForecastWeatherForListAdapter(
+                            forecastday.getDay().getAvghumidity(),
+                            forecastday.getDay().getAvgtempC(),
+                            forecastday.getDay().getMaxtempC(),
+                            forecastday.getDay().getMaxwindKph(),
+                            "https:"+forecastday.getDay().getCondition().getIcon(),
+                            forecastday.getDay().getCondition().getText(),
+                            forecastday.getDate()
+                            )
+                    );
+                }
+
+                WeatherForecastActivity.getInstance().SetForecastListAdapterValues(forecastWeatherForListAdapter);
+                //TODO delete debug info
+                Log.i(TAG, "ForecastWeatherForListAdapter Apixu GSON obj: " + forecastWeatherApixu.toString());
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.i(TAG, "CONNECTION Error: " + error.toString());
+            }
+        });
+        RequestQueueSingleton.getInstance(activity).addToRequestQueue(stringRequest);
     }
 }
