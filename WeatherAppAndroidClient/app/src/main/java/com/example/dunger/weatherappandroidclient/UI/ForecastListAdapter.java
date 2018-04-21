@@ -69,7 +69,7 @@ public class ForecastListAdapter extends ArrayAdapter<ForecastWeatherForListAdap
         adapterViewForecastTextView_Description.setText(description);
         adapterViewForecastTextView_maxTemperature.setText(String.valueOf(maxTemperature));
         adapterViewForecastTextView_WindSpeed.setText(String.valueOf(windspeed));
-        Picasso.get().load("https:"+icon).into( adapterViewForecastTextView_Icon);
+        Picasso.get().load(icon).into( adapterViewForecastTextView_Icon);
         adapterViewForecastTextView_DateTime.setText(dateTime);
 
         return convertView;

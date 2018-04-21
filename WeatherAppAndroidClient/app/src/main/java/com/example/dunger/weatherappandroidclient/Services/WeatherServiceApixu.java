@@ -89,7 +89,7 @@ public class WeatherServiceApixu implements IWeatherService{
                             forecastday.getDay().getAvgtempC(),
                             forecastday.getDay().getMaxtempC(),
                             forecastday.getDay().getMaxwindKph(),
-                            forecastday.getDay().getCondition().getIcon(),
+                            "https:"+forecastday.getDay().getCondition().getIcon(),
                             forecastday.getDay().getCondition().getText(),
                             forecastday.getDate()
                             )
