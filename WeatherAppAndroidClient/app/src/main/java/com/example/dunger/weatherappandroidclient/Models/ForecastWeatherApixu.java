@@ -1,22 +1,109 @@
 package com.example.dunger.weatherappandroidclient.Models;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-/**
- * Created by Dunger on 2018-04-19.
- */
+import java.util.List;
+
 
 public class ForecastWeatherApixu {
 
+    @SerializedName("location")
+    @Expose
+    private Location location;
+    @SerializedName("current")
+    @Expose
+    private Current current;
+    @SerializedName("forecast")
+    @Expose
+    private Forecast forecast;
+
+    /**
+     * No args constructor for use in serialization
+     */
+    public ForecastWeatherApixu() {
+    }
+
+    /**
+     * @param forecast
+     * @param location
+     * @param current
+     */
+    public ForecastWeatherApixu(Location location, Current current, Forecast forecast) {
+        super();
+        this.location = location;
+        this.current = current;
+        this.forecast = forecast;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    public Current getCurrent() {
+        return current;
+    }
+
+    public void setCurrent(Current current) {
+        this.current = current;
+    }
+
+    public Forecast getForecast() {
+        return forecast;
+    }
+
+    public void setForecast(Forecast forecast) {
+        this.forecast = forecast;
+    }
+
+    @Override
+    public String toString() {
+        return "ForecastWeatherApixu{" +
+                "location=" + location +
+                ", current=" + current +
+                ", forecast=" + forecast +
+                '}';
+    }
+
+
     public class Astro {
 
+        @SerializedName("sunrise")
+        @Expose
         private String sunrise;
+        @SerializedName("sunset")
+        @Expose
         private String sunset;
+        @SerializedName("moonrise")
+        @Expose
         private String moonrise;
+        @SerializedName("moonset")
+        @Expose
         private String moonset;
-        private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+
+        /**
+         * No args constructor for use in serialization
+         */
+        public Astro() {
+        }
+
+        /**
+         * @param moonset
+         * @param sunset
+         * @param sunrise
+         * @param moonrise
+         */
+        public Astro(String sunrise, String sunset, String moonrise, String moonset) {
+            super();
+            this.sunrise = sunrise;
+            this.sunset = sunset;
+            this.moonrise = moonrise;
+            this.moonset = moonset;
+        }
 
         public String getSunrise() {
             return sunrise;
@@ -50,22 +137,46 @@ public class ForecastWeatherApixu {
             this.moonset = moonset;
         }
 
-        public Map<String, Object> getAdditionalProperties() {
-            return this.additionalProperties;
+        @Override
+        public String toString() {
+            return "Astro{" +
+                    "sunrise='" + sunrise + '\'' +
+                    ", sunset='" + sunset + '\'' +
+                    ", moonrise='" + moonrise + '\'' +
+                    ", moonset='" + moonset + '\'' +
+                    '}';
         }
-
-        public void setAdditionalProperty(String name, Object value) {
-            this.additionalProperties.put(name, value);
-        }
-
     }
 
     public class Condition {
 
+        @SerializedName("text")
+        @Expose
         private String text;
+        @SerializedName("icon")
+        @Expose
         private String icon;
-        private Integer code;
-        private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+        @SerializedName("code")
+        @Expose
+        private double code;
+
+        /**
+         * No args constructor for use in serialization
+         */
+        public Condition() {
+        }
+
+        /**
+         * @param icon
+         * @param text
+         * @param code
+         */
+        public Condition(String text, String icon, double code) {
+            super();
+            this.text = text;
+            this.icon = icon;
+            this.code = code;
+        }
 
         public String getText() {
             return text;
@@ -83,30 +194,53 @@ public class ForecastWeatherApixu {
             this.icon = icon;
         }
 
-        public Integer getCode() {
+        public double getCode() {
             return code;
         }
 
-        public void setCode(Integer code) {
+        public void setCode(double code) {
             this.code = code;
         }
 
-        public Map<String, Object> getAdditionalProperties() {
-            return this.additionalProperties;
+        @Override
+        public String toString() {
+            return "Condition{" +
+                    "text='" + text + '\'' +
+                    ", icon='" + icon + '\'' +
+                    ", code=" + code +
+                    '}';
         }
-
-        public void setAdditionalProperty(String name, Object value) {
-            this.additionalProperties.put(name, value);
-        }
-
     }
 
     public class Condition_ {
 
+        @SerializedName("text")
+        @Expose
         private String text;
+        @SerializedName("icon")
+        @Expose
         private String icon;
-        private Integer code;
-        private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+        @SerializedName("code")
+        @Expose
+        private double code;
+
+        /**
+         * No args constructor for use in serialization
+         */
+        public Condition_() {
+        }
+
+        /**
+         * @param icon
+         * @param text
+         * @param code
+         */
+        public Condition_(String text, String icon, double code) {
+            super();
+            this.text = text;
+            this.icon = icon;
+            this.code = code;
+        }
 
         public String getText() {
             return text;
@@ -124,53 +258,144 @@ public class ForecastWeatherApixu {
             this.icon = icon;
         }
 
-        public Integer getCode() {
+        public double getCode() {
             return code;
         }
 
-        public void setCode(Integer code) {
+        public void setCode(double code) {
             this.code = code;
         }
 
-        public Map<String, Object> getAdditionalProperties() {
-            return this.additionalProperties;
+        @Override
+        public String toString() {
+            return "Condition_{" +
+                    "text='" + text + '\'' +
+                    ", icon='" + icon + '\'' +
+                    ", code=" + code +
+                    '}';
         }
-
-        public void setAdditionalProperty(String name, Object value) {
-            this.additionalProperties.put(name, value);
-        }
-
     }
 
     public class Current {
 
-        private Integer lastUpdatedEpoch;
+        @SerializedName("last_updated_epoch")
+        @Expose
+        private double lastUpdatedEpoch;
+        @SerializedName("last_updated")
+        @Expose
         private String lastUpdated;
-        private Integer tempC;
-        private Integer tempF;
-        private Integer isDay;
+        @SerializedName("temp_c")
+        @Expose
+        private double tempC;
+        @SerializedName("temp_f")
+        @Expose
+        private double tempF;
+        @SerializedName("is_day")
+        @Expose
+        private double isDay;
+        @SerializedName("condition")
+        @Expose
         private Condition condition;
-        private Double windMph;
-        private Double windKph;
-        private Integer windDegree;
+        @SerializedName("wind_mph")
+        @Expose
+        private double windMph;
+        @SerializedName("wind_kph")
+        @Expose
+        private double windKph;
+        @SerializedName("wind_degree")
+        @Expose
+        private double windDegree;
+        @SerializedName("wind_dir")
+        @Expose
         private String windDir;
-        private Integer pressureMb;
-        private Double pressureIn;
-        private Integer precipMm;
-        private Integer precipIn;
-        private Integer humidity;
-        private Integer cloud;
-        private Integer feelslikeC;
-        private Integer feelslikeF;
-        private Integer visKm;
-        private Integer visMiles;
-        private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+        @SerializedName("pressure_mb")
+        @Expose
+        private double pressureMb;
+        @SerializedName("pressure_in")
+        @Expose
+        private double pressureIn;
+        @SerializedName("precip_mm")
+        @Expose
+        private double precipMm;
+        @SerializedName("precip_in")
+        @Expose
+        private double precipIn;
+        @SerializedName("humidity")
+        @Expose
+        private double humidity;
+        @SerializedName("cloud")
+        @Expose
+        private double cloud;
+        @SerializedName("feelslike_c")
+        @Expose
+        private double feelslikeC;
+        @SerializedName("feelslike_f")
+        @Expose
+        private double feelslikeF;
+        @SerializedName("vis_km")
+        @Expose
+        private double visKm;
+        @SerializedName("vis_miles")
+        @Expose
+        private double visMiles;
 
-        public Integer getLastUpdatedEpoch() {
+        /**
+         * No args constructor for use in serialization
+         */
+        public Current() {
+        }
+
+        /**
+         * @param tempC
+         * @param feelslikeC
+         * @param visKm
+         * @param condition
+         * @param pressureMb
+         * @param windKph
+         * @param precipMm
+         * @param lastUpdated
+         * @param isDay
+         * @param visMiles
+         * @param windMph
+         * @param windDegree
+         * @param humidity
+         * @param lastUpdatedEpoch
+         * @param precipIn
+         * @param cloud
+         * @param pressureIn
+         * @param tempF
+         * @param feelslikeF
+         * @param windDir
+         */
+        public Current(double lastUpdatedEpoch, String lastUpdated, double tempC, double tempF, double isDay, Condition condition, double windMph, double windKph, double windDegree, String windDir, double pressureMb, double pressureIn, double precipMm, double precipIn, double humidity, double cloud, double feelslikeC, double feelslikeF, double visKm, double visMiles) {
+            super();
+            this.lastUpdatedEpoch = lastUpdatedEpoch;
+            this.lastUpdated = lastUpdated;
+            this.tempC = tempC;
+            this.tempF = tempF;
+            this.isDay = isDay;
+            this.condition = condition;
+            this.windMph = windMph;
+            this.windKph = windKph;
+            this.windDegree = windDegree;
+            this.windDir = windDir;
+            this.pressureMb = pressureMb;
+            this.pressureIn = pressureIn;
+            this.precipMm = precipMm;
+            this.precipIn = precipIn;
+            this.humidity = humidity;
+            this.cloud = cloud;
+            this.feelslikeC = feelslikeC;
+            this.feelslikeF = feelslikeF;
+            this.visKm = visKm;
+            this.visMiles = visMiles;
+        }
+
+        public double getLastUpdatedEpoch() {
             return lastUpdatedEpoch;
         }
 
-        public void setLastUpdatedEpoch(Integer lastUpdatedEpoch) {
+        public void setLastUpdatedEpoch(double lastUpdatedEpoch) {
             this.lastUpdatedEpoch = lastUpdatedEpoch;
         }
 
@@ -182,27 +407,27 @@ public class ForecastWeatherApixu {
             this.lastUpdated = lastUpdated;
         }
 
-        public Integer getTempC() {
+        public double getTempC() {
             return tempC;
         }
 
-        public void setTempC(Integer tempC) {
+        public void setTempC(double tempC) {
             this.tempC = tempC;
         }
 
-        public Integer getTempF() {
+        public double getTempF() {
             return tempF;
         }
 
-        public void setTempF(Integer tempF) {
+        public void setTempF(double tempF) {
             this.tempF = tempF;
         }
 
-        public Integer getIsDay() {
+        public double getIsDay() {
             return isDay;
         }
 
-        public void setIsDay(Integer isDay) {
+        public void setIsDay(double isDay) {
             this.isDay = isDay;
         }
 
@@ -214,27 +439,27 @@ public class ForecastWeatherApixu {
             this.condition = condition;
         }
 
-        public Double getWindMph() {
+        public double getWindMph() {
             return windMph;
         }
 
-        public void setWindMph(Double windMph) {
+        public void setWindMph(double windMph) {
             this.windMph = windMph;
         }
 
-        public Double getWindKph() {
+        public double getWindKph() {
             return windKph;
         }
 
-        public void setWindKph(Double windKph) {
+        public void setWindKph(double windKph) {
             this.windKph = windKph;
         }
 
-        public Integer getWindDegree() {
+        public double getWindDegree() {
             return windDegree;
         }
 
-        public void setWindDegree(Integer windDegree) {
+        public void setWindDegree(double windDegree) {
             this.windDegree = windDegree;
         }
 
@@ -246,216 +471,304 @@ public class ForecastWeatherApixu {
             this.windDir = windDir;
         }
 
-        public Integer getPressureMb() {
+        public double getPressureMb() {
             return pressureMb;
         }
 
-        public void setPressureMb(Integer pressureMb) {
+        public void setPressureMb(double pressureMb) {
             this.pressureMb = pressureMb;
         }
 
-        public Double getPressureIn() {
+        public double getPressureIn() {
             return pressureIn;
         }
 
-        public void setPressureIn(Double pressureIn) {
+        public void setPressureIn(double pressureIn) {
             this.pressureIn = pressureIn;
         }
 
-        public Integer getPrecipMm() {
+        public double getPrecipMm() {
             return precipMm;
         }
 
-        public void setPrecipMm(Integer precipMm) {
+        public void setPrecipMm(double precipMm) {
             this.precipMm = precipMm;
         }
 
-        public Integer getPrecipIn() {
+        public double getPrecipIn() {
             return precipIn;
         }
 
-        public void setPrecipIn(Integer precipIn) {
+        public void setPrecipIn(double precipIn) {
             this.precipIn = precipIn;
         }
 
-        public Integer getHumidity() {
+        public double getHumidity() {
             return humidity;
         }
 
-        public void setHumidity(Integer humidity) {
+        public void setHumidity(double humidity) {
             this.humidity = humidity;
         }
 
-        public Integer getCloud() {
+        public double getCloud() {
             return cloud;
         }
 
-        public void setCloud(Integer cloud) {
+        public void setCloud(double cloud) {
             this.cloud = cloud;
         }
 
-        public Integer getFeelslikeC() {
+        public double getFeelslikeC() {
             return feelslikeC;
         }
 
-        public void setFeelslikeC(Integer feelslikeC) {
+        public void setFeelslikeC(double feelslikeC) {
             this.feelslikeC = feelslikeC;
         }
 
-        public Integer getFeelslikeF() {
+        public double getFeelslikeF() {
             return feelslikeF;
         }
 
-        public void setFeelslikeF(Integer feelslikeF) {
+        public void setFeelslikeF(double feelslikeF) {
             this.feelslikeF = feelslikeF;
         }
 
-        public Integer getVisKm() {
+        public double getVisKm() {
             return visKm;
         }
 
-        public void setVisKm(Integer visKm) {
+        public void setVisKm(double visKm) {
             this.visKm = visKm;
         }
 
-        public Integer getVisMiles() {
+        public double getVisMiles() {
             return visMiles;
         }
 
-        public void setVisMiles(Integer visMiles) {
+        public void setVisMiles(double visMiles) {
             this.visMiles = visMiles;
         }
 
-        public Map<String, Object> getAdditionalProperties() {
-            return this.additionalProperties;
+        @Override
+        public String toString() {
+            return "Current{" +
+                    "lastUpdatedEpoch=" + lastUpdatedEpoch +
+                    ", lastUpdated='" + lastUpdated + '\'' +
+                    ", tempC=" + tempC +
+                    ", tempF=" + tempF +
+                    ", isDay=" + isDay +
+                    ", condition=" + condition +
+                    ", windMph=" + windMph +
+                    ", windKph=" + windKph +
+                    ", windDegree=" + windDegree +
+                    ", windDir='" + windDir + '\'' +
+                    ", pressureMb=" + pressureMb +
+                    ", pressureIn=" + pressureIn +
+                    ", precipMm=" + precipMm +
+                    ", precipIn=" + precipIn +
+                    ", humidity=" + humidity +
+                    ", cloud=" + cloud +
+                    ", feelslikeC=" + feelslikeC +
+                    ", feelslikeF=" + feelslikeF +
+                    ", visKm=" + visKm +
+                    ", visMiles=" + visMiles +
+                    '}';
         }
-
-        public void setAdditionalProperty(String name, Object value) {
-            this.additionalProperties.put(name, value);
-        }
-
     }
 
     public class Day {
 
-        private Double maxtempC;
-        private Double maxtempF;
-        private Double mintempC;
-        private Double mintempF;
-        private Double avgtempC;
-        private Double avgtempF;
-        private Double maxwindMph;
-        private Double maxwindKph;
-        private Double totalprecipMm;
-        private Double totalprecipIn;
-        private Double avgvisKm;
-        private Integer avgvisMiles;
-        private Integer avghumidity;
+        @SerializedName("maxtemp_c")
+        @Expose
+        private double maxtempC;
+        @SerializedName("maxtemp_f")
+        @Expose
+        private double maxtempF;
+        @SerializedName("mdoubleemp_c")
+        @Expose
+        private double mdoubleempC;
+        @SerializedName("mdoubleemp_f")
+        @Expose
+        private double mdoubleempF;
+        @SerializedName("avgtemp_c")
+        @Expose
+        private double avgtempC;
+        @SerializedName("avgtemp_f")
+        @Expose
+        private double avgtempF;
+        @SerializedName("maxwind_mph")
+        @Expose
+        private double maxwindMph;
+        @SerializedName("maxwind_kph")
+        @Expose
+        private double maxwindKph;
+        @SerializedName("totalprecip_mm")
+        @Expose
+        private double totalprecipMm;
+        @SerializedName("totalprecip_in")
+        @Expose
+        private double totalprecipIn;
+        @SerializedName("avgvis_km")
+        @Expose
+        private double avgvisKm;
+        @SerializedName("avgvis_miles")
+        @Expose
+        private double avgvisMiles;
+        @SerializedName("avghumidity")
+        @Expose
+        private double avghumidity;
+        @SerializedName("condition")
+        @Expose
         private Condition_ condition;
-        private Integer uv;
-        private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+        @SerializedName("uv")
+        @Expose
+        private double uv;
 
-        public Double getMaxtempC() {
+        /**
+         * No args constructor for use in serialization
+         */
+        public Day() {
+        }
+
+        /**
+         * @param totalprecipMm
+         * @param condition
+         * @param avghumidity
+         * @param mdoubleempF
+         * @param avgtempF
+         * @param maxwindMph
+         * @param avgvisMiles
+         * @param totalprecipIn
+         * @param avgtempC
+         * @param avgvisKm
+         * @param uv
+         * @param mdoubleempC
+         * @param maxtempC
+         * @param maxtempF
+         * @param maxwindKph
+         */
+        public Day(double maxtempC, double maxtempF, double mdoubleempC, double mdoubleempF, double avgtempC, double avgtempF, double maxwindMph, double maxwindKph, double totalprecipMm, double totalprecipIn, double avgvisKm, double avgvisMiles, double avghumidity, Condition_ condition, double uv) {
+            super();
+            this.maxtempC = maxtempC;
+            this.maxtempF = maxtempF;
+            this.mdoubleempC = mdoubleempC;
+            this.mdoubleempF = mdoubleempF;
+            this.avgtempC = avgtempC;
+            this.avgtempF = avgtempF;
+            this.maxwindMph = maxwindMph;
+            this.maxwindKph = maxwindKph;
+            this.totalprecipMm = totalprecipMm;
+            this.totalprecipIn = totalprecipIn;
+            this.avgvisKm = avgvisKm;
+            this.avgvisMiles = avgvisMiles;
+            this.avghumidity = avghumidity;
+            this.condition = condition;
+            this.uv = uv;
+        }
+
+        public double getMaxtempC() {
             return maxtempC;
         }
 
-        public void setMaxtempC(Double maxtempC) {
+        public void setMaxtempC(double maxtempC) {
             this.maxtempC = maxtempC;
         }
 
-        public Double getMaxtempF() {
+        public double getMaxtempF() {
             return maxtempF;
         }
 
-        public void setMaxtempF(Double maxtempF) {
+        public void setMaxtempF(double maxtempF) {
             this.maxtempF = maxtempF;
         }
 
-        public Double getMintempC() {
-            return mintempC;
+        public double getMdoubleempC() {
+            return mdoubleempC;
         }
 
-        public void setMintempC(Double mintempC) {
-            this.mintempC = mintempC;
+        public void setMdoubleempC(double mdoubleempC) {
+            this.mdoubleempC = mdoubleempC;
         }
 
-        public Double getMintempF() {
-            return mintempF;
+        public double getMdoubleempF() {
+            return mdoubleempF;
         }
 
-        public void setMintempF(Double mintempF) {
-            this.mintempF = mintempF;
+        public void setMdoubleempF(double mdoubleempF) {
+            this.mdoubleempF = mdoubleempF;
         }
 
-        public Double getAvgtempC() {
+        public double getAvgtempC() {
             return avgtempC;
         }
 
-        public void setAvgtempC(Double avgtempC) {
+        public void setAvgtempC(double avgtempC) {
             this.avgtempC = avgtempC;
         }
 
-        public Double getAvgtempF() {
+        public double getAvgtempF() {
             return avgtempF;
         }
 
-        public void setAvgtempF(Double avgtempF) {
+        public void setAvgtempF(double avgtempF) {
             this.avgtempF = avgtempF;
         }
 
-        public Double getMaxwindMph() {
+        public double getMaxwindMph() {
             return maxwindMph;
         }
 
-        public void setMaxwindMph(Double maxwindMph) {
+        public void setMaxwindMph(double maxwindMph) {
             this.maxwindMph = maxwindMph;
         }
 
-        public Double getMaxwindKph() {
+        public double getMaxwindKph() {
             return maxwindKph;
         }
 
-        public void setMaxwindKph(Double maxwindKph) {
+        public void setMaxwindKph(double maxwindKph) {
             this.maxwindKph = maxwindKph;
         }
 
-        public Double getTotalprecipMm() {
+        public double getTotalprecipMm() {
             return totalprecipMm;
         }
 
-        public void setTotalprecipMm(Double totalprecipMm) {
+        public void setTotalprecipMm(double totalprecipMm) {
             this.totalprecipMm = totalprecipMm;
         }
 
-        public Double getTotalprecipIn() {
+        public double getTotalprecipIn() {
             return totalprecipIn;
         }
 
-        public void setTotalprecipIn(Double totalprecipIn) {
+        public void setTotalprecipIn(double totalprecipIn) {
             this.totalprecipIn = totalprecipIn;
         }
 
-        public Double getAvgvisKm() {
+        public double getAvgvisKm() {
             return avgvisKm;
         }
 
-        public void setAvgvisKm(Double avgvisKm) {
+        public void setAvgvisKm(double avgvisKm) {
             this.avgvisKm = avgvisKm;
         }
 
-        public Integer getAvgvisMiles() {
+        public double getAvgvisMiles() {
             return avgvisMiles;
         }
 
-        public void setAvgvisMiles(Integer avgvisMiles) {
+        public void setAvgvisMiles(double avgvisMiles) {
             this.avgvisMiles = avgvisMiles;
         }
 
-        public Integer getAvghumidity() {
+        public double getAvghumidity() {
             return avghumidity;
         }
 
-        public void setAvghumidity(Integer avghumidity) {
+        public void setAvghumidity(double avghumidity) {
             this.avghumidity = avghumidity;
         }
 
@@ -467,69 +780,55 @@ public class ForecastWeatherApixu {
             this.condition = condition;
         }
 
-        public Integer getUv() {
+        public double getUv() {
             return uv;
         }
 
-        public void setUv(Integer uv) {
+        public void setUv(double uv) {
             this.uv = uv;
         }
 
-        public Map<String, Object> getAdditionalProperties() {
-            return this.additionalProperties;
+        @Override
+        public String toString() {
+            return "Day{" +
+                    "maxtempC=" + maxtempC +
+                    ", maxtempF=" + maxtempF +
+                    ", mdoubleempC=" + mdoubleempC +
+                    ", mdoubleempF=" + mdoubleempF +
+                    ", avgtempC=" + avgtempC +
+                    ", avgtempF=" + avgtempF +
+                    ", maxwindMph=" + maxwindMph +
+                    ", maxwindKph=" + maxwindKph +
+                    ", totalprecipMm=" + totalprecipMm +
+                    ", totalprecipIn=" + totalprecipIn +
+                    ", avgvisKm=" + avgvisKm +
+                    ", avgvisMiles=" + avgvisMiles +
+                    ", avghumidity=" + avghumidity +
+                    ", condition=" + condition +
+                    ", uv=" + uv +
+                    '}';
         }
-
-        public void setAdditionalProperty(String name, Object value) {
-            this.additionalProperties.put(name, value);
-        }
-
     }
 
-    public class Example {
+   public class Forecast {
 
-        private Location location;
-        private Current current;
-        private Forecast forecast;
-        private Map<String, Object> additionalProperties = new HashMap<String, Object>();
-
-        public Location getLocation() {
-            return location;
-        }
-
-        public void setLocation(Location location) {
-            this.location = location;
-        }
-
-        public Current getCurrent() {
-            return current;
-        }
-
-        public void setCurrent(Current current) {
-            this.current = current;
-        }
-
-        public Forecast getForecast() {
-            return forecast;
-        }
-
-        public void setForecast(Forecast forecast) {
-            this.forecast = forecast;
-        }
-
-        public Map<String, Object> getAdditionalProperties() {
-            return this.additionalProperties;
-        }
-
-        public void setAdditionalProperty(String name, Object value) {
-            this.additionalProperties.put(name, value);
-        }
-
-    }
-
-    public class Forecast {
-
+        @SerializedName("forecastday")
+        @Expose
         private List<Forecastday> forecastday = null;
-        private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+
+        /**
+         * No args constructor for use in serialization
+         */
+        public Forecast() {
+        }
+
+        /**
+         * @param forecastday
+         */
+        public Forecast(List<Forecastday> forecastday) {
+            super();
+            this.forecastday = forecastday;
+        }
 
         public List<Forecastday> getForecastday() {
             return forecastday;
@@ -539,23 +838,48 @@ public class ForecastWeatherApixu {
             this.forecastday = forecastday;
         }
 
-        public Map<String, Object> getAdditionalProperties() {
-            return this.additionalProperties;
+        @Override
+        public String toString() {
+            return "Forecast{" +
+                    "forecastday=" + forecastday +
+                    '}';
         }
-
-        public void setAdditionalProperty(String name, Object value) {
-            this.additionalProperties.put(name, value);
-        }
-
     }
 
     public class Forecastday {
 
+        @SerializedName("date")
+        @Expose
         private String date;
-        private Integer dateEpoch;
+        @SerializedName("date_epoch")
+        @Expose
+        private double dateEpoch;
+        @SerializedName("day")
+        @Expose
         private Day day;
+        @SerializedName("astro")
+        @Expose
         private Astro astro;
-        private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+
+        /**
+         * No args constructor for use in serialization
+         */
+        public Forecastday() {
+        }
+
+        /**
+         * @param astro
+         * @param dateEpoch
+         * @param day
+         * @param date
+         */
+        public Forecastday(String date, double dateEpoch, Day day, Astro astro) {
+            super();
+            this.date = date;
+            this.dateEpoch = dateEpoch;
+            this.day = day;
+            this.astro = astro;
+        }
 
         public String getDate() {
             return date;
@@ -565,11 +889,11 @@ public class ForecastWeatherApixu {
             this.date = date;
         }
 
-        public Integer getDateEpoch() {
+        public double getDateEpoch() {
             return dateEpoch;
         }
 
-        public void setDateEpoch(Integer dateEpoch) {
+        public void setDateEpoch(double dateEpoch) {
             this.dateEpoch = dateEpoch;
         }
 
@@ -589,27 +913,71 @@ public class ForecastWeatherApixu {
             this.astro = astro;
         }
 
-        public Map<String, Object> getAdditionalProperties() {
-            return this.additionalProperties;
+        @Override
+        public String toString() {
+            return "Forecastday{" +
+                    "date='" + date + '\'' +
+                    ", dateEpoch=" + dateEpoch +
+                    ", day=" + day +
+                    ",\n astro=" + astro +
+                    '}';
         }
-
-        public void setAdditionalProperty(String name, Object value) {
-            this.additionalProperties.put(name, value);
-        }
-
     }
 
     public class Location {
 
+        @SerializedName("name")
+        @Expose
         private String name;
+        @SerializedName("region")
+        @Expose
         private String region;
+        @SerializedName("country")
+        @Expose
         private String country;
-        private Double lat;
-        private Integer lon;
+        @SerializedName("lat")
+        @Expose
+        private double lat;
+        @SerializedName("lon")
+        @Expose
+        private double lon;
+        @SerializedName("tz_id")
+        @Expose
         private String tzId;
-        private Integer localtimeEpoch;
+        @SerializedName("localtime_epoch")
+        @Expose
+        private double localtimeEpoch;
+        @SerializedName("localtime")
+        @Expose
         private String localtime;
-        private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+
+        /**
+         * No args constructor for use in serialization
+         */
+        public Location() {
+        }
+
+        /**
+         * @param region
+         * @param localtime
+         * @param tzId
+         * @param lon
+         * @param localtimeEpoch
+         * @param name
+         * @param lat
+         * @param country
+         */
+        public Location(String name, String region, String country, double lat, double lon, String tzId, double localtimeEpoch, String localtime) {
+            super();
+            this.name = name;
+            this.region = region;
+            this.country = country;
+            this.lat = lat;
+            this.lon = lon;
+            this.tzId = tzId;
+            this.localtimeEpoch = localtimeEpoch;
+            this.localtime = localtime;
+        }
 
         public String getName() {
             return name;
@@ -635,19 +1003,19 @@ public class ForecastWeatherApixu {
             this.country = country;
         }
 
-        public Double getLat() {
+        public double getLat() {
             return lat;
         }
 
-        public void setLat(Double lat) {
+        public void setLat(double lat) {
             this.lat = lat;
         }
 
-        public Integer getLon() {
+        public double getLon() {
             return lon;
         }
 
-        public void setLon(Integer lon) {
+        public void setLon(double lon) {
             this.lon = lon;
         }
 
@@ -659,11 +1027,11 @@ public class ForecastWeatherApixu {
             this.tzId = tzId;
         }
 
-        public Integer getLocaltimeEpoch() {
+        public double getLocaltimeEpoch() {
             return localtimeEpoch;
         }
 
-        public void setLocaltimeEpoch(Integer localtimeEpoch) {
+        public void setLocaltimeEpoch(double localtimeEpoch) {
             this.localtimeEpoch = localtimeEpoch;
         }
 
@@ -675,13 +1043,19 @@ public class ForecastWeatherApixu {
             this.localtime = localtime;
         }
 
-        public Map<String, Object> getAdditionalProperties() {
-            return this.additionalProperties;
+        @Override
+        public String toString() {
+            return "Location{" +
+                    "name='" + name + '\'' +
+                    ", region='" + region + '\'' +
+                    ", country='" + country + '\'' +
+                    ", lat=" + lat +
+                    ", lon=" + lon +
+                    ", tzId='" + tzId + '\'' +
+                    ", localtimeEpoch=" + localtimeEpoch +
+                    ",\n localtime='" + localtime + '\'' +
+                    '}';
         }
-
-        public void setAdditionalProperty(String name, Object value) {
-            this.additionalProperties.put(name, value);
-        }
-
     }
+
 }
