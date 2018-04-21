@@ -10,7 +10,7 @@
         >
 
         <LinearLayout
-            android:layout_weight="5"
+            android:layout_weight="4"
             android:layout_width="0dp"
             android:orientation="vertical"
             android:layout_height="@dimen/favoritesListElementHeight">

@@ -1,52 +1,53 @@
 package com.example.dunger.weatherappandroidclient;
 
-import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.ListView;
 
-import com.example.dunger.weatherappandroidclient.Models.WeatherStation;
-import com.example.dunger.weatherappandroidclient.Services.FavoritesService;
+import com.example.dunger.weatherappandroidclient.Models.WeatherHistory;
+import com.example.dunger.weatherappandroidclient.Services.HistoryService;
 import com.example.dunger.weatherappandroidclient.UI.FavoritesListAdapter;
+import com.example.dunger.weatherappandroidclient.UI.HistoryListAdapter;
 import com.example.dunger.weatherappandroidclient.UI.NavigationBar;
 
 import java.util.List;
 
-public class FavoritesActivity extends AppCompatActivity {
+public class HistoryActivity extends AppCompatActivity {
 
-    static FavoritesActivity favoritesActivity;
+    static HistoryActivity historyActivity;
 
     //View variables
-    ListView favoritesListView;
+    ListView historyListView;
 
-    private void initViews() {
-        favoritesListView = findViewById(R.id.favoritesListView);
+    private void initViews(){
+        historyListView=findViewById(R.id.historyListView);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_favorites);
+        setContentView(R.layout.activity_history);
         initViews();
-        favoritesActivity=this;
+        historyActivity=this;
 
         //TODO static getInstance() for navigation bar
         NavigationBar navigationBar = new NavigationBar(this); //required if navigation bar exists in this activity_layout
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);//required if navigation bar exists in this activity_layout
 
-        FavoritesService favoritesService = new FavoritesService(favoritesActivity);
-        favoritesService.GetFavorites();
+        HistoryService historyService = new HistoryService(historyActivity);
+        historyService.GetHistory();
     }
 
-    public void SetForecastListAdapterValues(List<WeatherStation> weatherStations) {
-        FavoritesListAdapter adapter = new FavoritesListAdapter(this, R.layout.adapter_view_favorites, weatherStations);
-        favoritesListView.setAdapter(adapter);
+    public static HistoryActivity getInstance() {
+        return historyActivity;
     }
 
-    public static FavoritesActivity getInstance(){
-        return favoritesActivity;
+    public void SetHistoryListAdapterValues(List<WeatherHistory> weatherHistory) {
+        HistoryListAdapter adapter = new HistoryListAdapter(this, R.layout.adapter_view_history, weatherHistory);
+        historyListView.setAdapter(adapter);
     }
 
     @Override

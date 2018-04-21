@@ -9,6 +9,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.MenuItem;
 
 import com.example.dunger.weatherappandroidclient.FavoritesActivity;
+import com.example.dunger.weatherappandroidclient.HistoryActivity;
 import com.example.dunger.weatherappandroidclient.MapsActivity;
 import com.example.dunger.weatherappandroidclient.OptionsActivity;
 import com.example.dunger.weatherappandroidclient.R;
@@ -69,7 +70,12 @@ public class NavigationBar {
                                 Intent intent = new Intent(activity.getApplicationContext(), OptionsActivity.class);
                                 activity.startActivity(intent);
                             }
-
+                        }
+                        if (menuItem.getItemId() == R.id.nav_history) {
+                            if (!(activity.getClass() == OptionsActivity.class)) {
+                                Intent intent = new Intent(activity.getApplicationContext(), HistoryActivity.class);
+                                activity.startActivity(intent);
+                            }
                         }
                         if (menuItem.getItemId() == R.id.nav_favorites) {
                             if (!(activity.getClass() == FavoritesActivity.class)) {

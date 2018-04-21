@@ -33,4 +33,6 @@
     <string name="menuItem_favorites">Favorites</string>
 
     <string name="deletedFavoriteStation_notification">Station removed!</string>
+    <string name="currentWeatherWindChill">Wind Chill:</string>
+    <string name="menuItem_history">History</string>
 </resources>
