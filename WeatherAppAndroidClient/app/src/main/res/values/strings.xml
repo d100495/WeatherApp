@@ -16,11 +16,11 @@
 
     <string name="currentWeatherLatitude">Latitude: </string>
     <string name="currentWeatherLongitude">Longitude: </string>
-    <string name="currentWeatherHumidity">Humidity</string>
-    <string name="currentWeatherTemperature">Temperature</string>
-    <string name="currentWeatherWindspeed">Wind speed</string>
-    <string name="currentWeatherClouds">Clouds</string>
-    <string name="currentWeatherPressure">Pressure</string>
+    <string name="currentWeatherHumidity">Humidity [%]</string>
+    <string name="currentWeatherTemperature">Temperature [°C]</string>
+    <string name="currentWeatherWindspeed">Wind speed [km/h]</string>
+    <string name="currentWeatherClouds">Clouds [%]</string>
+    <string name="currentWeatherPressure">Pressure [mb]</string>
 
     <string name="title_activity_maps">Map</string>
     <string name="menuItem_options">Options</string>

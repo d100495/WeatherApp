@@ -15,12 +15,27 @@
         android:orientation="vertical"
         android:layout_height="wrap_content">
 
-        <Button
-            android:id="@+id/showForecastWeatherButton"
-            android:layout_width="wrap_content"
-            android:layout_gravity="right"
-            android:text="@string/forecastWeatherButtonString"
-            android:layout_height="match_parent" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/showMapButton"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:background="@drawable/button_shape_currentweather"
+                android:text="Map"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/showForecastWeatherButton"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:background="@drawable/button_shape_currentweather"
+                android:text="@string/forecastWeatherButtonString"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
 
         <TextView
             android:layout_width="match_parent"

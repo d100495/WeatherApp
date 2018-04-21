@@ -42,6 +42,7 @@ public class WeatherCurrentActivity extends AppCompatActivity {
     TextView currentWeatherDescription;
     LinearLayout currentLinearLayoutTemperature;
     Button showForecastWeatherButton;
+    Button showMapButton;
 
     private void initViews() {
         currentWeatherImage=findViewById(R.id.currentWeatherImage);
@@ -56,6 +57,7 @@ public class WeatherCurrentActivity extends AppCompatActivity {
         currentWeatherDescription=findViewById(R.id.currentWeatherDescription);
         currentLinearLayoutTemperature=findViewById(R.id.currentLinearLayoutTemperature);
         showForecastWeatherButton = findViewById(R.id.showForecastWeatherButton);
+        showMapButton=findViewById(R.id.showMapButton);
     }
 
     @Override
@@ -90,6 +92,15 @@ public class WeatherCurrentActivity extends AppCompatActivity {
                 startActivity(intent1);
             }
         });
+
+        showMapButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }//onCreate()
 
     public static WeatherCurrentActivity getInstance(){
@@ -100,13 +111,13 @@ public class WeatherCurrentActivity extends AppCompatActivity {
     public void SetViewElementsValues(String image,String city, float lat, float lon, float humidity, float temperature, float windspeed,float clouds,float pressure,String description){
         Picasso.get().load(image).into(currentWeatherImage);
         currentCityString.setText(city);
-        currentLatString.setText(Float.toString(lat));
-        currentLongString.setText(Float.toString(lon));
-        currentHumidityValue.setText(Float.toString(humidity)+"[%]");
-        currentTemperatureValue.setText(Float.toString(temperature)+"[°C]");
-        currentWindspeedValue.setText(Float.toString(windspeed)+"[km/h]");
-        currentCloudsValue.setText(Float.toString(clouds)+"[%]");
-        currentPressureValue.setText(Float.toString(pressure)+"[mb]");
+        currentLatString.setText(String.valueOf(lat));
+        currentLongString.setText(String.valueOf(lon));
+        currentHumidityValue.setText(String.valueOf(humidity));
+        currentTemperatureValue.setText(String.valueOf(temperature));
+        currentWindspeedValue.setText(String.valueOf(windspeed));
+        currentCloudsValue.setText(String.valueOf(clouds));
+        currentPressureValue.setText(String.valueOf(pressure));
         currentWeatherDescription.setText(description);
 
         SetViewElementsColors(temperature);
