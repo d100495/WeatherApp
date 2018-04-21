@@ -16,31 +16,31 @@ import com.example.dunger.weatherappandroidclient.Models.ForecastWeatherForListA
 import com.example.dunger.weatherappandroidclient.R;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Dunger on 2018-04-19.
  */
 
-public class ForecastListAdapter extends ArrayAdapter<ForecastWeatherForListAdapter>{
+public class ForecastListAdapter extends ArrayAdapter<ForecastWeatherForListAdapter> {
 
     //Debug variables
     private static final String TAG = ForecastListAdapter.class.getSimpleName();
 
     private Context mContext;
     private int mResource;
-    private int lastPosition=-1;
+    private int lastPosition = -1;
 
     public ForecastListAdapter(Context context, int resource, List objects) {
         super(context, resource, objects);
-        mContext=context;
-        mResource=resource;
+        mContext = context;
+        mResource = resource;
     }
 
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        //Row details
         String dateTime = getItem(position).getDateTime();
         String icon = getItem(position).getIcon();
         String description = getItem(position).getDescription();
@@ -51,7 +51,7 @@ public class ForecastListAdapter extends ArrayAdapter<ForecastWeatherForListAdap
 
 
         ForecastWeatherForListAdapter forecastWeatherForListAdapter = new ForecastWeatherForListAdapter(
-            humidity,avgTemperature,maxTemperature,windspeed,icon,description,dateTime
+                humidity, avgTemperature, maxTemperature, windspeed, icon, description, dateTime
         );
 
         //View result for showing animations
@@ -59,9 +59,9 @@ public class ForecastListAdapter extends ArrayAdapter<ForecastWeatherForListAdap
         //Holder init
         ViewHolder holder = new ViewHolder();
 
-        if(convertView==null){
+        if (convertView == null) {
             LayoutInflater layoutInflater = LayoutInflater.from(mContext);
-            convertView = layoutInflater.inflate(mResource,parent,false);
+            convertView = layoutInflater.inflate(mResource, parent, false);
 
             //Getting view elements
             holder.holderViewForecastTextView_Humidity = convertView.findViewById(R.id.adapterViewForecastTextView_Humidity);
@@ -72,21 +72,20 @@ public class ForecastListAdapter extends ArrayAdapter<ForecastWeatherForListAdap
             holder.holderViewForecastTextView_Icon = convertView.findViewById(R.id.adapterViewForecastTextView_Icon);
             holder.holderViewForecastTextView_DateTime = convertView.findViewById(R.id.adapterViewForecastTextView_DateTime);
 
-            result=convertView;
+            result = convertView;
             convertView.setTag(holder);
-        }
-        else {
+        } else {
             //View referenced from memory
-            holder=(ViewHolder)convertView.getTag();
-            result=convertView;
+            holder = (ViewHolder) convertView.getTag();
+            result = convertView;
         }
 
 
         Animation animation = AnimationUtils.loadAnimation(
                 mContext,
-                (position>lastPosition) ? R.anim.loading_down_anim : R.anim.loading_up_anim);
+                (position > lastPosition) ? R.anim.loading_down_anim : R.anim.loading_up_anim);
         result.startAnimation(animation);
-        lastPosition=position;
+        lastPosition = position;
 
         //Setting values
         holder.holderViewForecastTextView_Humidity.setText(String.valueOf(humidity));

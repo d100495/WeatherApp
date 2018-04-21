@@ -1,11 +1,9 @@
 package com.example.dunger.weatherappandroidclient;
 
-import android.content.Intent;
-import android.support.design.widget.NavigationView;
+import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.MenuItem;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -14,14 +12,11 @@ import com.example.dunger.weatherappandroidclient.UI.NavigationBar;
 
 public class WebViewActivity extends AppCompatActivity {
 
-    private void initViews() {
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web_view);
-        initViews();
 
         WebView myWebView = findViewById(R.id.webview);
         WebSettings webSettings = myWebView.getSettings();
@@ -43,12 +38,9 @@ public class WebViewActivity extends AppCompatActivity {
         DrawerLayout mDrawerLayout = findViewById(R.id.drawer_layout);
         switch (item.getItemId()) {
             case android.R.id.home:
-                if(mDrawerLayout.isDrawerOpen(GravityCompat.START))
-                {
+                if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
                     mDrawerLayout.closeDrawer(GravityCompat.START);
-                }
-                else
-                {
+                } else {
                     mDrawerLayout.openDrawer(GravityCompat.START);  // OPEN DRAWER
                 }
                 return true;

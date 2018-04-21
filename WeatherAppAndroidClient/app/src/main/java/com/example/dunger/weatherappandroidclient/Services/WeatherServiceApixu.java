@@ -23,16 +23,14 @@ import java.util.List;
  * Created by Dunger on 2018-04-08.
  */
 
-public class WeatherServiceApixu implements IWeatherService{
-
-    Activity activity;
-
-    //HTTPConnection variables
-    private StringRequest stringRequest;
-    String apixuAPIKey = "be73dbae410147e79fa130000183103";
+public class WeatherServiceApixu implements IWeatherService {
 
     //Debug variables
     private static final String TAG = WeatherServiceApixu.class.getSimpleName();
+    Activity activity;
+    String apixuAPIKey = "be73dbae410147e79fa130000183103";
+    //HTTPConnection variables
+    private StringRequest stringRequest;
 
     public WeatherServiceApixu(Activity activity) {
         this.activity = activity;
@@ -42,15 +40,15 @@ public class WeatherServiceApixu implements IWeatherService{
     @Override
     public void GetCurrentWeather(String city) {
 
-        String url = "http://api.apixu.com/v1/current.json?key="+apixuAPIKey+"&q="+city;
+        String url = "http://api.apixu.com/v1/current.json?key=" + apixuAPIKey + "&q=" + city;
 
         stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                CurrentWeatherApixu currentWeatherApixu = new Gson().fromJson(response.toString(),CurrentWeatherApixu.class);
+                CurrentWeatherApixu currentWeatherApixu = new Gson().fromJson(response.toString(), CurrentWeatherApixu.class);
 
                 WeatherCurrentActivity.getInstance().SetViewElementsValues(
-                        "https:"+currentWeatherApixu.getCurrent().getCondition().getIcon(),
+                        "https:" + currentWeatherApixu.getCurrent().getCondition().getIcon(),
                         currentWeatherApixu.getLocation().getName(),
                         currentWeatherApixu.getLocation().getLat(),
                         currentWeatherApixu.getLocation().getLon(),
@@ -60,7 +58,7 @@ public class WeatherServiceApixu implements IWeatherService{
                         currentWeatherApixu.getCurrent().getCloud(),
                         currentWeatherApixu.getCurrent().getPressure_mb(),
                         currentWeatherApixu.getCurrent().getCondition().getText()
-                        );
+                );
             }
         }, new Response.ErrorListener() {
             @Override
@@ -73,25 +71,24 @@ public class WeatherServiceApixu implements IWeatherService{
 
     @Override
     public void GetForecastWeather(String city) {
-        String url = "http://api.apixu.com/v1/forecast.json?key="+apixuAPIKey+"&q="+city+"&days=10";
+        String url = "http://api.apixu.com/v1/forecast.json?key=" + apixuAPIKey + "&q=" + city + "&days=10";
 
         stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                ForecastWeatherApixu forecastWeatherApixu = new Gson().fromJson(response.toString(),ForecastWeatherApixu.class);
+                ForecastWeatherApixu forecastWeatherApixu = new Gson().fromJson(response.toString(), ForecastWeatherApixu.class);
 
                 List<ForecastWeatherForListAdapter> forecastWeatherForListAdapter = new ArrayList<>();
 
-                for(ForecastWeatherApixu.Forecastday forecastday : forecastWeatherApixu.getForecast().getForecastday())
-                {
+                for (ForecastWeatherApixu.Forecastday forecastday : forecastWeatherApixu.getForecast().getForecastday()) {
                     forecastWeatherForListAdapter.add(new ForecastWeatherForListAdapter(
-                            forecastday.getDay().getAvghumidity(),
-                            forecastday.getDay().getAvgtempC(),
-                            forecastday.getDay().getMaxtempC(),
-                            forecastday.getDay().getMaxwindKph(),
-                            "https:"+forecastday.getDay().getCondition().getIcon(),
-                            forecastday.getDay().getCondition().getText(),
-                            forecastday.getDate()
+                                    forecastday.getDay().getAvghumidity(),
+                                    forecastday.getDay().getAvgtempC(),
+                                    forecastday.getDay().getMaxtempC(),
+                                    forecastday.getDay().getMaxwindKph(),
+                                    "https:" + forecastday.getDay().getCondition().getIcon(),
+                                    forecastday.getDay().getCondition().getText(),
+                                    forecastday.getDate()
                             )
                     );
                 }

@@ -48,7 +48,8 @@
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />
         <activity android:name=".OptionsActivity" />
-        <activity android:name=".WeatherForecastActivity"></activity>
+        <activity android:name=".WeatherForecastActivity" />
+        <activity android:name=".FavoritesActivity"></activity>
     </application>
 
 </manifest>

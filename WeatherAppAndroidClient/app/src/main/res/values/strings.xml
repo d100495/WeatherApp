@@ -30,4 +30,5 @@
     <string name="forecastUnit_Humidity">[%]</string>
     <string name="forecastUnit_WindSpeed">[km/h]</string>
     <string name="forecastUnit_Temperature">[°C]</string>
+    <string name="menuItem_favorites">Favorites</string>
 </resources>
