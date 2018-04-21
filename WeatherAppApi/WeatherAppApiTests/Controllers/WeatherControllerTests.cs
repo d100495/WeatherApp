@@ -19,13 +19,15 @@ namespace WeatherAppApiTests.Controllers
     public class WeatherControllerTests
     {
         private Mock<IWeatherHistoryRepository> _weatherHistoryRepositoryMock { get; set; }
-        private WeatherController _weatherController;
+        private Mock<IPaginationService<WeatherHistory>> _paginationServiceMock { get; set; }
+        private WeatherHistoryController _weatherController;
 
         [TestInitialize]
         public void Setup()
         {
             _weatherHistoryRepositoryMock = new Mock<IWeatherHistoryRepository>();
-            _weatherController = new WeatherController(_weatherHistoryRepositoryMock.Object);
+            _paginationServiceMock = new Mock<IPaginationService<WeatherHistory>>();
+            _weatherController = new WeatherHistoryController(_weatherHistoryRepositoryMock.Object, _paginationServiceMock.Object);
         }
 
         [TestMethod]
@@ -95,7 +97,7 @@ namespace WeatherAppApiTests.Controllers
             IPrincipal user = new ClaimsPrincipal(identity);
             _weatherController.User = user;
             _weatherHistoryRepositoryMock.Setup(x => x.GetByUserId(It.IsAny<string>())).ReturnsAsync(list);
-            var actionResult = await _weatherController.GetWeatherByUserId();
+            var actionResult = await _weatherController.GetAllWeatherHistoryByUserId();
             var contentResult = actionResult as OkNegotiatedContentResult<IEnumerable<WeatherHistory>>;
 
             Assert.IsNotNull(actionResult);
@@ -107,7 +109,7 @@ namespace WeatherAppApiTests.Controllers
         [TestMethod]
         public async Task GetWeatherByUserId_should_return_notFound_when_user_is_not_logged()
         {
-            var actionResult = await _weatherController.GetWeatherByUserId();
+            var actionResult = await _weatherController.GetAllWeatherHistoryByUserId();
             
             Assert.IsInstanceOfType(actionResult, typeof(NotFoundResult));
         }

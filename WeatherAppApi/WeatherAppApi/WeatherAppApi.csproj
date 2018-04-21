@@ -48,6 +48,9 @@
     <Reference Include="AutoMapper, Version=6.2.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoMapper.6.2.2\lib\net45\AutoMapper.dll</HintPath>
     </Reference>
+    <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Core.4.2.0\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -111,6 +114,9 @@
     </Reference>
     <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Extensions.Factory, Version=3.3.2.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Extensions.Factory.3.3.2\lib\net45\Ninject.Extensions.Factory.dll</HintPath>
     </Reference>
     <Reference Include="Ninject.Extensions.NamedScope, Version=3.3.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\packages\Ninject.Extensions.NamedScope.3.3.0\lib\net45\Ninject.Extensions.NamedScope.dll</HintPath>
@@ -208,16 +214,23 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\FavoriteController.cs" />
-    <Compile Include="Controllers\WeatherController.cs" />
+    <Compile Include="Controllers\WeatherHistoryController.cs" />
     <Compile Include="Controllers\WeatherStationController.cs" />
     <Compile Include="HangFireContext.cs" />
     <Compile Include="Interfaces\IFavoriteRepository.cs" />
     <Compile Include="Interfaces\IFavoritesService.cs" />
+    <Compile Include="Interfaces\IPagination.cs" />
     <Compile Include="Interfaces\IWeatherHistoryRepository.cs" />
     <Compile Include="Interfaces\IWeatherStationRepository.cs" />
     <Compile Include="AuthContext.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="JsonDeserializeModels\WeatherJson.cs" />
+    <Compile Include="Interfaces\IPageLinkBuilder.cs" />
+    <Compile Include="Interfaces\IPageLinkBuilderFactory.cs" />
+    <Compile Include="Models\Pagination\PageLinkBuilder.cs" />
+    <Compile Include="Models\Pagination\PageLinkBuilderFactory.cs" />
+    <Compile Include="Models\Pagination\PageLinks.cs" />
+    <Compile Include="Models\Pagination\PaginationModel.cs" />
     <Compile Include="Models\WeatherStation.cs" />
     <Compile Include="Models\FavoriteWeatherStation.cs" />
     <Compile Include="Models\UserModel.cs" />
@@ -231,6 +244,10 @@
     <Compile Include="Repositories\WeatherHistoryRepository.cs" />
     <Compile Include="Repositories\WeatherStationRepository.cs" />
     <Compile Include="Services\FavoritesService.cs" />
+    <Compile Include="Interfaces\IPaginationService.cs" />
+    <Compile Include="Services\IWeatherHistoryService.cs" />
+    <Compile Include="Services\PaginationService.cs" />
+    <Compile Include="Services\WeatherHistoryService.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>

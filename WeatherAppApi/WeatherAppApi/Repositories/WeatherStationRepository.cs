@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using WeatherAppApi.Interfaces;
 using WeatherAppApi.Models;
 
@@ -39,6 +36,10 @@ namespace WeatherAppApi.Repositories
         {
             WeatherStation weatherStation = await 
                 _context.WeatherStation.FirstOrDefaultAsync(x => x.WeatherStationId == weatherStationId);
+            if (weatherStation != null)
+            {
+                _context.WeatherStation.Remove(weatherStation);
+            }
             await Save();
         }
     }

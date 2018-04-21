@@ -5,8 +5,11 @@ using Ninject.Web.Common.WebHost;
 using System;
 using System.Web;
 using Hangfire;
+using Ninject.Extensions.Factory;
 using WeatherAppApi;
 using WeatherAppApi.Interfaces;
+using WeatherAppApi.Models;
+using WeatherAppApi.Models.Pagination;
 using WeatherAppApi.Repositories;
 using WeatherAppApi.Services;
 
@@ -45,11 +48,16 @@ namespace WeatherAppApi
             System.Web.Http.GlobalConfiguration.Configuration.DependencyResolver = new Ninject.WebApi.DependencyResolver.NinjectDependencyResolver(kernel);
             GlobalConfiguration.Configuration.UseNinjectActivator(kernel);
 
-            kernel.Bind<IWeatherHistoryRepository>().To<WeatherHistoryRepository>();
+            kernel.Bind<IWeatherHistoryRepository>().To<WeatherHistoryRepository>().InSingletonScope();
             kernel.Bind<IAuthRepository>().To<AuthRepository>();
             kernel.Bind<IFavoriteRepository>().To<FavoriteRepository>();
             kernel.Bind<IFavoritesService>().To<FavoritesService>();
             kernel.Bind<IWeatherStationRepository>().To<WeatherStationRepository>();
+            kernel.Bind(typeof(IPaginationService<>)).To(typeof(PaginationService<>));
+            kernel.Bind<IPagination<WeatherHistory>>().To<WeatherHistoryRepository>().InSingletonScope();
+            kernel.Bind<IPageLinkBuilder>().To<PageLinkBuilder>();
+            kernel.Bind<IPageLinkBuilderFactory>().ToFactory();
+            kernel.Bind<IWeatherHistoryService>().To<WeatherHistoryService>();
         }
     }
 }
