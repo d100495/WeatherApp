@@ -52,6 +52,13 @@ public class WeatherForecastActivity extends AppCompatActivity {
         weatherService.GetForecastWeather(intent.getStringExtra("station"));
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        weatherService= WeatherFactoryService.createService(GetChosenAPI(this),WeatherForecastActivity.this);
+        weatherService.GetForecastWeather(intent.getStringExtra("station"));
+    }
+
     public void SetForecastListAdapterValues(List<ForecastWeatherForListAdapter> forecastWeather){
         ForecastListAdapter adapter = new ForecastListAdapter(this,R.layout.adapter_view_weather_forecast,forecastWeather);
         forecastWeatherListView.setAdapter(adapter);

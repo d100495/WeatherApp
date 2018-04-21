@@ -6,6 +6,8 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -28,6 +30,7 @@ public class ForecastListAdapter extends ArrayAdapter<ForecastWeatherForListAdap
 
     private Context mContext;
     private int mResource;
+    private int lastPosition=-1;
 
     public ForecastListAdapter(Context context, int resource, List objects) {
         super(context, resource, objects);
@@ -51,28 +54,60 @@ public class ForecastListAdapter extends ArrayAdapter<ForecastWeatherForListAdap
             humidity,avgTemperature,maxTemperature,windspeed,icon,description,dateTime
         );
 
-        LayoutInflater layoutInflater = LayoutInflater.from(mContext);
-        convertView = layoutInflater.inflate(mResource,parent,false);
+        //View result for showing animations
+        final View result;
+        //Holder init
+        ViewHolder holder = new ViewHolder();
 
-        //Getting view elements
-        TextView adapterViewForecastTextView_Humidity = convertView.findViewById(R.id.adapterViewForecastTextView_Humidity);
-        TextView adapterViewForecastTextView_avgTemperature = convertView.findViewById(R.id.adapterViewForecastTextView_avgTemperature);
-        TextView adapterViewForecastTextView_Description = convertView.findViewById(R.id.adapterViewForecastTextView_Description);
-        TextView adapterViewForecastTextView_maxTemperature = convertView.findViewById(R.id.adapterViewForecastTextView_maxTemperature);
-        TextView adapterViewForecastTextView_WindSpeed = convertView.findViewById(R.id.adapterViewForecastTextView_WindSpeed);
-        ImageView adapterViewForecastTextView_Icon = convertView.findViewById(R.id.adapterViewForecastTextView_Icon);
-        TextView adapterViewForecastTextView_DateTime = convertView.findViewById(R.id.adapterViewForecastTextView_DateTime);
+        if(convertView==null){
+            LayoutInflater layoutInflater = LayoutInflater.from(mContext);
+            convertView = layoutInflater.inflate(mResource,parent,false);
+
+            //Getting view elements
+            holder.holderViewForecastTextView_Humidity = convertView.findViewById(R.id.adapterViewForecastTextView_Humidity);
+            holder.holderViewForecastTextView_avgTemperature = convertView.findViewById(R.id.adapterViewForecastTextView_avgTemperature);
+            holder.holderViewForecastTextView_Description = convertView.findViewById(R.id.adapterViewForecastTextView_Description);
+            holder.holderViewForecastTextView_maxTemperature = convertView.findViewById(R.id.adapterViewForecastTextView_maxTemperature);
+            holder.holderViewForecastTextView_WindSpeed = convertView.findViewById(R.id.adapterViewForecastTextView_WindSpeed);
+            holder.holderViewForecastTextView_Icon = convertView.findViewById(R.id.adapterViewForecastTextView_Icon);
+            holder.holderViewForecastTextView_DateTime = convertView.findViewById(R.id.adapterViewForecastTextView_DateTime);
+
+            result=convertView;
+            convertView.setTag(holder);
+        }
+        else {
+            //View referenced from memory
+            holder=(ViewHolder)convertView.getTag();
+            result=convertView;
+        }
+
+
+        Animation animation = AnimationUtils.loadAnimation(
+                mContext,
+                (position>lastPosition) ? R.anim.loading_down_anim : R.anim.loading_up_anim);
+        result.startAnimation(animation);
+        lastPosition=position;
 
         //Setting values
-        adapterViewForecastTextView_Humidity.setText(String.valueOf(humidity));
-        adapterViewForecastTextView_avgTemperature.setText(String.valueOf(avgTemperature));
-        adapterViewForecastTextView_Description.setText(description);
-        adapterViewForecastTextView_maxTemperature.setText(String.valueOf(maxTemperature));
-        adapterViewForecastTextView_WindSpeed.setText(String.valueOf(windspeed));
-        Picasso.get().load(icon).into( adapterViewForecastTextView_Icon);
-        adapterViewForecastTextView_DateTime.setText(dateTime);
+        holder.holderViewForecastTextView_Humidity.setText(String.valueOf(humidity));
+        holder.holderViewForecastTextView_avgTemperature.setText(String.valueOf(avgTemperature));
+        holder.holderViewForecastTextView_Description.setText(description);
+        holder.holderViewForecastTextView_maxTemperature.setText(String.valueOf(maxTemperature));
+        holder.holderViewForecastTextView_WindSpeed.setText(String.valueOf(windspeed));
+        holder.holderViewForecastTextView_DateTime.setText(dateTime);
+        Picasso.get().load(icon).into(holder.holderViewForecastTextView_Icon);
 
         return convertView;
+    }
+
+    static class ViewHolder {
+        TextView holderViewForecastTextView_Humidity;
+        TextView holderViewForecastTextView_avgTemperature;
+        TextView holderViewForecastTextView_Description;
+        TextView holderViewForecastTextView_maxTemperature;
+        TextView holderViewForecastTextView_WindSpeed;
+        ImageView holderViewForecastTextView_Icon;
+        TextView holderViewForecastTextView_DateTime;
     }
 
 }
