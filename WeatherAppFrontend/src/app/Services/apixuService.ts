@@ -13,7 +13,6 @@ export class ApixuService implements IWeatherService {
     private apiKey = 'be73dbae410147e79fa130000183103';
 
     GetWeather(lat: number, lon: number): Observable<Weather> {
-        console.log('apixu');
         const url = `http://api.apixu.com/v1/current.json?key=${this.apiKey}&q=$${lat},${lon}`;
         return this._http.get<ICurrentWeatherApixu>(url).map(
             res =>

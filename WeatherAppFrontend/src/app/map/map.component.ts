@@ -38,8 +38,9 @@ export class MapComponent implements OnInit {
         this.infoWindowOpened = infoWindow;
     }
     SetMarkers() {
-        this._mapService.GetMarkers().subscribe(response =>
-            this.markers = response);
+        this._mapService.GetMarkers().subscribe(response => {
+            this.markers = response;
+        });
     }
 
     PostWeather() {
@@ -53,11 +54,11 @@ export class MapComponent implements OnInit {
         this._favService.AddToFavorite(this.favorite).subscribe();
     }
 
-    onDetails(lat: number, lon: number){
+    OnDetails(lat: number, lon: number) {
         const params = {
             lat: lat,
-            lon : lon
+            lon: lon
         };
-        this._router.navigate(['details'], {queryParams: params});
+        this._router.navigate(['details'], { queryParams: params });
     }
 }

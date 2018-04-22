@@ -11,7 +11,7 @@
                 <th>Date</th>
             </thead>
             <tbody>
-                <tr *ngFor="let model of weather;">
+                <tr *ngFor="let model of weather?.pageData;">
                     <td>{{model.longitude}}</td>
                     <td>{{model.latitude}}</td>
                     <td>{{model.temperature}}</td>
@@ -23,4 +23,8 @@
             </tbody>
         </div>
     </div>
+    <button class="btn btn-default" (click)="FirstPage()">First</button>
+    <button class="btn btn-default"  [disabled]="weather?.paging.previous === null" (click)="PreviousPage()">Previous Page</button>
+    <button class="btn btn-default" [disabled]="weather?.paging.next === null" (click)="NextPage()">Next Page</button>
+    <button class="btn btn-default"(click)="LastPage()">Last</button>
 </div>
