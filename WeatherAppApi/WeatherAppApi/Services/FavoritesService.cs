@@ -17,15 +17,13 @@ namespace WeatherAppApi.Services
     {
         private readonly IFavoriteRepository favoriteRepository;
         private readonly IWeatherHistoryRepository weatherHistoryRepository;
-        private readonly IAuthRepository authRepository;
         private string openWatherMapsApiKey = "&APPID=409014fbcefa18db869de6c154c71e71";
 
 
-        public FavoritesService(IFavoriteRepository _repo, IWeatherHistoryRepository _historyRepository, IAuthRepository _authRepository)
+        public FavoritesService(IFavoriteRepository _repo, IWeatherHistoryRepository _historyRepository)
         {
             favoriteRepository = _repo;
             weatherHistoryRepository = _historyRepository;
-            authRepository = _authRepository;
         }
 
         public async Task GetWeatherFromFavoritesList()

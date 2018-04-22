@@ -23,14 +23,15 @@ namespace WeatherAppApi.Controllers
         [Authorize]
         public async Task<IHttpActionResult> PostHistory(Weather model)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest();
-            }
             if (model == null)
             {
                 return BadRequest("model cannot be null");
             }
+            if (!ModelState.IsValid)
+            {
+                return BadRequest("model is not valid");
+            }
+        
             await weatherHistoryService.AddHistory(model);
             return Ok();
         }
