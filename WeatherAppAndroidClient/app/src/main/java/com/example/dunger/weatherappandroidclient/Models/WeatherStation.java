@@ -10,9 +10,44 @@ public class WeatherStation {
     String cityName;
     double longitude;
     double latitude;
+    String date;
 
+
+
+    @Override
+    public String toString() {
+        return weatherStationId + ". " + cityName;
+    }
+
+
+    public String wholeString(){
+        return "WeatherStation{" +
+                "weatherStationId=" + weatherStationId +
+                ", cityName='" + cityName + '\'' +
+                ", longitude=" + longitude +
+                ", latitude=" + latitude +
+                '}';
+    }
+
+
+    public WeatherStation(int weatherStationId, String cityName, double longitude, double latitude, String date) {
+        this.weatherStationId = weatherStationId;
+        this.cityName = cityName;
+        this.longitude = longitude;
+        this.latitude = latitude;
+        this.date = date;
+    }
+
+    public WeatherStation(int weatherStationId, String cityName, double longitude, double latitude) {
+        this.weatherStationId = weatherStationId;
+        this.cityName = cityName;
+        this.longitude = longitude;
+        this.latitude = latitude;
+        this.date="0";
+    }
 
     public int getWeatherStationId() {
+
         return weatherStationId;
     }
 
@@ -44,28 +79,11 @@ public class WeatherStation {
         this.latitude = latitude;
     }
 
-
-    public WeatherStation(int weatherStationId, String cityName, double longitude, double latitude) {
-        this.weatherStationId = weatherStationId;
-        this.cityName = cityName;
-        this.longitude = longitude;
-        this.latitude = latitude;
+    public String getDate() {
+        return date;
     }
 
-    @Override
-    public String toString() {
-        return weatherStationId + ". " + cityName;
+    public void setDate(String date) {
+        this.date = date;
     }
-
-
-    public String wholeString(){
-        return "WeatherStation{" +
-                "weatherStationId=" + weatherStationId +
-                ", cityName='" + cityName + '\'' +
-                ", longitude=" + longitude +
-                ", latitude=" + latitude +
-                '}';
-    }
-
-
 }

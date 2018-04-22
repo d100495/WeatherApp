@@ -56,7 +56,8 @@ public class FavoritesService {
                                     weatherStation.getWeatherStationId(),
                                     weatherStation.getCityName(),
                                     weatherStation.getLatitude(),
-                                    weatherStation.getLongitude()
+                                    weatherStation.getLongitude(),
+                                    weatherStation.getDate()
                             )
                     );
                 }
