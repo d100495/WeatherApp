@@ -90,7 +90,7 @@ public class FavoritesService {
                 Toast.makeText(activity.getApplicationContext(),
                         activity.getString(R.string.deletedFavoriteStation_notification), Toast.LENGTH_SHORT).show();
 
-                GetFavorites();
+                GetFavorites();//TODO refreshing listview without using this method after deleting station
             }
         }, new Response.ErrorListener() {
             @Override

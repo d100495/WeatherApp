@@ -72,6 +72,7 @@ public class HistoryListAdapter extends ArrayAdapter<WeatherHistory> {
             holder.holderHistoryTextViewPressure = convertView.findViewById(R.id.historyTextViewPressure);
             holder.holderHistoryTextViewWindspeed = convertView.findViewById(R.id.historyTextViewWindSpeed);
             holder.holderHistoryTextViewWindchill = convertView.findViewById(R.id.historyTextViewWindChill);
+            holder.holderHistoryTextViewDateTime = convertView.findViewById(R.id.historyTextViewDateTime);
 
             result = convertView;
             convertView.setTag(holder);
@@ -95,6 +96,7 @@ public class HistoryListAdapter extends ArrayAdapter<WeatherHistory> {
         holder.holderHistoryTextViewPressure.setText(String.valueOf(pressure));
         holder.holderHistoryTextViewWindspeed.setText(String.valueOf(windspeed));
         holder.holderHistoryTextViewWindchill.setText(String.valueOf(windchill));
+        holder.holderHistoryTextViewDateTime.setText(dateTime);
 
         return convertView;
     }
@@ -106,5 +108,6 @@ public class HistoryListAdapter extends ArrayAdapter<WeatherHistory> {
         TextView holderHistoryTextViewPressure;
         TextView holderHistoryTextViewWindspeed;
         TextView holderHistoryTextViewWindchill;
+        TextView holderHistoryTextViewDateTime;
     }
 }
