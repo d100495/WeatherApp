@@ -11,4 +11,8 @@
     <dimen name="forecastListElementHeight">70dp</dimen>
     <dimen name="forecastListIconHeight">25dp</dimen>
     <dimen name="forecastListIconWidth">25dp</dimen>
+    <dimen name="forecastListElementHeightDetail">35dp</dimen>
+
+    <dimen name="favoritesListElementHeight">60dp</dimen>
+    <dimen name="favoritesListElementHeightDetail">30dp</dimen>
 </resources>

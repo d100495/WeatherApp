@@ -34,7 +34,7 @@ public class accountService {
 
     //HTTPConnection variables
     private static StringRequest stringRequest;
-    private static final String TAG = MainActivity.class.getSimpleName();
+    private static final String TAG = accountService.class.getSimpleName();
 
     public accountService(Activity activity){
         this.activity=activity;

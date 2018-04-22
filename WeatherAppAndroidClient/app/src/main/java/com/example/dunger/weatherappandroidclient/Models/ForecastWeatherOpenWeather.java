@@ -4,8 +4,8 @@ package com.example.dunger.weatherappandroidclient.Models;
  * Created by Dunger on 2018-04-21.
  */
 
-        import com.google.gson.annotations.Expose;
-        import com.google.gson.annotations.SerializedName;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 public class ForecastWeatherOpenWeather {
 
@@ -27,13 +27,11 @@ public class ForecastWeatherOpenWeather {
 
     /**
      * No args constructor for use in serialization
-     *
      */
     public ForecastWeatherOpenWeather() {
     }
 
     /**
-     *
      * @param message
      * @param cnt
      * @param cod
@@ -110,13 +108,11 @@ public class ForecastWeatherOpenWeather {
 
         /**
          * No args constructor for use in serialization
-         *
          */
         public City() {
         }
 
         /**
-         *
          * @param coord
          * @param id
          * @param name
@@ -182,13 +178,11 @@ public class ForecastWeatherOpenWeather {
 
         /**
          * No args constructor for use in serialization
-         *
          */
         public Clouds() {
         }
 
         /**
-         *
          * @param all
          */
         public Clouds(Double all) {
@@ -217,13 +211,11 @@ public class ForecastWeatherOpenWeather {
 
         /**
          * No args constructor for use in serialization
-         *
          */
         public Coord() {
         }
 
         /**
-         *
          * @param lon
          * @param lat
          */
@@ -280,13 +272,11 @@ public class ForecastWeatherOpenWeather {
 
         /**
          * No args constructor for use in serialization
-         *
          */
         public List() {
         }
 
         /**
-         *
          * @param clouds
          * @param dt
          * @param wind
@@ -403,13 +393,11 @@ public class ForecastWeatherOpenWeather {
 
         /**
          * No args constructor for use in serialization
-         *
          */
         public Main() {
         }
 
         /**
-         *
          * @param seaLevel
          * @param humidity
          * @param pressure
@@ -505,13 +493,11 @@ public class ForecastWeatherOpenWeather {
 
         /**
          * No args constructor for use in serialization
-         *
          */
         public Rain() {
         }
 
         /**
-         *
          * @param _3h
          */
         public Rain(Double _3h) {
@@ -537,13 +523,11 @@ public class ForecastWeatherOpenWeather {
 
         /**
          * No args constructor for use in serialization
-         *
          */
         public Sys() {
         }
 
         /**
-         *
          * @param pod
          */
         public Sys(String pod) {
@@ -578,13 +562,11 @@ public class ForecastWeatherOpenWeather {
 
         /**
          * No args constructor for use in serialization
-         *
          */
         public Weather() {
         }
 
         /**
-         *
          * @param id
          * @param icon
          * @param description
@@ -643,13 +625,11 @@ public class ForecastWeatherOpenWeather {
 
         /**
          * No args constructor for use in serialization
-         *
          */
         public Wind() {
         }
 
         /**
-         *
          * @param speed
          * @param deg
          */

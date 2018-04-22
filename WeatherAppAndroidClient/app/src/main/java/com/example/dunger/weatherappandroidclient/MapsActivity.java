@@ -69,7 +69,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onInfoWindowClick(Marker marker) {
                 Intent intent = new Intent(getApplicationContext(), WeatherCurrentActivity.class);
                 intent.putExtra("station", marker.getTitle());
+                intent.putExtra("lat", marker.getPosition().latitude);
+                intent.putExtra("lon", marker.getPosition().longitude);
                 startActivity(intent);
+
+                Log.i("Marker content:", "lat: "+marker.getPosition().latitude + "lon: " +marker.getPosition().longitude);
             }
         });
     }
@@ -106,7 +110,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             public void onSuccess(Location location) {
                                 // Got last known location. In some rare situations this can be null.
                                 if (location != null) {
-                                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(),location.getLongitude()), 8.0f));
+                                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(),location.getLongitude()), 12.0f));
                                 }
                                 else
                                 {
