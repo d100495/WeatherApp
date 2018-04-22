@@ -69,7 +69,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onInfoWindowClick(Marker marker) {
                 Intent intent = new Intent(getApplicationContext(), WeatherCurrentActivity.class);
                 intent.putExtra("station", marker.getTitle());
+                intent.putExtra("lat", marker.getPosition().latitude);
+                intent.putExtra("lon", marker.getPosition().longitude);
                 startActivity(intent);
+
+                Log.i("Marker content:", "lat: "+marker.getPosition().latitude + "lon: " +marker.getPosition().longitude);
             }
         });
     }

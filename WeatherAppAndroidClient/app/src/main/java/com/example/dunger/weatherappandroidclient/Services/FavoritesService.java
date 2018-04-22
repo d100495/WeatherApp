@@ -40,7 +40,7 @@ public class FavoritesService {
     }
 
     public void GetFavorites() {
-        String url = baseurl+"api/favorite/GetByUserId";
+        String url = baseurl + "api/favorite/GetByUserId";
 
         stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -81,7 +81,7 @@ public class FavoritesService {
     }
 
     public void DeleteFromFavorites(int id) {
-        String url = baseurl+"api/favorite/DeleteById/"+id;
+        String url = baseurl + "api/favorite/DeleteById/" + id;
 
         stringRequest = new StringRequest(Request.Method.DELETE, url, new Response.Listener<String>() {
             @Override
@@ -108,6 +108,49 @@ public class FavoritesService {
             }
         };
         RequestQueueSingleton.getInstance(activity).addToRequestQueue(stringRequest);
+    }
+
+    public void AddToFavorites(final WeatherStation weatherStation) {
+        String url = baseurl + "api/favorite/AddToFavorite";
+        stringRequest = new StringRequest(Request.Method.POST, url
+                , new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                if (response.isEmpty()) {
+                    Log.i(TAG, "Favorites adding station : " + response.toString());
+
+                    Toast.makeText(activity.getApplicationContext(),
+                            activity.getString(R.string.addedFavoriteStation_notification), Toast.LENGTH_SHORT).show();
+                } else {
+                    Log.i(TAG, "\n\nResponse is not empty!");
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(activity.getApplicationContext(),
+                        error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        })
+
+        {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Authorization", GetToken().getToken_type() + " " + GetToken().getAccess_token());
+                return params;
+            }
+
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("cityName", weatherStation.getCityName());
+                params.put("latitude", String.valueOf(weatherStation.getLatitude()));
+                params.put("longitude", String.valueOf(weatherStation.getLongitude()));
+                return params;
+            }
+        };
+        RequestQueueSingleton.getInstance(activity).addToRequestQueue(stringRequest); //adding this POST request to request queue
     }
 
 }

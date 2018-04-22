@@ -2,6 +2,7 @@ package com.example.dunger.weatherappandroidclient;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -11,10 +12,14 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.dunger.weatherappandroidclient.Models.IWeatherService;
+import com.example.dunger.weatherappandroidclient.Models.WeatherStation;
+import com.example.dunger.weatherappandroidclient.Services.FavoritesService;
 import com.example.dunger.weatherappandroidclient.Services.WeatherFactoryService;
 import com.example.dunger.weatherappandroidclient.UI.NavigationBar;
+import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
 import static com.example.dunger.weatherappandroidclient.OptionsActivity.GetChosenAPI;
@@ -40,6 +45,7 @@ public class WeatherCurrentActivity extends AppCompatActivity {
     LinearLayout currentLinearLayoutTemperature;
     Button showForecastWeatherButton;
     Button showMapButton;
+    FloatingActionButton addToFavoritesButton;
 
     public static WeatherCurrentActivity getInstance() {
         return weatherCurrentActivity;
@@ -59,6 +65,7 @@ public class WeatherCurrentActivity extends AppCompatActivity {
         currentLinearLayoutTemperature = findViewById(R.id.currentLinearLayoutTemperature);
         showForecastWeatherButton = findViewById(R.id.showForecastWeatherButton);
         showMapButton = findViewById(R.id.showMapButton);
+        addToFavoritesButton=findViewById(R.id.addToFavoritesButton);
     }
 
     @Override
@@ -99,6 +106,22 @@ public class WeatherCurrentActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        addToFavoritesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                WeatherStation weatherStation = new WeatherStation(
+                                1,
+                                intent.getStringExtra("station"),
+                                intent.getDoubleExtra("lon",50),
+                                intent.getDoubleExtra("lat",50)
+                        );
+
+                FavoritesService favoritesService = new FavoritesService(weatherCurrentActivity);
+                favoritesService.AddToFavorites(weatherStation);
             }
         });
 
