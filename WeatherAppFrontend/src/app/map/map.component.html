@@ -1,6 +1,7 @@
 <div class="col-lg-12" border-radius="10px">
-  <agm-map [latitude]="lat" [longitude]="lon">
-    <agm-marker *ngFor="let m of markers;" [latitude]="m?.latitude" [longitude]="m?.longitude" (markerClick)="GetWeather(m.latitude, m.longitude, infoWindow)">
+  <agm-map [latitude]="lat" [longitude]="lon" [zoom]="zoom">
+    <agm-marker *ngFor="let m of markers;" [latitude]="m?.latitude" [longitude]="m?.longitude" 
+    (markerClick)="GetWeather(m.latitude, m.longitude, infoWindow)">
 
       <agm-info-window #infoWindow>
         <div class="container-fluid">
@@ -25,7 +26,7 @@
           </div>
           <div class="row">
             <div class="col-lg-12 text-center">
-              <button (click)="AddToFavorite(m.cityName, weather?.Longitude, weather?.Latitude)" class="btn buttonDetails btn-default te">Add to Favorite</button>
+              <button (click)="AddToFavorite(m.weatherStationId, m.cityName, weather?.Longitude, weather?.Latitude)" class="btn buttonDetails btn-default te">Add to Favorite</button>
               <button (click)="OnDetails(m.Latitude, m.Longitude)" class="btn buttonDetails btn-default">Details</button>
             </div>
           </div>

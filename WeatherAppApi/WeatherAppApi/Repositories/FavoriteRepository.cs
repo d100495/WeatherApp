@@ -24,7 +24,9 @@ namespace WeatherAppApi.Repositories
         public async Task Add(WeatherStation model, string idUser)
         {
               ApplicationUser user = _context.Users.Include(x => x.WeatherStations).FirstOrDefault(x => x.Id == idUser);
-              user?.WeatherStations.Add(model);
+            WeatherStation weatherStation =
+                _context.WeatherStation.FirstOrDefault(x => x.WeatherStationId == model.WeatherStationId);
+              user?.WeatherStations.Add(weatherStation);
               await Save();
               
            
