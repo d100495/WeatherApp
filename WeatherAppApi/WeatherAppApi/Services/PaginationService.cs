@@ -9,12 +9,12 @@ namespace WeatherAppApi.Services
     public class PaginationService<T> : IPaginationService<T> where T : class
     {
         private IPagination<T> pagination;
-        private IPageLinkBuilderFactory pageLinkBuilderFactory;
+        private IPageLinkFactory pageLinkFactory;
 
-        public PaginationService(IPagination<T> _pagination, IPageLinkBuilderFactory _pageLinkBuilderFactory)
+        public PaginationService(IPagination<T> _pagination, IPageLinkFactory _pageLinkFactory)
         {
             pagination = _pagination;
-            pageLinkBuilderFactory = _pageLinkBuilderFactory;
+            pageLinkFactory = _pageLinkFactory;
         }
 
         public async Task<int> TotalPages()
@@ -25,7 +25,7 @@ namespace WeatherAppApi.Services
         public async Task<PaginationModel<T>> GetPageLinks(UrlHelper urlHelper, IEnumerable<T> data, int pageNo = 1, int pageSize = 50)
         {
             var total = await TotalPages();
-            var linkBuilder = pageLinkBuilderFactory.Create(urlHelper, "GetWeatherByUserId", null, pageNo, pageSize,
+            var linkBuilder = pageLinkFactory.Create(urlHelper, "GetWeatherByUserId", null, pageNo, pageSize,
                 total);
             return new PaginationModel<T>()
             {

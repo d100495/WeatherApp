@@ -11,7 +11,7 @@ export class MapService {
     private httpOptions = {
         headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `Bearer ${this.auth.getToken()}` })
     };
-    private urlApi = 'http://weatherapp-001-site1.gtempurl.com/api/WeatherStation';
+    private urlApi = 'http://mypenisred1-001-site1.atempurl.com/api/WeatherStation';
     constructor(private _http: HttpClient, private auth: AuthService) { }
     private apiKey = '&APPID=409014fbcefa18db869de6c154c71e71';
 

@@ -17,6 +17,7 @@ import { WeatherFactoryService } from '../Services/WeatherFactoryService';
 export class MapComponent implements OnInit {
     constructor(private _mapService: MapService, private _favService: FavoriteService, private _weatherService: WeatherService,
         private _router: Router, private _weatherFactoryService: WeatherFactoryService) { }
+    zoom = 8;
     lat = 50.083328;
     lon = 19.91667;
     weather: Weather;
@@ -38,26 +39,29 @@ export class MapComponent implements OnInit {
         this.infoWindowOpened = infoWindow;
     }
     SetMarkers() {
-        this._mapService.GetMarkers().subscribe(response =>
-            this.markers = response);
+        this._mapService.GetMarkers().subscribe(response => {
+            this.markers = response;
+        });
     }
 
     PostWeather() {
         this._weatherService.PostWeather(this.weather).subscribe();
     }
 
-    AddToFavorite(cityName: string, lat: number, lon: number) {
+    AddToFavorite(weatherStationId: number, cityName: string, lat: number, lon: number) {
+        this.favorite.weatherStationId = weatherStationId;
         this.favorite.cityName = cityName;
         this.favorite.latitude = lat;
         this.favorite.longitude = lon;
+        console.log(this.favorite);
         this._favService.AddToFavorite(this.favorite).subscribe();
     }
 
-    onDetails(lat: number, lon: number){
+    OnDetails(lat: number, lon: number) {
         const params = {
             lat: lat,
-            lon : lon
+            lon: lon
         };
-        this._router.navigate(['details'], {queryParams: params});
+        this._router.navigate(['details'], { queryParams: params });
     }
 }

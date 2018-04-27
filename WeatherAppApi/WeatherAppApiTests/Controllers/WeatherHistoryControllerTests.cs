@@ -12,22 +12,23 @@ using WeatherAppApi.App_Start;
 using WeatherAppApi.Controllers;
 using WeatherAppApi.Interfaces;
 using WeatherAppApi.Models;
+using WeatherAppApi.Models.Pagination;
+using WeatherAppApi.Services;
 
 namespace WeatherAppApiTests.Controllers
 {
     [TestClass]
-    public class WeatherControllerTests
+    public class WeatherHistoryControllerTests
     {
-        private Mock<IWeatherHistoryRepository> _weatherHistoryRepositoryMock { get; set; }
-        private Mock<IPaginationService<WeatherHistory>> _paginationServiceMock { get; set; }
+    
+        private Mock<IWeatherHistoryService> _weatherHistoryServiceMock { get; set; }
         private WeatherHistoryController _weatherController;
 
         [TestInitialize]
         public void Setup()
         {
-            _weatherHistoryRepositoryMock = new Mock<IWeatherHistoryRepository>();
-            _paginationServiceMock = new Mock<IPaginationService<WeatherHistory>>();
-            _weatherController = new WeatherHistoryController(_weatherHistoryRepositoryMock.Object, _paginationServiceMock.Object);
+            _weatherHistoryServiceMock  = new Mock<IWeatherHistoryService>();
+            _weatherController = new WeatherHistoryController(_weatherHistoryServiceMock.Object);
         }
 
         [TestMethod]
@@ -53,8 +54,10 @@ namespace WeatherAppApiTests.Controllers
         public async Task PostHistory_should_return_badRequest_when_model_is_null()
         {
             Weather weather = null;
-            var actionResult = await _weatherController.PostHistory(weather);
-            Assert.IsInstanceOfType(actionResult, typeof(BadRequestResult));
+            var actionResult = await _weatherController.PostHistory(weather) as BadRequestErrorMessageResult;
+
+            Assert.IsInstanceOfType(actionResult, typeof(BadRequestErrorMessageResult));
+            Assert.AreEqual(actionResult.Message, "model cannot be null");
         }
 
 
@@ -96,7 +99,7 @@ namespace WeatherAppApiTests.Controllers
             var identity = new ClaimsIdentity(claims);
             IPrincipal user = new ClaimsPrincipal(identity);
             _weatherController.User = user;
-            _weatherHistoryRepositoryMock.Setup(x => x.GetByUserId(It.IsAny<string>())).ReturnsAsync(list);
+            _weatherHistoryServiceMock.Setup(x => x.GetAllWeatherHistoryByUserId()).ReturnsAsync(list);
             var actionResult = await _weatherController.GetAllWeatherHistoryByUserId();
             var contentResult = actionResult as OkNegotiatedContentResult<IEnumerable<WeatherHistory>>;
 
@@ -104,14 +107,6 @@ namespace WeatherAppApiTests.Controllers
             Assert.IsNotNull(contentResult);
             Assert.IsInstanceOfType(actionResult, typeof(OkNegotiatedContentResult<IEnumerable<WeatherHistory>>));
             Assert.AreEqual(list, contentResult.Content);
-        }
-
-        [TestMethod]
-        public async Task GetWeatherByUserId_should_return_notFound_when_user_is_not_logged()
-        {
-            var actionResult = await _weatherController.GetAllWeatherHistoryByUserId();
-            
-            Assert.IsInstanceOfType(actionResult, typeof(NotFoundResult));
         }
     }
 

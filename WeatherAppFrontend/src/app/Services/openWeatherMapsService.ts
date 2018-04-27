@@ -15,8 +15,7 @@ export class OpenWeatherMapsService implements IWeatherService {
     private apiKey = '&APPID=409014fbcefa18db869de6c154c71e71';
 
     GetWeather(lon: number, lat: number): Observable<Weather> {
-        console.log('open');
-        const url = `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric${this.apiKey}`;
+        const url = `http://api.openweathermap.org/data/2.5/weather?lat=${lon}&lon=${lat}&units=metric${this.apiKey}`;
         return this._http.get<ICurrentWeatherOpenWeatherMaps>(url).map(
             res =>
                 new Weather(res.main.temp, res.coord.lon, res.coord.lat, res.main.pressure, res.wind.speed)
@@ -24,10 +23,9 @@ export class OpenWeatherMapsService implements IWeatherService {
     }
 
     GetForecastWeather(lon: number, lat: number): Observable<ForecastWeather[]> {
-        const url = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric${this.apiKey}`;
+        const url = `http://api.openweathermap.org/data/2.5/forecast?lat=${lon}&lon=${lat}&units=metric${this.apiKey}`;
         return this._http.get<IForecastWeatherOpenWeatherMaps>(url).map(
             res => {
-                console.log(res);
                 let array = new Array<ForecastWeather>();
                 for (let model of res.list) {
                     array.push(new ForecastWeather(model.dt_txt, model.weather[0].description,

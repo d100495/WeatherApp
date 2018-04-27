@@ -11,3 +11,8 @@ h1{
     transform: scale(1.2);
 }
 
+.img-selected{
+    border-bottom: solid 5px #000000;
+  transition: border-width 0.4s linear;
+  border-width: 5px;
+}
