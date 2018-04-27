@@ -20,11 +20,15 @@ namespace WeatherAppApi.Controllers
         [Authorize]
         public async Task<IHttpActionResult> AddToFavorite(WeatherStation model)
         {
+            var id = authRepository.GetUserId();
             if (!ModelState.IsValid)
             {
                 return BadRequest("model cannot be null");
             }
-            var id = authRepository.GetUserId();
+            if (await favoriteRepository.AddFavoriteStationValidator(model, id) == false)
+            {
+                return BadRequest("There is already same weather station");
+            }
             await favoriteRepository.Add(model, id);
             return Ok();
         }
