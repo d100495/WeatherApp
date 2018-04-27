@@ -9,11 +9,11 @@ namespace WeatherAppApi.Controllers
     [RoutePrefix("api/Account")]
     public class AccountController : ApiController
     {
-        private IAuthRepository _repo;
+        private IAuthRepository authRepository;
  
         public AccountController(IAuthRepository _authRepository)
         {
-            _repo = _authRepository;
+            authRepository = _authRepository;
         }
 
        
@@ -26,7 +26,7 @@ namespace WeatherAppApi.Controllers
                 return BadRequest(ModelState);
             }
  
-            IdentityResult result = await _repo.RegisterUser(userModel);
+            IdentityResult result = await authRepository.RegisterUser(userModel);
  
             IHttpActionResult errorResult = GetErrorResult(result);
  
@@ -41,12 +41,12 @@ namespace WeatherAppApi.Controllers
         [HttpGet]
         public async Task<IHttpActionResult> GetUserInfo()
         {
-            string userId = User.Identity.GetUserId();
+            string userId = authRepository.GetUserId();
             if (userId == null)
             {
                 return NotFound();
             }
-            var user =  await _repo.FindById(userId);
+            var user =  await authRepository.FindById(userId);
             return Ok(user);
 
         }
@@ -55,7 +55,7 @@ namespace WeatherAppApi.Controllers
         {
             if (disposing)
             {
-                _repo.Dispose();
+                authRepository.Dispose();
             }
  
             base.Dispose(disposing);
