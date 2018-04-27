@@ -228,8 +228,9 @@
     <Compile Include="JsonDeserializeModels\WeatherJson.cs" />
     <Compile Include="Interfaces\IPageLinkBuilder.cs" />
     <Compile Include="Interfaces\IPageLinkBuilderFactory.cs" />
+    <Compile Include="Models\Pagination\IPageLinkFactory.cs" />
     <Compile Include="Models\Pagination\PageLinkBuilder.cs" />
-    <Compile Include="Models\Pagination\PageLinkBuilderFactory.cs" />
+    <Compile Include="Models\Pagination\PageLinkFactory.cs" />
     <Compile Include="Models\Pagination\PageLinks.cs" />
     <Compile Include="Models\Pagination\PaginationModel.cs" />
     <Compile Include="Models\WeatherStation.cs" />
