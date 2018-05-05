@@ -40,7 +40,7 @@ public class accountService {
         this.activity=activity;
     }
 
-    public static void Login(final String username, final String password) {
+    public void Login(final String username, final String password) {
 
         String url = "http://mypenisred1-001-site1.atempurl.com/token";
         stringRequest = new StringRequest(Request.Method.POST, url
@@ -81,13 +81,20 @@ public class accountService {
         RequestQueueSingleton.getInstance(activity).addToRequestQueue(stringRequest); //adding this POST request to request queue
     }
 
+    public void Logout(){
+        Token token = new Token("","",0);
+        SaveTokenInMemory(token);
+        Intent intent = new Intent(activity.getApplicationContext(), MainActivity.class);
+        activity.startActivity(intent);
+    }
+
     public static Token GetToken(){
         SharedPreferences prefs = activity.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE);
         String restored_access_token = prefs.getString("access_token", null);
         String restored_token_type = prefs.getString("token_type",null);
         int restored_expires_in = prefs.getInt("expires_in", 0);
 
-        if(restored_access_token ==null || token.getAccess_token() ==null || token.getExpires_in() < 10)
+        if(restored_access_token ==null || restored_access_token.equals("") || token.getAccess_token() ==null || token.getAccess_token().equals("") || token.getExpires_in() < 10)
         {
             Intent intent = new Intent(activity.getApplicationContext(), MainActivity.class);
             activity.startActivity(intent);

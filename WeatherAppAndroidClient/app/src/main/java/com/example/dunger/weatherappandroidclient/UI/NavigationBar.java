@@ -10,9 +10,11 @@ import android.view.MenuItem;
 
 import com.example.dunger.weatherappandroidclient.FavoritesActivity;
 import com.example.dunger.weatherappandroidclient.HistoryActivity;
+import com.example.dunger.weatherappandroidclient.MainActivity;
 import com.example.dunger.weatherappandroidclient.MapsActivity;
 import com.example.dunger.weatherappandroidclient.OptionsActivity;
 import com.example.dunger.weatherappandroidclient.R;
+import com.example.dunger.weatherappandroidclient.Services.accountService;
 import com.example.dunger.weatherappandroidclient.WebViewActivity;
 
 /**
@@ -77,12 +79,15 @@ public class NavigationBar {
                                 activity.startActivity(intent);
                             }
                         }
+                        if (menuItem.getItemId() == R.id.nav_logout) {
+                            accountService accountService = new accountService(activity);
+                            accountService.Logout();
+                        }
                         if (menuItem.getItemId() == R.id.nav_favorites) {
                             if (!(activity.getClass() == FavoritesActivity.class)) {
                                 Intent intent = new Intent(activity.getApplicationContext(), FavoritesActivity.class);
                                 activity.startActivity(intent);
                             }
-
                         } else {
                             drawerLayout.openDrawer(GravityCompat.START);  // OPEN DRAWER
                         }

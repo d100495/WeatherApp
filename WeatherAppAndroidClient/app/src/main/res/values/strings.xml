@@ -10,7 +10,7 @@
     <string name="menuItem_mobile">Mobile</string>
     <string name="menuItem_desktop">Desktop</string>
     <string name="logginsuccess_notification">Logged in!</string>
-    <string name="logginerror_notification">Error: Incorrect username or password</string>
+    <string name="logginerror_notification">Login error.</string>
     <string name="navbar_open">Open</string>
     <string name="navbar_close">Close</string>
 
@@ -37,4 +37,5 @@
     <string name="menuItem_history">History</string>
 
     <string name="addedFavoriteStation_notification">Station added!</string>
+    <string name="menuItem_logout">Logout</string>
 </resources>

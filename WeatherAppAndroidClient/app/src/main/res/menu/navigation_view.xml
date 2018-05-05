@@ -39,6 +39,12 @@
             android:gravity="center"
             android:title="@string/menuItem_options">
         </item>
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@mipmap/ic_thermometer"
+            android:gravity="center"
+            android:title="@string/menuItem_logout">
+        </item>
     </group>
 
 
