@@ -29,9 +29,9 @@ namespace WeatherAppApi.Services
         public async Task AddHistory(Weather model)
         {
             WeatherHistory weatherHistory = Mapper.Map<Weather, WeatherHistory>(model);
+            weatherHistory.Date = DateTime.Now;
             weatherHistory.Id = authRepository.GetUserId();
             await weatherHistoryRepository.Add(weatherHistory);
-            await weatherHistoryRepository.Save();
         }
 
         public async Task<IEnumerable<WeatherHistory>> GetAllWeatherHistoryByUserId()

@@ -11,5 +11,6 @@ namespace WeatherAppApi.Interfaces
         Task<IEnumerable<FavoriteWeatherStation>> GetAll();
         Task<IEnumerable<WeatherStation>> GetByUserId(string id);
         Task Delete(int weatherStationId, string userId);
+        Task<bool> AddFavoriteStationValidator(WeatherStation model, string id);
     }
 }

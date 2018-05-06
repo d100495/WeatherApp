@@ -6,18 +6,18 @@ namespace WeatherAppApi.Controllers
 {
     public class WeatherStationController : ApiController
     {
-        private IWeatherStationRepository _weatherStationRepository;
+        private IWeatherStationRepository weatherStationRepository;
 
         public WeatherStationController(IWeatherStationRepository _stationRepository)
         {
-            _weatherStationRepository = _stationRepository;
+            weatherStationRepository = _stationRepository;
         }
 
         [HttpGet]
         [Authorize]
         public async Task<IHttpActionResult> GetAll()
         {
-            var list = await _weatherStationRepository.GetAll();
+            var list = await weatherStationRepository.GetAll();
             return Ok(list);
         } 
     }

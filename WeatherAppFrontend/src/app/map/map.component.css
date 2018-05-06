@@ -18,11 +18,9 @@ agm-map {
     padding: 5px;
 }
 .weatherInfoPressure {
-    background-color:#2b9a59;
+    width: 48px;
+    height: 48px;
     font-weight: bold;
-    color: white;
-    border-radius: 6px;
-    padding: 5px;
 }
 
 
@@ -35,7 +33,6 @@ agm-map {
 }
 
 .weatherInfoWindHumid {
-    background-color: #49648a;
     font-weight: bold;
     color: white;
     border-radius: 6px;
@@ -45,4 +42,8 @@ agm-map {
 .latLongInfo{
      text-align: center;
        font-weight: bold;
+}
+
+.buttonDetails{
+    margin: 5px;
 }

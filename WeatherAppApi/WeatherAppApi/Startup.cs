@@ -26,14 +26,15 @@ namespace WeatherAppApi
             app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
 
             ConfigureOAuth(app);
-           // app.UseWebApi(config);
+          
             AutoMapperConfig.Initialize();
            
             app.UseNinjectMiddleware(NinjectWebCommon.CreateKernel).UseNinjectWebApi(config);
             Hangfire.GlobalConfiguration.Configuration.UseSqlServerStorage(db.Database.Connection.ConnectionString);
             app.UseHangfireDashboard();
             app.UseHangfireServer();
-            RecurringJob.AddOrUpdate<FavoritesService>(x => x.GetWeatherFromFavoritesList(), Cron.Minutely);
+            RecurringJob.AddOrUpdate<FavoritesService>(x => x.GetWeatherFromFavoritesList(), Cron.Hourly);
+
         }
 
         public void ConfigureOAuth(IAppBuilder app)
@@ -46,7 +47,7 @@ namespace WeatherAppApi
                 Provider = new SimpleAuthorizationServerProvider()
             };
 
-            // Token Generation
+           
             app.UseOAuthAuthorizationServer(OAuthServerOptions);
             app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
         }

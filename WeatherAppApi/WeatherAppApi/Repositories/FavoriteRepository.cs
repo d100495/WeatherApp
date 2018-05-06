@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web.UI.WebControls;
 using WeatherAppApi.Interfaces;
 using WeatherAppApi.Models;
 
@@ -21,10 +22,26 @@ namespace WeatherAppApi.Repositories
             await _context.SaveChangesAsync();
         }
 
+        public async Task<bool> AddFavoriteStationValidator(WeatherStation model, string id)
+        {
+            var userFavoriteWeatherStation = await GetByUserId(id);
+            bool isAny = userFavoriteWeatherStation.Any(x => x.WeatherStationId == model.WeatherStationId);
+            if (isAny)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
         public async Task Add(WeatherStation model, string idUser)
         {
               ApplicationUser user = _context.Users.Include(x => x.WeatherStations).FirstOrDefault(x => x.Id == idUser);
-              user?.WeatherStations.Add(model);
+            WeatherStation weatherStation =
+                _context.WeatherStation.FirstOrDefault(x => x.WeatherStationId == model.WeatherStationId);
+              user?.WeatherStations.Add(weatherStation);
               await Save();
               
            

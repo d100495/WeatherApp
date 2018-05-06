@@ -29,7 +29,6 @@ namespace WeatherAppApi.Controllers.Tests
         [TestMethod()]
         public async Task Register_should_return_ok()
         {
-           // AutoMapperConfig.Initialize();
             UserModel user = new UserModel()
             {
                 UserName = "test",
@@ -47,8 +46,5 @@ namespace WeatherAppApi.Controllers.Tests
             Assert.AreEqual(user, contentResult.Content);
 
         }
-
-
-     
     }
 }
