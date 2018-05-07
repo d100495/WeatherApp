@@ -24,7 +24,7 @@
         <EditText
             android:layout_width="match_parent"
             android:hint="@string/hint_username"
-            android:text="Dungr"
+            android:text="Zaq"
             android:id="@+id/usernameEditText"
             android:layout_marginRight="40dp"
             android:layout_marginLeft="40dp"

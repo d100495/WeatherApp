@@ -1,19 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item
-        android:id="@+id/nav_mobile"
-        android:icon="@mipmap/ic_mobile"
-        android:textSize="10dp"
-        android:gravity="center"
-        android:title="@string/menuItem_mobile">
-    </item>
+    <group android:id="@+id/nav_group1">
+        <item
+            android:id="@+id/nav_mobile"
+            android:icon="@mipmap/ic_mobile"
+            android:textSize="10dp"
+            android:gravity="center"
+            android:title="@string/menuItem_mobile">
+        </item>
 
-    <item
-        android:id="@+id/nav_desktop"
-        android:icon="@mipmap/ic_desktop"
-        android:gravity="center"
-        android:title="@string/menuItem_desktop">
-    </item>
+        <item
+            android:id="@+id/nav_desktop"
+            android:icon="@mipmap/ic_desktop"
+            android:gravity="center"
+            android:title="@string/menuItem_desktop">
+        </item>
+
+        <item
+            android:id="@+id/nav_favorites"
+            android:icon="@mipmap/ic_arrow_collapse"
+            android:gravity="center"
+            android:title="@string/menuItem_favorites">
+        </item>
+
+        <item
+            android:id="@+id/nav_history"
+            android:icon="@mipmap/ic_weather_partlycloudy"
+            android:gravity="center"
+            android:title="@string/menuItem_history">
+        </item>
+    </group>
+
+    <group android:id="@+id/nav_group2">
+        <item
+            android:id="@+id/nav_options"
+            android:icon="@mipmap/ic_settings"
+            android:gravity="center"
+            android:title="@string/menuItem_options">
+        </item>
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@mipmap/ic_thermometer"
+            android:gravity="center"
+            android:title="@string/menuItem_logout">
+        </item>
+    </group>
+
 
 </menu>

@@ -9,7 +9,6 @@ import com.example.dunger.weatherappandroidclient.Models.IWeatherService;
  */
 
 public class WeatherFactoryService {
-
     public static IWeatherService createService(final String service, final Activity activity) {
         switch (service) {
             case "Apixu":

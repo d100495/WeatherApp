@@ -1,4 +1,8 @@
 <resources>
+    <string name="APIoption_Apixu">Apixu</string>
+    <string name="APIoption_OpenWeather">OpenWeather</string>
+    <!--DO NOT EDIT ABOVE THIS LINE!-->
+
     <string name="app_name">WeatherApp</string>
     <string name="hint_username">Username</string>
     <string name="hint_password">Password</string>
@@ -6,14 +10,32 @@
     <string name="menuItem_mobile">Mobile</string>
     <string name="menuItem_desktop">Desktop</string>
     <string name="logginsuccess_notification">Logged in!</string>
-    <string name="logginerror_notification">Error: Incorrect username or password</string>
+    <string name="logginerror_notification">Login error.</string>
     <string name="navbar_open">Open</string>
     <string name="navbar_close">Close</string>
+
     <string name="currentWeatherLatitude">Latitude: </string>
     <string name="currentWeatherLongitude">Longitude: </string>
-    <string name="currentWeatherHumidity">Humidity</string>
-    <string name="currentWeatherTemperature">Temperature</string>
-    <string name="currentWeatherWindspeed">Wind speed</string>
-    <string name="currentWeatherClouds">Clouds</string>
-    <string name="currentWeatherPressure">Pressure</string>
+    <string name="currentWeatherHumidity">Humidity [%]</string>
+    <string name="currentWeatherTemperature">Temperature [°C]</string>
+    <string name="currentWeatherWindspeed">Wind speed [km/h]</string>
+    <string name="currentWeatherClouds">Clouds [%]</string>
+    <string name="currentWeatherPressure">Pressure [mb]</string>
+
+    <string name="title_activity_maps">Map</string>
+    <string name="menuItem_options">Options</string>
+    <string name="GPSMissingPermissions_notification">GPS is not available!</string>
+
+    <string name="forecastWeatherButtonString">Forecast</string>
+    <string name="forecastUnit_Humidity">[%]</string>
+    <string name="forecastUnit_WindSpeed">[km/h]</string>
+    <string name="forecastUnit_Temperature">[°C]</string>
+    <string name="menuItem_favorites">Favorites</string>
+
+    <string name="deletedFavoriteStation_notification">Station removed!</string>
+    <string name="currentWeatherWindChill">Wind Chill:</string>
+    <string name="menuItem_history">History</string>
+
+    <string name="addedFavoriteStation_notification">Station added!</string>
+    <string name="menuItem_logout">Logout</string>
 </resources>
