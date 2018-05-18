@@ -26,6 +26,7 @@ public class OptionsActivity extends AppCompatActivity {
     List<ImageView> APIs;
     ImageView imageViewOpenWeatherMap;
     ImageView imageViewApixu;
+    ImageView imageViewInfomet;
 
     public static boolean SaveChosenAPIoptionInMemory(String API) {
         SharedPreferences.Editor editor = optionsActivity.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE).edit();
@@ -46,6 +47,7 @@ public class OptionsActivity extends AppCompatActivity {
     private void initViews() {
         imageViewApixu = findViewById(R.id.imageViewApixu);
         imageViewOpenWeatherMap = findViewById(R.id.imageViewOpenWeatherMap);
+        imageViewInfomet = findViewById(R.id.imageViewInfomet);
     }
 
     @Override
@@ -59,6 +61,7 @@ public class OptionsActivity extends AppCompatActivity {
         APIs = new ArrayList<>();
         APIs.add(imageViewApixu);
         APIs.add(imageViewOpenWeatherMap);
+        APIs.add(imageViewInfomet);
         //Add more ImageViews here
 
         SetAlphaAndImageViewOnClickListeners(APIs);

@@ -1,6 +1,7 @@
 <resources>
     <string name="APIoption_Apixu">Apixu</string>
     <string name="APIoption_OpenWeather">OpenWeather</string>
+    <string name="APIoption_Infomet">Infomet</string>
     <!--DO NOT EDIT ABOVE THIS LINE!-->
 
     <string name="app_name">WeatherApp</string>
