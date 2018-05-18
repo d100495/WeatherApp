@@ -18,7 +18,5 @@ public class WeatherFactoryService {
             default:
                 return new WeatherServiceApixu(activity);
         }
-
-
     }
 }
