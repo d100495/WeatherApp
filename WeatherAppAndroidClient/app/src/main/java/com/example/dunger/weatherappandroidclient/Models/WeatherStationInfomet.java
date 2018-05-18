@@ -3,6 +3,8 @@ package com.example.dunger.weatherappandroidclient.Models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Random;
+
 /**
  * Created by Dunger on 2018-05-18.
  */
@@ -64,7 +66,9 @@ public class WeatherStationInfomet implements IWeatherStation {
             return Double.parseDouble(longitude);
         } else {
             //TODO Geocoding
-            return 0;
+            Random r = new Random();
+            double randomValue = 0 + (10 - 0) * r.nextDouble();
+            return randomValue;
         }
     }
 
@@ -77,7 +81,9 @@ public class WeatherStationInfomet implements IWeatherStation {
             return Double.parseDouble(latitude);
         } else {
             //TODO Geocoding
-            return 0;
+            Random r = new Random();
+            double randomValue = 0 + (10 - 0) * r.nextDouble();
+            return randomValue;
         }
     }
 

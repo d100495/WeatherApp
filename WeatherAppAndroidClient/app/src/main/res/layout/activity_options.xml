@@ -13,6 +13,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:gravity="center"
+            android:layout_gravity="center"
             android:orientation="vertical"
             android:layout_height="wrap_content">
 
@@ -24,17 +25,17 @@
                android:layout_height="@dimen/optionsLogoHeight" />
 
             <ImageView
-                android:id="@+id/imageViewApixu"
-                android:tag="@string/APIoption_Apixu"
-                android:layout_width="@dimen/optionsLogoWidth"
-                android:src="@drawable/apixu_logo_black"
-                android:layout_height="@dimen/optionsLogoHeight" />
-
-            <ImageView
                 android:id="@+id/imageViewInfomet"
                 android:tag="@string/APIoption_Infomet"
                 android:layout_width="@dimen/optionsLogoWidth"
                 android:src="@drawable/infomet_logo"
+                android:layout_height="@dimen/optionsLogoHeight" />
+
+            <ImageView
+                android:id="@+id/imageViewApixu"
+                android:tag="@string/APIoption_Apixu"
+                android:layout_width="@dimen/optionsLogoWidth"
+                android:src="@drawable/apixu_logo_black"
                 android:layout_height="@dimen/optionsLogoHeight" />
 
         </LinearLayout>

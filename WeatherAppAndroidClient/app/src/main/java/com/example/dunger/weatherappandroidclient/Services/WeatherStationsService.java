@@ -39,7 +39,7 @@ public class WeatherStationsService {
         this.activity = activity;
     }
 
-    private IWeatherStation[] ConvertResponseWithWeatherStations(String APIforStations,String response) {
+    private IWeatherStation[] ConvertResponseWithWeatherStations(String APIforStations, String response) {
         switch (APIforStations) {
             case "Infomet":
                 return new Gson().fromJson(response, WeatherStationInfomet[].class);
@@ -57,6 +57,48 @@ public class WeatherStationsService {
         }
     }
 
+    private void GetLatLonForIncompleteStations(final IWeatherStation[] stationsArr) {
+        final IWeatherStation[] validStations = new IWeatherStation[stationsArr.length];
+        int counter = 0;
+        int nullCounter = 0;
+        for (final IWeatherStation ws : stationsArr) {
+            if (ws != null) {
+                String city = ws.getCityName();
+                String url = "http://maps.googleapis.com/maps/api/geocode/json?address=" + city + "&sensor=false";
+                final int finalCounter = counter;
+                final int finalNullCounter = nullCounter;
+                stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.i(TAG, "ResponseWeatherStations: " + response.toString());
+                        validStations[finalCounter] = ws;
+                        if (finalCounter == stationsArr.length - (finalNullCounter + 2)) {
+                            MapsActivity.getInstance().PopulateMapWithWeatherStations(validStations);
+                        }
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.i(TAG, "CONNECTION Error: " + error.toString());
+                    }
+                })
+
+                {
+                    @Override
+                    public Map<String, String> getHeaders() throws AuthFailureError {
+                        Map<String, String> params = new HashMap<String, String>();
+                        params.put("Authorization", GetToken().getToken_type() + " " + GetToken().getAccess_token());
+                        return params;
+                    }
+                };
+                RequestQueueSingleton.getInstance(activity).addToRequestQueue(stringRequest);
+                counter++;
+            } else {
+                nullCounter++;
+            }
+        }
+    }
+
     public void GetWeatherStations() {
         final String chosenAPI = GetChosenAPI(activity);
         String url = GetURL(chosenAPI);
@@ -64,16 +106,7 @@ public class WeatherStationsService {
         stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.i(TAG, "ResponseWeatherStations: " + response.toString());
-                stations = ConvertResponseWithWeatherStations(chosenAPI,response);
-                Log.i(TAG, "ConvertedWeatherStations: ");
-                for(IWeatherStation x : stations)
-                {
-                    if(x!=null)
-                    {
-                        Log.i(TAG, x.getCityName() + "Lat " + x.getLatitude() + " Lon "+x.getLongitude());
-                    }
-                }
+                stations = ConvertResponseWithWeatherStations(chosenAPI, response);
                 MapsActivity.getInstance().PopulateMapWithWeatherStations(stations);
             }
         }, new Response.ErrorListener() {

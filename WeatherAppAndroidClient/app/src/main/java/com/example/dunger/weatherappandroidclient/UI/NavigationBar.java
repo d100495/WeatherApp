@@ -47,10 +47,6 @@ public class NavigationBar {
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
-                        // set item as selected to persist highlight
-                        menuItem.setChecked(true);
-                        // close drawer when item is tapped
-                        drawerLayout.closeDrawers();
 
                         if (actionBarDrawerToggle.onOptionsItemSelected(menuItem)) {
                             return true;
@@ -74,7 +70,7 @@ public class NavigationBar {
                             }
                         }
                         if (menuItem.getItemId() == R.id.nav_history) {
-                            if (!(activity.getClass() == OptionsActivity.class)) {
+                            if (!(activity.getClass() == HistoryActivity.class)) {
                                 Intent intent = new Intent(activity.getApplicationContext(), HistoryActivity.class);
                                 activity.startActivity(intent);
                             }
@@ -91,6 +87,8 @@ public class NavigationBar {
                         } else {
                             drawerLayout.openDrawer(GravityCompat.START);  // OPEN DRAWER
                         }
+                        // close drawer when item is tapped
+                        drawerLayout.closeDrawers();
                         return true;
                     }
                 });
