@@ -87,6 +87,16 @@ public class WeatherStationInfomet implements IWeatherStation {
         }
     }
 
+    @Override
+    public void setLatitude(double latitude) {
+        this.latitude=String.valueOf(latitude);
+    }
+
+    @Override
+    public void setLongitude(double longitude) {
+        this.longitude=String.valueOf(longitude);
+    }
+
     public void setLatitude(String latitude) {
         this.latitude = latitude;
     }

@@ -41,7 +41,7 @@ public class WeatherServiceOpenWeatherMap implements IWeatherService {
     }
 
     @Override
-    public void GetCurrentWeather(String city) {
+    public void GetCurrentWeather(String city,float latitude, float longitude) {
         String url = "http://api.openweathermap.org/data/2.5/weather?q="+city+"&units=metric$"+openWeatherAPIkey;
 
         stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {

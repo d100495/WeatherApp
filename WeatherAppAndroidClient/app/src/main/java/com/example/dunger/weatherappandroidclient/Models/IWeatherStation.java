@@ -8,4 +8,7 @@ public interface IWeatherStation {
     String getCityName();
     double getLongitude();
     double getLatitude();
+    void setLatitude(double latitude);
+    void setLongitude(double longitude);
+    String getID();
 }

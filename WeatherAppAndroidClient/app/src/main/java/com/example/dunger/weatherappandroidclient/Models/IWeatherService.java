@@ -5,6 +5,6 @@ package com.example.dunger.weatherappandroidclient.Models;
  */
 
 public interface IWeatherService {
-    void GetCurrentWeather(String city);
+    void GetCurrentWeather(String city,float latitude, float longitude);
     void GetForecastWeather(String city);
 }

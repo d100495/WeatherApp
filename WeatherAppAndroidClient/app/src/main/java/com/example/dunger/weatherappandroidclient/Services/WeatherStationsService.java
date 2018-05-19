@@ -9,6 +9,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.dunger.weatherappandroidclient.MapsActivity;
+import com.example.dunger.weatherappandroidclient.Models.GoogleAPIsGeocode;
 import com.example.dunger.weatherappandroidclient.Models.IWeatherStation;
 import com.example.dunger.weatherappandroidclient.Models.WeatherStation;
 import com.example.dunger.weatherappandroidclient.Models.WeatherStationInfomet;
@@ -57,13 +58,14 @@ public class WeatherStationsService {
         }
     }
 
+    //TODO use this for Infomet stations
     private void GetLatLonForIncompleteStations(final IWeatherStation[] stationsArr) {
         final IWeatherStation[] validStations = new IWeatherStation[stationsArr.length];
         int counter = 0;
         int nullCounter = 0;
-        for (final IWeatherStation ws : stationsArr) {
-            if (ws != null) {
-                String city = ws.getCityName();
+        for (final IWeatherStation weatherStation : stationsArr) {
+            if (weatherStation != null) {
+                String city = weatherStation.getCityName();
                 String url = "http://maps.googleapis.com/maps/api/geocode/json?address=" + city + "&sensor=false";
                 final int finalCounter = counter;
                 final int finalNullCounter = nullCounter;
@@ -71,7 +73,15 @@ public class WeatherStationsService {
                     @Override
                     public void onResponse(String response) {
                         Log.i(TAG, "ResponseWeatherStations: " + response.toString());
-                        validStations[finalCounter] = ws;
+
+                        GoogleAPIsGeocode googleAPIsGeocode = new Gson().fromJson(response.toString(), GoogleAPIsGeocode.class);
+                        GoogleAPIsGeocode.Result result = googleAPIsGeocode.getResults().get(0);
+                        GoogleAPIsGeocode.Result.Geometry geometry = result.getGeometry();
+
+                        weatherStation.setLatitude(geometry.getLocation().getLat());
+                        weatherStation.setLongitude(geometry.getLocation().getLng());
+
+                        validStations[finalCounter] = weatherStation;
                         if (finalCounter == stationsArr.length - (finalNullCounter + 2)) {
                             MapsActivity.getInstance().PopulateMapWithWeatherStations(validStations);
                         }
@@ -81,16 +91,7 @@ public class WeatherStationsService {
                     public void onErrorResponse(VolleyError error) {
                         Log.i(TAG, "CONNECTION Error: " + error.toString());
                     }
-                })
-
-                {
-                    @Override
-                    public Map<String, String> getHeaders() throws AuthFailureError {
-                        Map<String, String> params = new HashMap<String, String>();
-                        params.put("Authorization", GetToken().getToken_type() + " " + GetToken().getAccess_token());
-                        return params;
-                    }
-                };
+                });
                 RequestQueueSingleton.getInstance(activity).addToRequestQueue(stringRequest);
                 counter++;
             } else {
@@ -114,9 +115,7 @@ public class WeatherStationsService {
             public void onErrorResponse(VolleyError error) {
                 Log.i(TAG, "CONNECTION Error: " + error.toString());
             }
-        })
-
-        {
+        }) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();

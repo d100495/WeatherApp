@@ -68,6 +68,11 @@ public class WeatherStation implements IWeatherStation {
         return latitude;
     }
 
+    @Override
+    public String getID() {
+        return null;
+    }
+
     public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
