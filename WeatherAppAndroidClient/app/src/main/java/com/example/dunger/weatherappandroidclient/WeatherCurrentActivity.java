@@ -1,10 +1,12 @@
 package com.example.dunger.weatherappandroidclient;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,6 +19,7 @@ import com.example.dunger.weatherappandroidclient.Models.IWeatherService;
 import com.example.dunger.weatherappandroidclient.Models.WeatherStation;
 import com.example.dunger.weatherappandroidclient.Services.FavoritesService;
 import com.example.dunger.weatherappandroidclient.Services.WeatherFactoryService;
+import com.example.dunger.weatherappandroidclient.Services.WeatherServiceInfomet;
 import com.example.dunger.weatherappandroidclient.UI.NavigationBar;
 import com.squareup.picasso.Picasso;
 
@@ -44,6 +47,7 @@ public class WeatherCurrentActivity extends AppCompatActivity {
     Button showForecastWeatherButton;
     Button showMapButton;
     FloatingActionButton addToFavoritesButton;
+    FloatingActionButton showAlertsButton;
 
     public static WeatherCurrentActivity getInstance() {
         return weatherCurrentActivity;
@@ -64,6 +68,7 @@ public class WeatherCurrentActivity extends AppCompatActivity {
         showForecastWeatherButton = findViewById(R.id.showForecastWeatherButton);
         showMapButton = findViewById(R.id.showMapButton);
         addToFavoritesButton = findViewById(R.id.addToFavoritesButton);
+        showAlertsButton=findViewById(R.id.showAlertsButton);
     }
 
 
@@ -116,6 +121,14 @@ public class WeatherCurrentActivity extends AppCompatActivity {
                 favoritesService.AddToFavorites(weatherStation);
             }
         });
+
+        if(GetChosenAPI(weatherCurrentActivity).equals(getString(R.string.APIoption_Infomet))){
+            showAlertsButton.setVisibility(View.VISIBLE);
+            WeatherServiceInfomet weatherServiceInfomet = new WeatherServiceInfomet(weatherCurrentActivity);
+            weatherServiceInfomet.SetButtonForGettingAlerts(intent.getStringExtra("station"),showAlertsButton);
+        }else {
+            showAlertsButton.setVisibility(View.GONE);
+        }
 
     }//onCreate()
 
