@@ -23,6 +23,8 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 
+import static com.example.dunger.weatherappandroidclient.OptionsActivity.GetChosenAPI;
+
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     //Debug variables
@@ -69,7 +71,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onInfoWindowClick(Marker marker) {
                 Intent intent = new Intent(getApplicationContext(), WeatherCurrentActivity.class);
-                intent.putExtra("station", marker.getTitle());
+                if (GetChosenAPI(mapsActivity).equals("Infomet")) {
+                    intent.putExtra("station", marker.getSnippet());
+                } else {
+                    intent.putExtra("station", marker.getTitle());
+                }
                 intent.putExtra("lat", marker.getPosition().latitude);
                 intent.putExtra("lon", marker.getPosition().longitude);
                 startActivity(intent);
@@ -83,12 +89,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         if (stations != null) {
             for (IWeatherStation x : stations) {
                 if (x != null) {
-                    Marker marker = mMap.addMarker(
-                            new MarkerOptions()
-                                    .position(new LatLng(x.getLatitude(), x.getLongitude()))
-                                    .title(x.getCityName())
-                                    .snippet(getResources().getString(R.string.currentWeatherLatitude) + x.getLatitude() + " | " + getResources().getString(R.string.currentWeatherLongitude) + x.getLongitude())
-                    );
+                    if (GetChosenAPI(mapsActivity).equals("Infomet")) {
+                        Marker marker = mMap.addMarker(
+                                new MarkerOptions()
+                                        .position(new LatLng(x.getLatitude(), x.getLongitude()))
+                                        .title(x.getCityName())
+                                        .snippet(x.getID())
+                        );
+                    } else {
+                        Marker marker = mMap.addMarker(
+                                new MarkerOptions()
+                                        .position(new LatLng(x.getLatitude(), x.getLongitude()))
+                                        .title(x.getCityName())
+                                        .snippet(getResources().getString(R.string.currentWeatherLatitude) + x.getLatitude() + " | " + getResources().getString(R.string.currentWeatherLongitude) + x.getLongitude())
+                        );
+                    }
                 }
             }
 

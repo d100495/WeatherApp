@@ -12,14 +12,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.dunger.weatherappandroidclient.Models.IWeatherService;
 import com.example.dunger.weatherappandroidclient.Models.WeatherStation;
 import com.example.dunger.weatherappandroidclient.Services.FavoritesService;
 import com.example.dunger.weatherappandroidclient.Services.WeatherFactoryService;
 import com.example.dunger.weatherappandroidclient.UI.NavigationBar;
-import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
 import static com.example.dunger.weatherappandroidclient.OptionsActivity.GetChosenAPI;
@@ -65,15 +63,9 @@ public class WeatherCurrentActivity extends AppCompatActivity {
         currentLinearLayoutTemperature = findViewById(R.id.currentLinearLayoutTemperature);
         showForecastWeatherButton = findViewById(R.id.showForecastWeatherButton);
         showMapButton = findViewById(R.id.showMapButton);
-        addToFavoritesButton=findViewById(R.id.addToFavoritesButton);
+        addToFavoritesButton = findViewById(R.id.addToFavoritesButton);
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        weatherService = WeatherFactoryService.createService(GetChosenAPI(this), WeatherCurrentActivity.this);
-        weatherService.GetCurrentWeather(intent.getStringExtra("station"));
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,7 +82,7 @@ public class WeatherCurrentActivity extends AppCompatActivity {
         intent = getIntent();
 
         weatherService = WeatherFactoryService.createService(GetChosenAPI(this), WeatherCurrentActivity.this);
-        weatherService.GetCurrentWeather(intent.getStringExtra("station"));
+        weatherService.GetCurrentWeather(intent.getStringExtra("station"), (float) intent.getDoubleExtra("lat", 0), (float) intent.getDoubleExtra("lon", 0));
 
         showForecastWeatherButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,11 +106,11 @@ public class WeatherCurrentActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 WeatherStation weatherStation = new WeatherStation(
-                                1,
-                                intent.getStringExtra("station"),
-                                intent.getDoubleExtra("lon",50),
-                                intent.getDoubleExtra("lat",50)
-                        );
+                        1,
+                        intent.getStringExtra("station"),
+                        intent.getDoubleExtra("lon", 50),
+                        intent.getDoubleExtra("lat", 50)
+                );
 
                 FavoritesService favoritesService = new FavoritesService(weatherCurrentActivity);
                 favoritesService.AddToFavorites(weatherStation);

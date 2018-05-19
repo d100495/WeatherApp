@@ -15,6 +15,8 @@ public class WeatherFactoryService {
                 return new WeatherServiceApixu(activity);
             case "OpenWeather":
                 return new WeatherServiceOpenWeatherMap(activity);
+//            case "Infomet":
+//                return new WeatherServiceInfomet(activity);
             default:
                 return new WeatherServiceApixu(activity);
         }

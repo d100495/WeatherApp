@@ -38,7 +38,7 @@ public class WeatherServiceApixu implements IWeatherService {
 
     //TODO Implementing RxJava
     @Override
-    public void GetCurrentWeather(String city) {
+    public void GetCurrentWeather(String city,float latitude, float longitude) {
 
         String url = "http://api.apixu.com/v1/current.json?key=" + apixuAPIKey + "&q=" + city;
 
