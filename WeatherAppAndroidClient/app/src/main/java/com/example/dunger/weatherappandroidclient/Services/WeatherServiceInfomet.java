@@ -2,11 +2,11 @@ package com.example.dunger.weatherappandroidclient.Services;
 
 import android.app.Activity;
 import android.content.DialogInterface;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -83,26 +83,29 @@ public class WeatherServiceInfomet implements IWeatherService {
     @Override
     public void GetCurrentWeather(String stationId, final float latitude, final float longitude) {
         String url = "http://infomet.nazwa.pl/data/values.php?stationid=" + stationId;
-
         stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Log.i(TAG, "GetCurrentWeather INFOMET RESPONSE: " + response.toString());
+                try {
+                    CurrentWeatherInfomet currentWeatherInfomet = new Gson().fromJson(response.toString(), CurrentWeatherInfomet.class);
 
-                CurrentWeatherInfomet currentWeatherInfomet = new Gson().fromJson(response.toString(), CurrentWeatherInfomet.class);
-
-                WeatherCurrentActivity.getInstance().SetViewElementsValues(
-                        "android.resource://com.example.dunger.weatherappandroidclient/" + R.mipmap.ic_weather_partlycloudy,
-                        currentWeatherInfomet.getPlace(),
-                        latitude,
-                        longitude,
-                        Float.parseFloat(currentWeatherInfomet.getInHum()),
-                        Float.parseFloat(currentWeatherInfomet.getTempOut()),
-                        Float.parseFloat(currentWeatherInfomet.getWindSpeed()),
-                        Float.parseFloat(currentWeatherInfomet.getInAirDencity()),
-                        Float.parseFloat(currentWeatherInfomet.getBar()),
-                        currentWeatherInfomet.getDt()
-                );
+                    WeatherCurrentActivity.getInstance().SetViewElementsValues(
+                            "android.resource://com.example.dunger.weatherappandroidclient/" + R.mipmap.ic_weather_partlycloudy,
+                            currentWeatherInfomet.getPlace(),
+                            latitude,
+                            longitude,
+                            Float.parseFloat(currentWeatherInfomet.getInHum()),
+                            Float.parseFloat(currentWeatherInfomet.getTempOut()),
+                            Float.parseFloat(currentWeatherInfomet.getWindSpeed()),
+                            Float.parseFloat(currentWeatherInfomet.getInAirDencity()),
+                            Float.parseFloat(currentWeatherInfomet.getBar()),
+                            currentWeatherInfomet.getDt()
+                    );
+                } catch (Exception e) {
+                    Toast.makeText(activity.getApplicationContext(),
+                            activity.getString(R.string.stationError_notification), Toast.LENGTH_SHORT).show();
+                }
             }
         }, new Response.ErrorListener() {
             @Override
