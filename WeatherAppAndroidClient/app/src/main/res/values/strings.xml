@@ -39,4 +39,5 @@
 
     <string name="addedFavoriteStation_notification">Station added!</string>
     <string name="menuItem_logout">Logout</string>
+    <string name="stationError_notification">Station is not available</string>
 </resources>
