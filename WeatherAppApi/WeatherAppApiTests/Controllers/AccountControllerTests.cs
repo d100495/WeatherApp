@@ -1,14 +1,8 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using WeatherAppApi.Controllers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using System.Threading.Tasks;
 using System.Web.Http.Results;
-using Microsoft.AspNet.Identity;
-using Moq;
-using WeatherAppApi.App_Start;
 using WeatherAppApi.Interfaces;
 using WeatherAppApi.Models;
 

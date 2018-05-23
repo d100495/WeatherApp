@@ -3,8 +3,11 @@ using WeatherAppApi.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Http;
+using System.Web.Http.Hosting;
 using System.Web.Http.Routing;
 using System.Web.Routing;
 using Moq;
@@ -21,14 +24,26 @@ namespace WeatherAppApi.Services.Tests
     public class PaginationServiceTests
     {
         private Mock<IPagination<WeatherHistory>> pagination;
-        private Mock<IPageLinkFactory> pageLinkFactory;
+        private Mock<IPageLinkBuilderFactory> pageLinkFactory;
         private PaginationService<WeatherHistory> paginationService;
+        private UrlHelper urlHelper;
 
         [TestInitialize]
         public void Startup()
         {
-            pageLinkFactory = new Mock<IPageLinkFactory>();
+            pageLinkFactory = new Mock<IPageLinkBuilderFactory>();
             pagination = new Mock<IPagination<WeatherHistory>>();
+
+            var routeCollection = new HttpRouteCollection();
+            routeCollection.MapHttpRoute("GetWeatherByUserId", "GetWeatherByUserId");
+            var configuration = new HttpConfiguration(routeCollection);
+            configuration.EnsureInitialized();
+            var httpRequestMessage = 
+                new HttpRequestMessage(HttpMethod.Get, "http://localhost/");
+            httpRequestMessage
+                .Properties
+                .Add(HttpPropertyKeys.HttpConfigurationKey, configuration);
+            urlHelper = new UrlHelper(httpRequestMessage);
         }
 
 

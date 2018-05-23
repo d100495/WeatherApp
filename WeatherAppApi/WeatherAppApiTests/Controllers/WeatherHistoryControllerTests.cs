@@ -1,33 +1,28 @@
-﻿using System;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
+using System;
 using System.Collections.Generic;
-using System.Net;
 using System.Security.Claims;
 using System.Security.Principal;
 using System.Threading.Tasks;
-using System.Web.Http;
 using System.Web.Http.Results;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
 using WeatherAppApi.App_Start;
-using WeatherAppApi.Controllers;
-using WeatherAppApi.Interfaces;
 using WeatherAppApi.Models;
-using WeatherAppApi.Models.Pagination;
 using WeatherAppApi.Services;
 
-namespace WeatherAppApiTests.Controllers
+namespace WeatherAppApi.Controllers.Tests
 {
     [TestClass]
     public class WeatherHistoryControllerTests
     {
-    
+
         private Mock<IWeatherHistoryService> _weatherHistoryServiceMock { get; set; }
         private WeatherHistoryController _weatherController;
 
         [TestInitialize]
         public void Setup()
         {
-            _weatherHistoryServiceMock  = new Mock<IWeatherHistoryService>();
+            _weatherHistoryServiceMock = new Mock<IWeatherHistoryService>();
             _weatherController = new WeatherHistoryController(_weatherHistoryServiceMock.Object);
         }
 
@@ -112,5 +107,5 @@ namespace WeatherAppApiTests.Controllers
     }
 
 
-    
+
 }

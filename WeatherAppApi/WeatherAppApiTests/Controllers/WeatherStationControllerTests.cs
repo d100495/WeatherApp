@@ -1,12 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using WeatherAppApi.Controllers;
-using System;
+using Moq;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http.Results;
-using Moq;
 using WeatherAppApi.Interfaces;
 using WeatherAppApi.Models;
 
@@ -47,7 +43,7 @@ namespace WeatherAppApi.Controllers.Tests
             _weatherStationRepositoryMock.Setup(x => x.GetAll()).ReturnsAsync(_list);
 
             var actionResult = await WeatherStationController.GetAll();
-            var contentResult =  actionResult as OkNegotiatedContentResult<IEnumerable<WeatherStation>>;
+            var contentResult = actionResult as OkNegotiatedContentResult<IEnumerable<WeatherStation>>;
 
             Assert.IsNotNull(actionResult);
             Assert.IsNotNull(contentResult);
