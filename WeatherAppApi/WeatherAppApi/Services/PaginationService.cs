@@ -22,10 +22,10 @@ namespace WeatherAppApi.Services
             return await pagination.TotalNumberOfRecords();
         }
 
-        public async Task<PaginationModel<T>> GetPageLinks(UrlHelper urlHelper, IEnumerable<T> data, int pageNo = 1, int pageSize = 50)
+        public async Task<PaginationModel<T>> GetPageLinks(UrlHelper urlHelper, IEnumerable<T> data, string routeName, int pageNo = 1, int pageSize = 50)
         {
             var total = await TotalPages();
-            var linkBuilder = pageLinkFactory.Create(urlHelper, "GetWeatherByUserId", null, pageNo, pageSize,
+            var linkBuilder = pageLinkFactory.Create(urlHelper, routeName, null, pageNo, pageSize,
                 total);
             return new PaginationModel<T>()
             {
