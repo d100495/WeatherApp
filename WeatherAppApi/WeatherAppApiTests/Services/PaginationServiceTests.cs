@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http.Routing;
+using System.Web.Routing;
 using Moq;
 using Ninject;
 using Ninject.Extensions.Factory;
@@ -20,7 +21,7 @@ namespace WeatherAppApi.Services.Tests
     public class PaginationServiceTests
     {
         private Mock<IPagination<WeatherHistory>> pagination;
-         private Mock<IPageLinkFactory> pageLinkFactory;
+        private Mock<IPageLinkFactory> pageLinkFactory;
         private PaginationService<WeatherHistory> paginationService;
 
         [TestInitialize]
@@ -53,6 +54,5 @@ namespace WeatherAppApi.Services.Tests
             Assert.AreEqual(expected, result);
         }
 
-       
     }
 }

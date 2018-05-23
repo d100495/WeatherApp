@@ -21,7 +21,7 @@ namespace WeatherAppApi.Controllers
         public async Task<IHttpActionResult> AddToFavorite(WeatherStation model)
         {
             var id = authRepository.GetUserId();
-            if (!ModelState.IsValid)
+            if (model == null)
             {
                 return BadRequest("model cannot be null");
             }
@@ -42,21 +42,13 @@ namespace WeatherAppApi.Controllers
             return Ok(items);
         }
 
-        [HttpGet]
-        public async Task<IHttpActionResult> GetAll()
-        {
-            var items = await favoriteRepository.GetAll();
-            return Ok(items);
-        }
-
-
         [HttpDelete]
         [Authorize]
         public async Task<IHttpActionResult> DeleteById(int id)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest("weather station id cannot be null");
+                return BadRequest();
             }
             var userId = authRepository.GetUserId();
             await favoriteRepository.Delete(id, userId);

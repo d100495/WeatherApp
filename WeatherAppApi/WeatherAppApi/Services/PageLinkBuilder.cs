@@ -2,7 +2,7 @@
 using System.Web.Http.Routing;
 using WeatherAppApi.Interfaces;
 
-namespace WeatherAppApi.Models.Pagination
+namespace WeatherAppApi.Services
 {
     public class PageLinkBuilder : IPageLinkBuilder
     {

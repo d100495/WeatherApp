@@ -83,6 +83,7 @@
     <Compile Include="Controllers\AccountControllerTests.cs" />
     <Compile Include="Controllers\FavoriteControllerTests.cs" />
     <Compile Include="Controllers\WeatherHistoryControllerTests.cs" />
+    <Compile Include="Controllers\WeatherStationControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\PaginationServiceTests.cs" />
   </ItemGroup>
@@ -99,9 +100,7 @@
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

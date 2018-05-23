@@ -99,6 +99,7 @@ namespace WeatherAppApiTests.Controllers
             var identity = new ClaimsIdentity(claims);
             IPrincipal user = new ClaimsPrincipal(identity);
             _weatherController.User = user;
+
             _weatherHistoryServiceMock.Setup(x => x.GetAllWeatherHistoryByUserId()).ReturnsAsync(list);
             var actionResult = await _weatherController.GetAllWeatherHistoryByUserId();
             var contentResult = actionResult as OkNegotiatedContentResult<IEnumerable<WeatherHistory>>;
