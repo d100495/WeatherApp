@@ -26,6 +26,7 @@ namespace WeatherAppApi
         {
             DynamicModuleUtility.RegisterModule(typeof(OnePerRequestHttpModule));
             DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
+
             bootstrapper.Initialize(CreateKernel);
         }
 
@@ -48,13 +49,13 @@ namespace WeatherAppApi
             System.Web.Http.GlobalConfiguration.Configuration.DependencyResolver = new Ninject.WebApi.DependencyResolver.NinjectDependencyResolver(kernel);
             GlobalConfiguration.Configuration.UseNinjectActivator(kernel);
 
-            kernel.Bind<IWeatherHistoryRepository>().To<WeatherHistoryRepository>().InSingletonScope();
-            kernel.Bind<IAuthRepository>().To<AuthRepository>();
-            kernel.Bind<IFavoriteRepository>().To<FavoriteRepository>();
+            kernel.Bind<IWeatherHistoryRepository>().To<WeatherHistoryRepository>().InRequestScope();
+            kernel.Bind<IAuthRepository>().To<AuthRepository>().InRequestScope();
+            kernel.Bind<IFavoriteRepository>().To<FavoriteRepository>().InRequestScope();
+            kernel.Bind<IWeatherStationRepository>().To<WeatherStationRepository>().InRequestScope();
             kernel.Bind<IFavoritesService>().To<FavoritesService>();
-            kernel.Bind<IWeatherStationRepository>().To<WeatherStationRepository>();
             kernel.Bind(typeof(IPaginationService<>)).To(typeof(PaginationService<>));
-            kernel.Bind<IPagination<WeatherHistory>>().To<WeatherHistoryRepository>().InSingletonScope();
+            kernel.Bind<IPagination<WeatherHistory>>().To<WeatherHistoryRepository>();
             kernel.Bind<IPageLinkBuilder>().To<PageLinkBuilder>();
             kernel.Bind<IPageLinkBuilderFactory>().ToFactory();
             kernel.Bind<IWeatherHistoryService>().To<WeatherHistoryService>();
