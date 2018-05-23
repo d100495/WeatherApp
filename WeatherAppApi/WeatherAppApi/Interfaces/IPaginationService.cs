@@ -9,6 +9,6 @@ namespace WeatherAppApi.Interfaces
     public interface IPaginationService<T> where T : class
     {
         Task<int> TotalPages();
-        Task<PaginationModel<T>> GetPageLinks(UrlHelper urlHelper,  IEnumerable<T> data,int pageNo = 1, int pageSize = 50);
+        Task<PaginationModel<T>> GetPageLinks(UrlHelper urlHelper,  IEnumerable<T> data, string routeName, int pageNo = 1, int pageSize = 50);
     }
 }

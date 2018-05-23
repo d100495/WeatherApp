@@ -11,7 +11,7 @@ namespace WeatherAppApi.Services
         Task AddHistory(Weather model);
         Task<IEnumerable<WeatherHistory>> GetAllWeatherHistoryByUserId();
 
-        Task<PaginationModel<WeatherHistory>> GetPagedWeatherHistoryByUserId(UrlHelper url, int pageNo = 1,
+        Task<PaginationModel<WeatherHistory>> GetPagedWeatherHistoryByUserId(UrlHelper url, string routeName, int pageNo = 1,
             int pageSize = 50);
     }
 }

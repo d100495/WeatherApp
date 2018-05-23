@@ -41,7 +41,7 @@ namespace WeatherAppApi.Controllers
         [Route("api/weatherhistory/GetPagedWeatherHistoryByUserId", Name = "GetWeatherByUserId")]
         public async Task<IHttpActionResult> GetPagedWeatherHistoryByUserId(int pageNo = 1, int pageSize = 50)
         {
-            var model = await weatherHistoryService.GetPagedWeatherHistoryByUserId(Url, pageNo, pageSize);
+            var model = await weatherHistoryService.GetPagedWeatherHistoryByUserId(Url, "GetWeatherByUserId",pageNo, pageSize);
             return Ok(model);
         }
 

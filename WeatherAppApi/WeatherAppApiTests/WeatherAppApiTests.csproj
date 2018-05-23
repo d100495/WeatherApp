@@ -85,6 +85,7 @@
     <Compile Include="Controllers\WeatherHistoryControllerTests.cs" />
     <Compile Include="Controllers\WeatherStationControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\PageLinkBuilderTests.cs" />
     <Compile Include="Services\PaginationServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
