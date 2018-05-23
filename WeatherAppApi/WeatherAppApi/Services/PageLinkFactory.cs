@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Http.Routing;
-using Ninject;
-using Ninject.Parameters;
-using Ninject.Syntax;
+﻿using System.Web.Http.Routing;
 using WeatherAppApi.Interfaces;
 
-namespace WeatherAppApi.Models.Pagination
+namespace WeatherAppApi.Services
 {
-    public class PageLinkFactory : IPageLinkFactory
+    public class PageLinkFactory
     {
         private IPageLinkBuilderFactory _pageLinkBuilderFactory;
         public PageLinkFactory(IPageLinkBuilderFactory pageLinkBuilderFactory)

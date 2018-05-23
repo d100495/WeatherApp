@@ -9,9 +9,9 @@ namespace WeatherAppApi.Services
     public class PaginationService<T> : IPaginationService<T> where T : class
     {
         private IPagination<T> pagination;
-        private IPageLinkFactory pageLinkFactory;
+        private IPageLinkBuilderFactory pageLinkFactory;
 
-        public PaginationService(IPagination<T> _pagination, IPageLinkFactory _pageLinkFactory)
+        public PaginationService(IPagination<T> _pagination, IPageLinkBuilderFactory _pageLinkFactory)
         {
             pagination = _pagination;
             pageLinkFactory = _pageLinkFactory;
