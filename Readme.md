@@ -5,8 +5,8 @@ Aplikacja pogodowa, stworzona za pomocą ASP.NET Web Api 2 oraz Angular 5. Proje
 
 # Todo
 
- - Klient na telefony z systemem Android
- - Wizualizacja danych
+ - Klient na telefony z systemem Android ✔
+ - Wizualizacja danych ✔
  - Sprawdzenie prognozy pogody (Aplikacja obecnie ma możliwość sprawdzenia aktualnej pogody) ✔
  - Dodanie większej ilości API pogodowych ✔
 
