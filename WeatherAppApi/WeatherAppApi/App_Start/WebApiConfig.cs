@@ -3,6 +3,7 @@ using System.Linq;
 using System.Net.Http.Formatting;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using WeatherAppApi.Filters;
 
 namespace WeatherAppApi
 {
@@ -22,6 +23,9 @@ namespace WeatherAppApi
             
             var jsonFormatter = config.Formatters.OfType<JsonMediaTypeFormatter>().First();
             jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+
+            config.Filters.Add(
+                new ArgumentOutOfRangeFilter());
         }
 
     }

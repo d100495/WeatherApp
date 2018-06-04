@@ -223,6 +223,7 @@
     <Compile Include="Controllers\FavoriteController.cs" />
     <Compile Include="Controllers\WeatherHistoryController.cs" />
     <Compile Include="Controllers\WeatherStationController.cs" />
+    <Compile Include="Filters\ArgumentOutOfRangeFilter.cs" />
     <Compile Include="HangFireContext.cs" />
     <Compile Include="Interfaces\IFavoriteRepository.cs" />
     <Compile Include="Interfaces\IFavoritesService.cs" />
@@ -234,6 +235,9 @@
     <Compile Include="JsonDeserializeModels\WeatherJson.cs" />
     <Compile Include="Interfaces\IPageLinkBuilder.cs" />
     <Compile Include="Interfaces\IPageLinkBuilderFactory.cs" />
+    <Compile Include="Services\HttpService.cs" />
+    <Compile Include="Services\IHttpService.cs" />
+    <Compile Include="Services\IWeatherService.cs" />
     <Compile Include="Services\PageLinkBuilder.cs" />
     <Compile Include="Services\PageLinkFactory.cs" />
     <Compile Include="Models\Pagination\PageLinks.cs" />
@@ -255,6 +259,7 @@
     <Compile Include="Services\IWeatherHistoryService.cs" />
     <Compile Include="Services\PaginationService.cs" />
     <Compile Include="Services\WeatherHistoryService.cs" />
+    <Compile Include="Services\WeatherService.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
