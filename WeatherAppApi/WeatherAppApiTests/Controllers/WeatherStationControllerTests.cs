@@ -50,5 +50,6 @@ namespace WeatherAppApi.Controllers.Tests
             Assert.IsInstanceOfType(actionResult, typeof(OkNegotiatedContentResult<IEnumerable<WeatherStation>>));
             Assert.AreEqual(_list, contentResult.Content);
         }
+
     }
 }

@@ -18,12 +18,38 @@ namespace WeatherAppApi.Controllers.Tests
 
         private Mock<IWeatherHistoryService> _weatherHistoryServiceMock { get; set; }
         private WeatherHistoryController _weatherController;
-
+        private List<WeatherHistory> list { get; set; }
         [TestInitialize]
         public void Setup()
         {
             _weatherHistoryServiceMock = new Mock<IWeatherHistoryService>();
             _weatherController = new WeatherHistoryController(_weatherHistoryServiceMock.Object);
+
+            list = new List<WeatherHistory>
+            {
+                new WeatherHistory
+                {
+                    Latitude = 10,
+                    Longitude = 10,
+                    Date = new DateTime(2000, 10, 20),
+                    Id = "dsad",
+                    Temperature = 10,
+                    Pressure = 20,
+                    WindSpeed = 20,
+                    WindChill = 20
+                },
+                new WeatherHistory
+                {
+                    Latitude = 10,
+                    Longitude = 10,
+                    Date = new DateTime(2000, 10, 20),
+                    Id = "dsad",
+                    Temperature = 10,
+                    Pressure = 20,
+                    WindSpeed = 20,
+                    WindChill = 20
+                }
+            };
         }
 
         [TestMethod]
@@ -59,31 +85,7 @@ namespace WeatherAppApi.Controllers.Tests
         [TestMethod]
         public async Task GetWeatherByUserId_should_return_Ok()
         {
-            var list = new List<WeatherHistory>
-            {
-                new WeatherHistory
-                {
-                    Latitude = 10,
-                    Longitude = 10,
-                    Date = new DateTime(2000, 10, 20),
-                    Id = "dsad",
-                    Temperature = 10,
-                    Pressure = 20,
-                    WindSpeed = 20,
-                    WindChill = 20
-                },
-                new WeatherHistory
-                {
-                    Latitude = 10,
-                    Longitude = 10,
-                    Date = new DateTime(2000, 10, 20),
-                    Id = "dsad",
-                    Temperature = 10,
-                    Pressure = 20,
-                    WindSpeed = 20,
-                    WindChill = 20
-                }
-            };
+            
 
 
             var claims = new List<Claim>
@@ -104,6 +106,7 @@ namespace WeatherAppApi.Controllers.Tests
             Assert.IsInstanceOfType(actionResult, typeof(OkNegotiatedContentResult<IEnumerable<WeatherHistory>>));
             Assert.AreEqual(list, contentResult.Content);
         }
+
     }
 
 
