@@ -12,7 +12,7 @@ namespace WeatherAppApi
  
         }
 
-        public DbSet<WeatherHistory> WeatherHistory { get; set; }
+        public virtual DbSet<WeatherHistory> WeatherHistory { get; set; }
         public DbSet<WeatherStation> WeatherStation { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

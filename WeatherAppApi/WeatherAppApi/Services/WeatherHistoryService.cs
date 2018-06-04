@@ -40,6 +40,12 @@ namespace WeatherAppApi.Services
             return await weatherHistoryRepository.GetByUserId(id);
         }
 
+        public async Task<IEnumerable<WeatherHistory>> GetWeatherHistoryByDate(DateTime date)
+        {
+            var id = authRepository.GetUserId();
+            return await weatherHistoryRepository.GetByDate(id, date);
+        }
+
         public async Task<PaginationModel<WeatherHistory>> GetPagedWeatherHistoryByUserId(UrlHelper url, string routeName, int pageNo = 1, int pageSize = 50)
         {
             string id = authRepository.GetUserId();

@@ -52,5 +52,17 @@ namespace WeatherAppApi.Controllers
             var list = await weatherHistoryService.GetAllWeatherHistoryByUserId();
             return Ok(list);
         }
+
+        [HttpGet]
+        [Authorize]
+        public async Task<IHttpActionResult> GetWeatherHistoryByDate(DateTime date)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest("Wrong argument");
+            }
+            var list = await weatherHistoryService.GetWeatherHistoryByDate(date);
+            return Ok(date);
+        }
     }
 }

@@ -21,14 +21,24 @@ namespace WeatherAppApi.Repositories
 
         public async Task Add(WeatherHistory model)
         {
-           
             _context.WeatherHistory.Add(model);
             await Save();
+        }
+
+        public async Task<IEnumerable<WeatherHistory>> GetAll()
+        {
+            return await _context.WeatherHistory.ToListAsync();
         }
 
         public async Task<IEnumerable<WeatherHistory>> GetByUserId(string id)
         {
             return await _context.WeatherHistory.Where(x => x.Id == id).ToListAsync();
+        }
+
+        public async Task<IEnumerable<WeatherHistory>> GetByDate(string id, DateTime date)
+        {
+            var list = await GetByUserId(id);
+            return list.Where(x => x.Date == date);
         }
 
         public async Task<IEnumerable<WeatherHistory>> Paginate(string idUser, int pageNo = 1, int pageSize = 50)
