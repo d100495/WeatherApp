@@ -51,8 +51,9 @@ namespace WeatherAppApi.Repositories
                 .OrderBy(c => c.WeatherId)
                 .Skip(skip)
                 .Take(pageSize)
-                .Reverse()
                 .ToListAsync();
+
+            historyList.Reverse();
 
             return historyList;
         }

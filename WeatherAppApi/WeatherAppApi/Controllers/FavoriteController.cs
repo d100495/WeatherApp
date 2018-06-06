@@ -48,7 +48,7 @@ namespace WeatherAppApi.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest();
+                return BadRequest("model is not valid");
             }
             var userId = authRepository.GetUserId();
             await favoriteRepository.Delete(id, userId);

@@ -59,10 +59,10 @@ namespace WeatherAppApi.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest("Wrong argument");
+                return BadRequest("Wrong date");
             }
             var list = await weatherHistoryService.GetWeatherHistoryByDate(date);
-            return Ok(date);
+            return Ok(list);
         }
     }
 }

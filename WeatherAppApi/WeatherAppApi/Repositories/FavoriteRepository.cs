@@ -43,8 +43,6 @@ namespace WeatherAppApi.Repositories
                 _context.WeatherStation.FirstOrDefault(x => x.WeatherStationId == model.WeatherStationId);
               user?.WeatherStations.Add(weatherStation);
               await Save();
-              
-           
         }
 
         public async Task<IEnumerable<FavoriteWeatherStation>> GetAll()
