@@ -1,3 +1,10 @@
+<div class="row">
+    <div class="col-lg-12">
+            <input (dateInput)="GetHistoryByDate($event)" [(ngModel)]="dateForData" [matDatepicker]="myDatepicker">
+            <mat-datepicker #myDatepicker></mat-datepicker>
+            <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
+    </div>
+</div>
 <div class="col-lg-12">
     <div class="table-responsive">
         <div class="table">

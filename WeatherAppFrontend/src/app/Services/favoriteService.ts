@@ -16,7 +16,7 @@ export class FavoriteService {
     private htttpDelete = {
         headers: new HttpHeaders({ 'Authorization': `Bearer ${this.auth.getToken()}` })
     };
-    private urlApi = `http://mypenisred1-001-site1.atempurl.com/api/favorite`;
+    private urlApi = `http://localhost:55132/api/favorite`;
     weather: Weather;
     constructor(private _http: HttpClient, private _mapService: MapService, private auth: AuthService) { }
 

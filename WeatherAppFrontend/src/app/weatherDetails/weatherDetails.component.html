@@ -1,4 +1,4 @@
-<div class="col-lg-3"></div>
+<!-- <div class="col-lg-3"></div>
 <div class="col-lg-6">
   <div class="table-responsive">
       <div class="table">
@@ -29,5 +29,49 @@
           </tbody>
       </div>
   </div>
+</div>
+<div class="col-lg-3"></div> -->
+
+<!-- <mat-tab-group [dynamicHeight]='true'>
+  <mat-tab *ngFor="let model of weather" class="md-no-animation">
+      <ng-template mat-tab-label>
+          {{model.Date}}
+          <img src={{model.IconUrl}}>
+        </ng-template>
+    <h1>Some tab content</h1>
+    {{model.Temperature}}
+  </mat-tab>
+</mat-tab-group> -->
+<div class="col-lg-3"></div>
+<div class="col-lg-6">
+  <mat-card *ngFor="let model of weather">
+    <mat-card-header>
+      <mat-card-title> {{model.Date}}</mat-card-title>
+        <mat-card-subtitle><strong>{{model.Description}}</strong> 
+          <img src={{model.IconUrl}}>
+        </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>
+        <div class="table-responsive">
+          <div class="table table-borderless">
+            <div class="table">
+              <tbody>
+                <tr>
+                  <td>Temperature: {{model.Temperature}} °C</td>
+                  <td>Temperature max: {{model.TempMax}} °C</td>
+                  <td>Temperature min: {{model.TempMin}} °C</td>
+                </tr>
+                <tr>
+                  <td>Humidity: {{model.Humidity}} %</td>
+                  <td>Wind Speed: {{model.WindSpeed}} m/s</td>
+                  <td>WindChill: {{model.WindChill}} °C</td>
+                </tr>
+              </tbody>
+            </div>
+          </div>
+        </div>
+    </mat-card-content>
+  </mat-card>
 </div>
 <div class="col-lg-3"></div>

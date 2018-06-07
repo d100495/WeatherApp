@@ -1,7 +1,8 @@
 import { Weather } from './Weather';
+import { WeatherHistory } from '../history/WeatherHistory';
 
 export interface IPaginateWeatherHistory {
-   pageData: Weather[];
+   pageData: WeatherHistory[];
    paging: Paging;
 }
 export interface Paging {

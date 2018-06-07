@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { SharedService } from '../Shared/shared.service';
@@ -19,8 +19,11 @@ import { AuthService } from './Services/authService';
 import { WeatherDetailsComponent } from './weatherDetails/weatherDetails.component';
 import { LoginGuardService } from './Services/loginGuardService';
 
-
-
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatCardModule } from '@angular/material/card';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,12 +35,17 @@ import { LoginGuardService } from './Services/loginGuardService';
     FormsModule,
     MapModule,
     FavoriteModule,
-    HistoryModule,
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     RegisterModule,
-    HomeModule
+    HomeModule,
+    HistoryModule,
+    MatTabsModule,
+    MatCardModule,
+    BrowserAnimationsModule,
+    MatExpansionModule,
+    
   ],
   providers: [SharedService, AuthService, AccountService, LoginGuardService],
   bootstrap: [AppComponent]

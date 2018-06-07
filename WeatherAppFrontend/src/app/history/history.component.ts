@@ -3,6 +3,9 @@ import { MapService } from '../Services/mapService';
 import { Weather } from '../Models/Weather';
 import { WeatherService } from '../Services/weatherService';
 import { IPaginateWeatherHistory } from '../Models/IPaginateWeatherHistory';
+import { MatDatepickerInputEvent } from '@angular/material';
+import { DatePipe } from '@angular/common';
+
 
 @Component({
     selector: 'app-history',
@@ -11,11 +14,22 @@ import { IPaginateWeatherHistory } from '../Models/IPaginateWeatherHistory';
 })
 
 export class HistoryComponent implements OnInit {
-    weather: IPaginateWeatherHistory;
-    constructor(private _weatherService: WeatherService) { }
+    weather : IPaginateWeatherHistory;
+    dateForData = new Date();
+    constructor(private _weatherService: WeatherService, private datePipe: DatePipe) { }
 
+    TransformDate(date) {
+        return this.datePipe.transform(date, 'yyyy-MM-dd');
+    }
+    
     GetHistory() {
         this._weatherService.GetPaginateHistory().subscribe(response => {
+            this.weather = response;
+        });
+    }
+
+    GetHistoryByDate(event: MatDatepickerInputEvent<number>) {
+        this._weatherService.GetPaginateHistoryByDate(this.TransformDate(this.dateForData)).subscribe(response => {
             this.weather = response;
         });
     }
@@ -23,25 +37,25 @@ export class HistoryComponent implements OnInit {
         this.GetHistory();
     }
 
-    NextPage(){
+    NextPage() {
         this._weatherService.GoToPages(this.weather.paging.next).subscribe(response => {
             this.weather = response;
         });
     }
 
-    PreviousPage(){
+    PreviousPage() {
         this._weatherService.GoToPages(this.weather.paging.previous).subscribe(response => {
             this.weather = response;
         });
     }
 
-    FirstPage(){
+    FirstPage() {
         this._weatherService.GoToPages(this.weather.paging.first).subscribe(response => {
             this.weather = response;
         });
     }
 
-    LastPage(){
+    LastPage() {
         this._weatherService.GoToPages(this.weather.paging.last).subscribe(response => {
             this.weather = response;
         });

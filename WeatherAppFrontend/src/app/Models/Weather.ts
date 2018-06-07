@@ -16,6 +16,3 @@ export class Weather {
             * (this.Temperature - 33)) * 100 / 100;
     }
 }
-
-// (0.045 * ((Math.pow(5.27, 0.5)  + 10.45 - 0.28 * this.WindSpeed))
-//             *(this.Temperature - 33) + 33)

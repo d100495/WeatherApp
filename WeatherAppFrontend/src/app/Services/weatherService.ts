@@ -13,7 +13,7 @@ export class WeatherService {
     private httpOptions = {
         headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `Bearer ${this.auth.getToken()}` })
     };
-    private urlApi = 'http://mypenisred1-001-site1.atempurl.com/api/weatherhistory';
+    private urlApi = 'http://localhost:55132/api/weatherhistory';
     constructor(private _http: HttpClient, private auth: AuthService) { }
     private apiKey = '&APPID=409014fbcefa18db869de6c154c71e71';
 
@@ -32,6 +32,11 @@ export class WeatherService {
     GetPaginateHistory(): Observable<IPaginateWeatherHistory>{
         const url = `${this.urlApi}/GetPagedWeatherHistoryByUserId?pageNo=1&pageSize=10`;
         return this._http.get<IPaginateWeatherHistory>(url,this.httpOptions);
+    }
+
+    GetPaginateHistoryByDate(date: string): Observable<IPaginateWeatherHistory>{
+        const url = `${this.urlApi}/GetPagedWeatherHistoryByDate?date=${date}&pageNo=1&pageSize=10`;
+        return this._http.get<IPaginateWeatherHistory>(url, this.httpOptions);
     }
 
     GoToPages(url: string): Observable<IPaginateWeatherHistory>{

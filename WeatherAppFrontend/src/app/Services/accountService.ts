@@ -12,8 +12,8 @@ import { IUser } from '../Models/User';
 
 @Injectable()
 export class AccountService {
-    private url = 'http://mypenisred1-001-site1.atempurl.com/token';
-    private accountUrl = 'http://mypenisred1-001-site1.atempurl.com/api/account';
+    private url = 'http://localhost:55132/token';
+    private accountUrl = 'http://localhost:55132/api/account';
     private httpOptions = {
         headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `Bearer ${this._authService.getToken()}` })
     };
