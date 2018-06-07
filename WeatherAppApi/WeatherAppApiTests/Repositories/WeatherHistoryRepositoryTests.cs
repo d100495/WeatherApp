@@ -171,22 +171,6 @@ namespace WeatherAppApi.Repositories.Tests
 
         }
 
-        [TestMethod]
-        public async Task TotalNumberOfRecords_should_count_entities()
-        {
-            var number = await _weatherHistoryRepository.TotalNumberOfRecords();
-
-            Assert.AreEqual(100, number);
-        }
-
-        [TestMethod]
-        public async Task Paginate_should_return_number_from_arg_entities()
-        {
-            var list = await _weatherHistoryRepository.Paginate("x", 1, 20);
-
-            Assert.AreEqual(20, list.Count());
-
-        }
 
     }
 }

@@ -119,5 +119,17 @@ namespace WeatherAppApi.Controllers.Tests
 
             Assert.IsInstanceOfType(actionResult, typeof(OkResult));
         }
+
+        [TestMethod]
+        public async Task DeleteById_should_return_badRequest_when_modelState_is_not_valid()
+        {
+            FavoriteController.ModelState.AddModelError("test", "test");
+
+            var actionResult = await FavoriteController.DeleteById(It.IsAny<int>()) as BadRequestErrorMessageResult;
+
+            Assert.IsInstanceOfType(actionResult, typeof(BadRequestErrorMessageResult));
+            Assert.AreEqual("model is not valid", actionResult.Message);
+
+        }
     }
 }

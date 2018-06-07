@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Web.Http.Results;
 using WeatherAppApi.App_Start;
 using WeatherAppApi.Models;
+using WeatherAppApi.Models.Pagination;
 using WeatherAppApi.Services;
 
 namespace WeatherAppApi.Controllers.Tests
@@ -81,6 +82,16 @@ namespace WeatherAppApi.Controllers.Tests
             Assert.AreEqual(actionResult.Message, "model cannot be null");
         }
 
+        [TestMethod]
+        public async Task PostHistory_should_return_badRequest_when_model_is_not_valid()
+        {
+            _weatherController.ModelState.AddModelError("test", "test");
+
+            var actionResult = await _weatherController.PostHistory(new Weather()) as BadRequestErrorMessageResult;
+
+            Assert.IsInstanceOfType(actionResult, typeof(BadRequestErrorMessageResult));
+            Assert.AreEqual("model is not valid", actionResult.Message);
+        }
 
         [TestMethod]
         public async Task GetWeatherByUserId_should_return_Ok()
@@ -106,7 +117,7 @@ namespace WeatherAppApi.Controllers.Tests
             Assert.IsInstanceOfType(actionResult, typeof(OkNegotiatedContentResult<IEnumerable<WeatherHistory>>));
             Assert.AreEqual(list, contentResult.Content);
         }
-
+       
     }
 
 
