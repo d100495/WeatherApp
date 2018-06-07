@@ -57,7 +57,6 @@ namespace WeatherAppApi
             kernel.Bind<IWeatherService>().To<WeatherService>();
             kernel.Bind<IFavoritesService>().To<FavoritesService>();
             kernel.Bind(typeof(IPaginationService<>)).To(typeof(PaginationService<>));
-            kernel.Bind<IPagination<WeatherHistory>>().To<WeatherHistoryRepository>();
             kernel.Bind<IHttpService<WeatherJson>>().To<HttpService<WeatherJson>>();
             kernel.Bind<IPageLinkBuilder>().To<PageLinkBuilder>();
             kernel.Bind<IPageLinkBuilderFactory>().ToFactory();

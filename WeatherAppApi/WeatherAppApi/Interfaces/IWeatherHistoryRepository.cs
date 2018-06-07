@@ -5,7 +5,7 @@ using WeatherAppApi.Models;
 
 namespace WeatherAppApi.Interfaces
 {
-    public interface IWeatherHistoryRepository : IPagination<WeatherHistory>
+    public interface IWeatherHistoryRepository
     {
         Task Add(WeatherHistory model);
         Task<IEnumerable<WeatherHistory>> GetByUserId(string id);

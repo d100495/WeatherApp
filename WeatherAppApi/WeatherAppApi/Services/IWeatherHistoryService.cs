@@ -14,5 +14,9 @@ namespace WeatherAppApi.Services
         Task<IEnumerable<WeatherHistory>> GetWeatherHistoryByDate(DateTime date);
         Task<PaginationModel<WeatherHistory>> GetPagedWeatherHistoryByUserId(UrlHelper url, string routeName, int pageNo = 1,
             int pageSize = 50);
+
+        Task<PaginationModel<WeatherHistory>> GetPagedWeatherHistoryByDate(DateTime date, UrlHelper url,
+            string routeName,
+            int pageNo = 1, int pageSize = 50);
     }
 }

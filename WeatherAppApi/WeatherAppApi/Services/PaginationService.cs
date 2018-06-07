@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http.Routing;
 using WeatherAppApi.Interfaces;
@@ -8,28 +9,34 @@ namespace WeatherAppApi.Services
 {
     public class PaginationService<T> : IPaginationService<T> where T : class
     {
-        private IPagination<T> pagination;
         private IPageLinkBuilderFactory pageLinkFactory;
 
-        public PaginationService(IPagination<T> _pagination, IPageLinkBuilderFactory _pageLinkFactory)
+        public PaginationService(IPageLinkBuilderFactory _pageLinkFactory)
         {
-            pagination = _pagination;
             pageLinkFactory = _pageLinkFactory;
         }
 
-        public async Task<int> TotalPages()
+
+        private IEnumerable<T> Paginate(IEnumerable<T> data, int pageNo = 1, int pageSize = 50)
         {
-            return await pagination.TotalNumberOfRecords();
+            int skip = (pageNo - 1) * pageSize;
+
+            var list = data
+                .Skip(skip)
+                .Take(pageSize)
+                .ToList();
+            return list;
         }
 
-        public async Task<PaginationModel<T>> GetPageLinks(UrlHelper urlHelper, IEnumerable<T> data, string routeName, int pageNo = 1, int pageSize = 50)
+        public PaginationModel<T> GetPageLinks(UrlHelper urlHelper, IEnumerable<T> data, string routeName, object routeValues, int pageNo = 1, int pageSize = 50)
         {
-            var total = await TotalPages();
-            var linkBuilder = pageLinkFactory.Create(urlHelper, routeName, null, pageNo, pageSize,
+            var list = Paginate(data.Reverse(), pageNo, pageSize);
+            var total = data.Count();
+            var linkBuilder = pageLinkFactory.Create(urlHelper, routeName, routeValues, pageNo, pageSize,
                 total);
             return new PaginationModel<T>()
             {
-                PageData = data,
+                PageData = list,
                 Paging = new PageLinks()
                 {
                     First = linkBuilder.FirstPage,

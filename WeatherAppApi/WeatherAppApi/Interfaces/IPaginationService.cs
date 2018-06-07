@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Http.Routing;
 using WeatherAppApi.Models;
@@ -8,7 +9,6 @@ namespace WeatherAppApi.Interfaces
 {
     public interface IPaginationService<T> where T : class
     {
-        Task<int> TotalPages();
-        Task<PaginationModel<T>> GetPageLinks(UrlHelper urlHelper,  IEnumerable<T> data, string routeName, int pageNo = 1, int pageSize = 50);
+        PaginationModel<T> GetPageLinks(UrlHelper urlHelper,  IEnumerable<T> data, string routeName, object routeValues, int pageNo = 1, int pageSize = 50);
     }
 }

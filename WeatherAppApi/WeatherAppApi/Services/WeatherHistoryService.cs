@@ -49,8 +49,17 @@ namespace WeatherAppApi.Services
         public async Task<PaginationModel<WeatherHistory>> GetPagedWeatherHistoryByUserId(UrlHelper url, string routeName, int pageNo = 1, int pageSize = 50)
         {
             string id = authRepository.GetUserId();
-            var data = await weatherHistoryRepository.Paginate(id, pageNo, pageSize);
-            var model = await paginationService.GetPageLinks(url, data, routeName, pageNo, pageSize);
+            var data = await weatherHistoryRepository.GetByUserId(id);
+            var model = paginationService.GetPageLinks(url, data, routeName, null, pageNo, pageSize);
+            return model;
+        }
+
+        public async Task<PaginationModel<WeatherHistory>> GetPagedWeatherHistoryByDate(DateTime myDate, UrlHelper url, string routeName,
+            int pageNo = 1, int pageSize = 50)
+        {
+            string id = authRepository.GetUserId();
+            var data = await weatherHistoryRepository.GetByDate(id,myDate);
+            var model = paginationService.GetPageLinks(url, data, routeName, new {date = myDate}, pageNo, pageSize);
             return model;
         }
     }

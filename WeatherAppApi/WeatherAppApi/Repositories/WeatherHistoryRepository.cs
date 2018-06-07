@@ -38,29 +38,7 @@ namespace WeatherAppApi.Repositories
         public async Task<IEnumerable<WeatherHistory>> GetByDate(string id, DateTime date)
         {
             var list = await GetByUserId(id);
-            return list.Where(x => x.Date == date);
-        }
-
-        public async Task<IEnumerable<WeatherHistory>> Paginate(string idUser, int pageNo = 1, int pageSize = 50)
-        {
-            int skip = (pageNo - 1) * pageSize;
-
-
-            var historyList = await _context.WeatherHistory
-                .Where(x => x.Id == idUser)
-                .OrderBy(c => c.WeatherId)
-                .Skip(skip)
-                .Take(pageSize)
-                .ToListAsync();
-
-            historyList.Reverse();
-
-            return historyList;
-        }
-
-        public async Task<int> TotalNumberOfRecords()
-        {
-            return await _context.WeatherHistory.CountAsync();
+            return list.Where(x => x.Date.Date.Equals(date)).ToList();
         }
 
         public async Task Save()

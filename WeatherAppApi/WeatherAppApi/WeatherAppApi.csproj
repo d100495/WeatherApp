@@ -227,7 +227,6 @@
     <Compile Include="HangFireContext.cs" />
     <Compile Include="Interfaces\IFavoriteRepository.cs" />
     <Compile Include="Interfaces\IFavoritesService.cs" />
-    <Compile Include="Interfaces\IPagination.cs" />
     <Compile Include="Interfaces\IWeatherHistoryRepository.cs" />
     <Compile Include="Interfaces\IWeatherStationRepository.cs" />
     <Compile Include="AuthContext.cs" />

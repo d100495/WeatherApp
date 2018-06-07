@@ -55,13 +55,14 @@ namespace WeatherAppApi.Controllers
 
         [HttpGet]
         [Authorize]
-        public async Task<IHttpActionResult> GetWeatherHistoryByDate(DateTime date)
+        [Route("api/weatherhistory/GetPagedWeatherHistoryByDate", Name = "GetWeatherByDate")]
+        public async Task<IHttpActionResult> GetWeatherHistoryByDate(DateTime date, int pageNo = 1, int pageSize = 50)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest("Wrong date");
             }
-            var list = await weatherHistoryService.GetWeatherHistoryByDate(date);
+            var list = await weatherHistoryService.GetPagedWeatherHistoryByDate(date, Url, "GetWeatherByDate",pageNo, pageSize);
             return Ok(list);
         }
     }
