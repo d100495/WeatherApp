@@ -7,6 +7,7 @@ using Owin;
 using System;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using Hangfire.MemoryStorage;
 using WeatherAppApi.App_Start;
 using WeatherAppApi.Providers;
 using WeatherAppApi.Services;
@@ -22,15 +23,15 @@ namespace WeatherAppApi
             HttpConfiguration config = new HttpConfiguration();
           
             WebApiConfig.Register(config);
-            var db = new HangfireContext();
+          //  var db = new HangfireContext();
             app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
 
             ConfigureOAuth(app);
           
             AutoMapperConfig.Initialize();
-           
+            Hangfire.GlobalConfiguration.Configuration.UseMemoryStorage();
             app.UseNinjectMiddleware(NinjectWebCommon.CreateKernel).UseNinjectWebApi(config);
-            Hangfire.GlobalConfiguration.Configuration.UseSqlServerStorage(db.Database.Connection.ConnectionString);
+            //Hangfire.GlobalConfiguration.Configuration.UseSqlServerStorage(db.Database.Connection.ConnectionString);
             app.UseHangfireDashboard();
             app.UseHangfireServer();
             RecurringJob.AddOrUpdate<FavoritesService>(x => x.GetWeatherFromFavoritesList(), Cron.Hourly);

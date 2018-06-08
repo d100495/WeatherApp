@@ -63,6 +63,9 @@
     <Reference Include="Hangfire.Core, Version=1.6.17.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Hangfire.Core.1.6.17\lib\net45\Hangfire.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Hangfire.MemoryStorage, Version=1.5.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Hangfire.MemoryStorage.1.5.2\lib\net40\Hangfire.MemoryStorage.dll</HintPath>
+    </Reference>
     <Reference Include="Hangfire.Ninject, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Hangfire.Ninject.1.2.0\lib\net45\Hangfire.Ninject.dll</HintPath>
     </Reference>
@@ -206,10 +209,6 @@
     <Content Include="App_Data\AuthContext_log.ldf">
       <DependentUpon>AuthContext.mdf</DependentUpon>
     </Content>
-    <Content Include="App_Data\HangfireContext.mdf" />
-    <Content Include="App_Data\HangfireContext_log.ldf">
-      <DependentUpon>HangfireContext.mdf</DependentUpon>
-    </Content>
     <Content Include="App_Readme\readme.txt" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -263,6 +262,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Properties\PublishProfiles\CustomProfile2.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
